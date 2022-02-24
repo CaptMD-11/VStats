@@ -71,6 +71,8 @@ public void computeBinomCdf(int inputLBound , int inputHBound) {
 
 public static void main(String[] args) {
 	// TODO Auto-generated method stub
+	
+	long before = System.nanoTime(); 
 
 	int NumTrials = 10;
 	double PSuccess = 0.87;
@@ -79,7 +81,9 @@ public static void main(String[] args) {
 	
 	BinomDist myBinomDistObject = new BinomDist(NumTrials,  PSuccess,  XVal);
 	
-	System.out.println();
+	System.out.println("Binomial Distribution: "); 
+	System.out.println(); 
+	
 	myBinomDistObject.computeBinomPdf();
 	System.out.println("BinomialPdf = " + myBinomDistObject.getpBinomPdf() + " (" + (myBinomDistObject.getpBinomPdf() * 100) + "%) ");
 	System.out.println();
@@ -87,6 +91,14 @@ public static void main(String[] args) {
 	myBinomDistObject.computeBinomCdf(1 , 3);
 	System.out.println("BinomialCdf = " + myBinomDistObject.getpBinomCdf() + " (" + (myBinomDistObject.getpBinomCdf() * 100) + "%) ");
 	System.out.println();
+	
+	System.out.println("-------"); 
+	System.out.println(); 
+	
+	long after = System.nanoTime(); 
+	
+	System.out.println("Time for completion: " + (after - before) + " nanoseconds"); 
+	
 }
 
 

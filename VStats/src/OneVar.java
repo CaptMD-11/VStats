@@ -297,6 +297,9 @@ public class OneVar {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
+		long before = System.nanoTime(); 
+		
 		double[] data = {1,5,3,3,6,6,7.2,7}; // input Array Data Set here! 
 		OneVar myOneVarObject = new OneVar(data);
 		  
@@ -331,6 +334,14 @@ public class OneVar {
 		System.out.println("median = " + myOneVarObject.getMedian());
 		System.out.println("quartile 3 = " + myOneVarObject.getQuartile3());
 		System.out.println("maximum = " + myOneVarObject.getMaximum());
+		
+		System.out.println(); 
+		System.out.println("-------"); 
+		System.out.println(); 
+		
+		long after = System.nanoTime(); 
+		
+		System.out.println("Time for completion: " + (after - before) + " nanoseconds"); 
 		
 		
 	}

@@ -36,6 +36,9 @@ public class ZConfidenceInterval {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
+		long before = System.nanoTime(); 
+		
 		ZConfidenceInterval myObj = new ZConfidenceInterval();
 
 		ZConfidenceData myData = new ZConfidenceData();
@@ -51,8 +54,16 @@ public class ZConfidenceInterval {
 
 		////////////////////////////////////////////////////////////////////////////////////////////////////
 		
+		System.out.println("Z-Confidence Interval: "); 
+		System.out.println(); 
 		System.out.println(myObj.computeZConfidenceInterval(myData)); 
-
+		System.out.println(); 
+		System.out.println("-------"); 
+		System.out.println(); 
+		
+		long after = System.nanoTime();
+		
+		System.out.println("Time for completion: " + (after - before) + " nanoseconds"); 
 	}
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////

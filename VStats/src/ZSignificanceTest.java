@@ -91,12 +91,32 @@ public class ZSignificanceTest {
 		
 		////////////////////////////////////////////////////////////////////////////////////////////////////
 		
+		long before = System.nanoTime(); 
+		
+		System.out.println("Z-Significance Test: "); 
+		System.out.println(); 
+		
 		if (myData.alternateHypothesis.equals("Ha > H0")) {
 			System.out.println(myObj.computeZSigTestHaGreaterThanH0(myData));
+			System.out.println(); 
+			System.out.println("-------"); 
+			System.out.println();
+			long after = System.nanoTime();
+			System.out.println("Time for completion: " + (after - before) + " nanoseconds"); 
 		} else if (myData.alternateHypothesis.equals("Ha < H0")) {
 			System.out.println(myObj.computeZSigTestHaLessThanH0(myData)); 
+			System.out.println(); 
+			System.out.println("-------"); 
+			System.out.println();
+			long after = System.nanoTime();
+			System.out.println("Time for completion: " + (after - before) + " nanoseconds"); 
 		} else if (myData.alternateHypothesis.equals("Ha not equals H0")) {
 			System.out.println(myObj.computeZSigTestHaNotEqualsH0(myData)); 
+			System.out.println(); 
+			System.out.println("-------"); 
+			System.out.println();
+			long after = System.nanoTime();
+			System.out.println("Time for completion: " + (after - before) + " nanoseconds"); 
 		}
 
 	}

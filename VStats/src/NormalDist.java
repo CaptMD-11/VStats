@@ -86,13 +86,27 @@ public class NormalDist {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
+		long before = System.nanoTime(); 
+		
 		NormalDist myObj = new NormalDist();  
+		
+		System.out.println("Normal Distribution: "); 
+		System.out.println(); 
 		
 		System.out.println("Probability Right: " + myObj.computeFiniteZProbRightRiemann(-1.5, 2.0337));
 		System.out.println("Probability Left: " + myObj.computeFiniteZProbLeftRiemann(-1.5, 2.0337)); 
 		System.out.println("Probability Avg: " + myObj.computeFiniteZProbAvgLeftRightRiemann(-1.5, 2.0337));
 		System.out.println("Probability Midpoint: " + myObj.computeFiniteZProbMidpointRiemann(-1.5, 2.0337)); 
-		System.out.println(myObj.computeInvNormApprox(0.001)); 
+		System.out.println("Very approximate z-score: " + myObj.computeInvNormApprox(0.001));
+		System.out.println(); 
+		
+		System.out.println("-------"); 
+		System.out.println(); 
+		
+		long after = System.nanoTime(); 
+		
+		System.out.println("Time for completion: " + (after - before) + " nanoseconds"); 
 		
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////	

@@ -39,8 +39,21 @@ public class TDist {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
+			long before = System.nanoTime(); 
+		
 			TDist myObj = new TDist();
+			System.out.println("t-Distribution: "); 
+			System.out.println(); 
 			System.out.println(myObj.TPDF(2.0, 7.0));
+			System.out.println(); 
+			System.out.println("-------"); 
+			System.out.println();
+			
+			long after = System.nanoTime(); 
+			
+			System.out.println("Time for completion: " + (after - before) + " nanoseconds"); 
+			
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 

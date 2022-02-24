@@ -40,11 +40,15 @@ public void computePGeoCdf(int inputLowBound , int inputHighBound) {
 
 public static void main(String[] args) {
 	// TODO Auto-generated method stub
+	
+	long before = System.nanoTime(); 
 
 	double PSuccess = 0.3;
 	int XVal = 3;
 
 	GeoDist myGeoDistObject = new GeoDist(PSuccess , XVal);
+	
+	System.out.println("Geometric Distribution: "); 
 
 	System.out.println();
 	myGeoDistObject.computePGeoPdf();
@@ -53,6 +57,14 @@ public static void main(String[] args) {
 	System.out.println();
 	myGeoDistObject.computePGeoCdf(1 , 4);
 	System.out.println("GeometricCdf = " + myGeoDistObject.getpGeoCdf() + " (" + (myGeoDistObject.getpGeoCdf() * 100) + "%) ");
+	System.out.println(); 
+	
+	System.out.println("-------"); 
+	System.out.println(); 
+	
+	long after = System.nanoTime(); 
+	
+	System.out.println("Time for completion: " + (after - before) + " nanoseconds"); 
 	
 }
 

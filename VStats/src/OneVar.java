@@ -272,7 +272,7 @@ public class OneVar {
 		
 	}
 	
-	public double computeLength() {
+	public int computeLength() {
 		
 		int count = 0; 
 		

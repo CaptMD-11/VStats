@@ -9,11 +9,53 @@ public class LinearRegression {
 		m_indVar = new OneVar(indVarArr); 
 		m_depVar = new OneVar(depVarArr); 
 		
+	}
+	
+	public double computeSumOfResidualsSquared() {
 		
+		double sum = 0.0; 
+
+		double[] temp = computeResidualValues(); 
+		
+		for (int i = 0; i < temp.length; i++) {
+			sum += (Math.pow(temp[i], 2)); 
+		}
+		
+		return sum; 
 		
 	}
 	
-	public String computeRegressionEquation() {
+	public double[] computeResidualValues() {
+		
+		double[] res = new double[m_indVar.computeLength()]; 
+		
+		for (int i = 0; i < res.length; i++) {
+			res[i] = (m_depVar.atIndex(i)) - (computeRegressionEquationOutput(m_indVar.atIndex(i))); 
+		}
+		
+		return res; 
+		
+	}
+	
+	public double[] computeYPredictedValues() {
+		
+		double[] res = new double[m_indVar.computeLength()]; 
+		
+		for (int i = 0; i < res.length; i++) {
+			res[i] = computeRegressionEquationOutput(m_indVar.atIndex(i)); 
+		}
+		
+		return res; 
+		
+	} 
+	
+	public double computeRegressionEquationOutput(double input) {
+		
+		return ((computeA()) + (computeB() * input)); 
+		
+	}
+	
+	public String displayRegressionEquation() {
 		
 		String res = ""; 
 		
@@ -30,9 +72,6 @@ public class LinearRegression {
 	}
 	
 	public double computeA() {
-		
-		// ybar = a + b(xbar)
-
 		
 		double a = (m_depVar.getMean()) - ((computeB()) * (m_indVar.getMean())); 
 				
@@ -55,8 +94,8 @@ public class LinearRegression {
 		
 		double sumOfProducts = 0.0; 
 
-		double arr1Bar = m_indVar.getMean(); 
-		double arr1Sigma = m_indVar.getStanDev(); 
+		double arr1Bar = m_indVar.getMean();
+		double arr1Sigma = m_indVar.getStanDev();
 
 		
 		double arr2Bar = m_depVar.getMean(); 
@@ -98,17 +137,16 @@ public class LinearRegression {
 		System.out.println("LinearRegression: ");
 		System.out.println();
 		
-		System.out.println(myObj.computeRegressionEquation()); 
-		
+		System.out.println(myObj.displayRegressionEquation()); 
 		System.out.println(); 
-		
 		System.out.println("r = " + myObj.computeR());
-		
 		System.out.println("r^2 = " + myObj.computeRSquaredValue()); 
-
 		System.out.println(); 
 		
-		System.out.println("-------"); 
+		System.out.println("sum of residuals squared: " + myObj.computeSumOfResidualsSquared());
+		System.out.println(); 
+		
+		System.out.println("-------");  
 		
 		System.out.println(); 
 		

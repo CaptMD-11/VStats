@@ -143,7 +143,7 @@ public class LinearRegression {
 		System.out.println("LinearRegression: ");
 		System.out.println();
 		
-		System.out.println(myObj.displayLSRLEquation()); 
+		System.out.println("LSRL: " + myObj.displayLSRLEquation()); 
 		System.out.println(); 
 		System.out.println("r = " + myObj.computeR());
 		System.out.println("r^2 = " + myObj.computeRSquaredValue()); 

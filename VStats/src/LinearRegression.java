@@ -11,6 +11,12 @@ public class LinearRegression {
 		
 	}
 	
+	public double computeSe() {
+		
+		return Math.sqrt((computeSumOfResidualsSquared()) / (m_depVar.computeLength())); 
+		
+	}
+	
 	public double computeSumOfResidualsSquared() {
 		
 		double sum = 0.0; 
@@ -30,7 +36,7 @@ public class LinearRegression {
 		double[] res = new double[m_indVar.computeLength()]; 
 		
 		for (int i = 0; i < res.length; i++) {
-			res[i] = (m_depVar.atIndex(i)) - (computeRegressionEquationOutput(m_indVar.atIndex(i))); 
+			res[i] = (m_depVar.atIndex(i)) - (computeLSRLOutput(m_indVar.atIndex(i))); 
 		}
 		
 		return res; 
@@ -42,20 +48,20 @@ public class LinearRegression {
 		double[] res = new double[m_indVar.computeLength()]; 
 		
 		for (int i = 0; i < res.length; i++) {
-			res[i] = computeRegressionEquationOutput(m_indVar.atIndex(i)); 
+			res[i] = computeLSRLOutput(m_indVar.atIndex(i)); 
 		}
 		
 		return res; 
 		
 	} 
 	
-	public double computeRegressionEquationOutput(double input) {
+	public double computeLSRLOutput(double input) {
 		
 		return ((computeA()) + (computeB() * input)); 
 		
 	}
 	
-	public String displayRegressionEquation() {
+	public String displayLSRLEquation() {
 		
 		String res = ""; 
 		
@@ -137,13 +143,14 @@ public class LinearRegression {
 		System.out.println("LinearRegression: ");
 		System.out.println();
 		
-		System.out.println(myObj.displayRegressionEquation()); 
+		System.out.println(myObj.displayLSRLEquation()); 
 		System.out.println(); 
 		System.out.println("r = " + myObj.computeR());
 		System.out.println("r^2 = " + myObj.computeRSquaredValue()); 
 		System.out.println(); 
 		
 		System.out.println("sum of residuals squared: " + myObj.computeSumOfResidualsSquared());
+		System.out.println("Se: " + myObj.computeSe()); 
 		System.out.println(); 
 		
 		System.out.println("-------");  

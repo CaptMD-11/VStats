@@ -33,7 +33,7 @@ public class NumberOperations {
 		
 		////////////////////////////////////////////////////////////////////////////////////
 		
-		// enter your data below! 
+		// enter your data here! 
 		
 		System.out.println("Factorial: " + myObj.computeFactorial(5)); 
 		System.out.println("Random number: " + myObj.computeRandomNumber(0, 1000));

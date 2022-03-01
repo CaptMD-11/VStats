@@ -15,7 +15,11 @@ public class NumberOperations {
 		}
 	}
 	
-	public double computeRandomNumber(double low, double high) {
+	public int computeRandomWholeNumber(int low, int high) {
+		return (int) (Math.random()*(high-low+1) + low); 
+	}
+	
+	public double computeRandomDecimalNumber(double low, double high) {
 		return Math.random()*(high-low+1) + low; 
 	}
 	
@@ -44,7 +48,8 @@ public class NumberOperations {
 		// enter your data here! 
 		
 		System.out.println("Factorial: " + myObj.computeFactorial(5)); 
-		System.out.println("Random number: " + myObj.computeRandomNumber(0, 1000));
+		System.out.println("Random whole number: " + myObj.computeRandomWholeNumber(0, 100)); 
+		System.out.println("Random decimal number: " + myObj.computeRandomDecimalNumber(0, 1000));
 		System.out.println("Combinations: " + myObj.computeCombinations(10, 3)); 
 		System.out.println("Permutations: " + myObj.computePermutations(10, 3)); 
 		

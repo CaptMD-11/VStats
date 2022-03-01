@@ -19,6 +19,14 @@ public class NumberOperations {
 		return Math.random()*(high-low+1) + low; 
 	}
 	
+	public double computeCombinations(int numberOfObservations, int numberChoose) {
+		return (computeFactorial(numberOfObservations)) / (computeFactorial(numberChoose) * computeFactorial(numberOfObservations - numberChoose)); 
+	}
+	
+	public double computePermutations(int numberOfObservations, int numberChoose) {
+		return (computeFactorial(numberOfObservations)) / (computeFactorial(numberOfObservations - numberChoose)); 
+	}
+	
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	public static void main(String[] args) {
@@ -37,6 +45,8 @@ public class NumberOperations {
 		
 		System.out.println("Factorial: " + myObj.computeFactorial(5)); 
 		System.out.println("Random number: " + myObj.computeRandomNumber(0, 1000));
+		System.out.println("Combinations: " + myObj.computeCombinations(10, 3)); 
+		System.out.println("Permutations: " + myObj.computePermutations(10, 3)); 
 		
 		////////////////////////////////////////////////////////////////////////////////////
 		

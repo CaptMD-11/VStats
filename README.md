@@ -2,7 +2,7 @@
   <img src="https://github.com/CaptMD-11/imageWIPs/blob/master/vstatslogo.png?raw=true" alt="test"/>
 </p>
 
-This is a repository where I push my code for various statistical calculations. This library contains computations regarding one-variable statistics, the standard normal distribution, confidence intervals, signficance tests, linear regression, binomial & geometric distributions, and more. I am currently working on the <samp>NumberOperations</samp> class, which contains various methods for calculating factorials, permutations, combinations, and more. 
+This is a repository where I push my code for various statistical calculations. This library contains computations regarding one-variable statistics, the standard normal distribution, confidence intervals, signficance tests, linear regression, binomial & geometric distributions, and more. I am currently working on the <samp>MatrixOperations</samp> class, which contains various methods for calculating matrix addition and subtraction. I plan to add methods for computing multiplication, division, and determinants. 
 
 ### How does the user input data? ###
 

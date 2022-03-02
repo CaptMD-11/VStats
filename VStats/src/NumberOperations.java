@@ -31,6 +31,16 @@ public class NumberOperations {
 		return (computeFactorial(numberOfObservations)) / (computeFactorial(numberOfObservations - numberChoose)); 
 	}
 	
+	public double computeAbsoluteValue(double number) {
+		if (number < 0) {
+			return number * -1;
+		} else if (number == 0) {
+			return 0;
+		} else {
+			return number; 
+		}
+	}
+	
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	public static void main(String[] args) {
@@ -52,6 +62,7 @@ public class NumberOperations {
 		System.out.println("Random decimal number: " + myObj.computeRandomDecimalNumber(0, 1000));
 		System.out.println("Combinations: " + myObj.computeCombinations(10, 3)); 
 		System.out.println("Permutations: " + myObj.computePermutations(10, 3)); 
+		System.out.println("Absolute value: " + myObj.computeAbsoluteValue(1252)); 
 		
 		////////////////////////////////////////////////////////////////////////////////////
 		

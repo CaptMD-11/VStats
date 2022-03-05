@@ -39,6 +39,28 @@ public class MatrixOperations {
 		
 	}
 	
+	public double getRowProduct(double[][] data, int row) {
+		
+		double sum = 0; 
+		
+		for (int i = 0; i < data[0].length; i++) {
+			sum *= data[row][i]; 
+		}
+		
+		return sum; 
+	}
+	
+	public double getColumnProduct(double[][] data, int col) {
+		
+		double sum = 0;
+		
+		for (int i = 0; i < data.length; i++) {
+			sum *= data[i][col]; 
+		}
+		
+		return sum; 
+	}
+	
 	public double[][] computeMatrixAddition(MatrixData data) { // matrix1 & matrix2 must have same dimensions 
 		
 		double[][] res = new double[data.matrix1.length][data.matrix1[0].length]; 
@@ -83,20 +105,27 @@ public class MatrixOperations {
 	
 	public double[][] computeMatrixMultiplicationBySquareMatrices(MatrixData data) { // matrix1 * matrix2 
 		
-		double[][] res = new double[data.matrix1.length][data.matrix1[0].length]; 
-		ArrayList<Double> sums = new ArrayList<Double>(data.matrix1.length * data.matrix1[0].length);
+		double[][] res = new double[data.matrix1.length*2][data.matrix1[0].length*2];
+		ArrayList<Double> matrix1Products = new ArrayList<Double>(); 
+		ArrayList<Double> matrix2Products = new ArrayList<Double>(); 
 		
-		for (int i = 0; i < res.length; i++) {
-			for (int j = 0; j < res[i].length; j++) {
-				res[i][j] = getRowSum(data.matrix1, i) * getColumnSum(data.matrix2, j); 
+		for (int i = 0; i < data.matrix1.length; i++) {
+			matrix1Products.add(getRowProduct(data.matrix1, i)); 
+		}
+		
+		for (int i = 0; i < data.matrix2.length; i++) {
+			matrix2Products.add(getColumnProduct(data.matrix2, i)); 
+		}
+		
+		ArrayList<Double> finalArr = new ArrayList<Double>(matrix1Products.size()); 
+		
+		for (int i = 0; i < finalArr.size(); i++) {
+			for (int j = 0; j < finalArr.size(); j++) {
+				finalArr.add(matrix1Products.get(i) + matrix2Products.get(j)); 
 			}
 		}
 		
-		for (int i = 0; i < res.length; i++) {
-			for (int j = 0; j < res[i].length; j++) {
-				//res[i][j] = data.matrix1[i][]
-			}
-		}
+		// NEED TO ADD TRANSFER TO MATRIX LOGIC 
 		
 		return res; 
 		
@@ -149,7 +178,7 @@ public class MatrixOperations {
 		System.out.println();
 		
 		double[][] tempScalarMultiplication = myObj.computeMatrixMultiplicationByScalar(myData); 
-		System.out.println("Matrix scalar multiplication result: "); 
+		System.out.println("Matrix multiplicaion by scalar result: "); 
 		for (int i = 0; i < tempScalarMultiplication.length; i++) {
 			for (int j = 0; j < tempScalarMultiplication[i].length; j++) {
 				System.out.print(tempScalarMultiplication[i][j] + " "); 

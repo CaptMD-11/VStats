@@ -105,7 +105,7 @@ public class MatrixOperations {
 	
 	public double[][] computeMatrixMultiplicationBySquareMatrices(MatrixData data) { // matrix1 * matrix2 
 		
-		double[][] res = new double[data.matrix1.length*2][data.matrix1[0].length*2];
+		double[][] res = new double[data.matrix1.length][data.matrix1[0].length];
 		ArrayList<Double> matrix1Products = new ArrayList<Double>(); 
 		ArrayList<Double> matrix2Products = new ArrayList<Double>(); 
 		
@@ -117,15 +117,26 @@ public class MatrixOperations {
 			matrix2Products.add(getColumnProduct(data.matrix2, i)); 
 		}
 		
-		ArrayList<Double> finalArr = new ArrayList<Double>(matrix1Products.size()); 
+		Stack<Double> infoStack1 = new Stack<Double>(); 
 		
-		for (int i = 0; i < finalArr.size(); i++) {
-			for (int j = 0; j < finalArr.size(); j++) {
-				finalArr.add(matrix1Products.get(i) + matrix2Products.get(j)); 
+		for (int i = 0; i < matrix1Products.size(); i++) {
+			for (int j = 0; j < matrix1Products.size(); i++) {
+				infoStack1.push(matrix1Products.get(i) + matrix2Products.get(j));
+			}
+		} // all elements in stack - but in reverse order 
+		
+		Stack<Double> infoStack2 = new Stack<Double>();
+		int infoStack1Size = infoStack1.size(); 
+		
+		for (int i = 0; i < infoStack1Size; i++) {
+			infoStack2.push(infoStack1.pop());
+		} // all elements - in "correct" order 
+		
+		for (int i = 0; i < res.length; i++) {
+			for (int j = 0; j < res[i].length; j++) {
+				res[i][j] = infoStack2.pop(); 
 			}
 		}
-		
-		// NEED TO ADD TRANSFER TO MATRIX LOGIC 
 		
 		return res; 
 		

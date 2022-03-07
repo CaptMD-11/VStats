@@ -1,5 +1,5 @@
 
-public class ZConfidenceInterval {
+public class ZDistConfidence {
 
 	public static class ZConfidenceData {
 		double mu;
@@ -39,7 +39,7 @@ public class ZConfidenceInterval {
 		
 		long before = System.nanoTime(); 
 		
-		ZConfidenceInterval myObj = new ZConfidenceInterval();
+		ZDistConfidence myObj = new ZDistConfidence();
 
 		ZConfidenceData myData = new ZConfidenceData();
 

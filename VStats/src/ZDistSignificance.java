@@ -1,5 +1,5 @@
 
-public class ZSignificanceTest {
+public class ZDistSignificance {
 
 	public static class ZSignificanceData {
 		double mu;
@@ -74,7 +74,7 @@ public class ZSignificanceTest {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		ZSignificanceTest myObj = new ZSignificanceTest();
+		ZDistSignificance myObj = new ZDistSignificance();
 
 		ZSignificanceData myData = new ZSignificanceData();
 		

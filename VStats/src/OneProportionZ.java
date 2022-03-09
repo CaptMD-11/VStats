@@ -37,9 +37,9 @@ public class OneProportionZ {
 	
 	public String computeOnePropZSigTest(SinglePropZTestData data) {
 		
-		if (data.alternativeHypothesis.equals("p-nought greater than value")) {
+		if (data.alternativeHypothesis.equals("p-nought > value")) {
 			return computeOnePropZSigTestP0GreaterThanValue(data);
-		} else if (data.alternativeHypothesis.equals("p-nought less than value")) {
+		} else if (data.alternativeHypothesis.equals("p-nought < value")) {
 			return computeOnePropZSigTestP0LessThanValue(data);
 		} else if (data.alternativeHypothesis.equals("p-nought not equals value")) {
 			return computeOnePropZSigTestP0NotEqualsValue(data);
@@ -60,9 +60,9 @@ public class OneProportionZ {
 		double pValue = obj.computeFiniteZProbMidpointRiemann(-1000.0, zCritical); 
 		
 		if (pValue < data.alpha) {
-			return "There is statistically signficant evidence that the true P0 is less than the given P0 - reject H0"; 
+			return "There is statistically signficant evidence that the true P0 < given P0 - reject H0"; 
 		} else if (pValue > data.alpha) {
-			return "There is no statistically signficant evidence that the true P0 is less than the given P0 - fail to reject H0"; 
+			return "There is no statistically signficant evidence that the true P0 < given P0 - fail to reject H0"; 
 		} else { // pValue equals alpha 
 			return ""; 
 		}
@@ -80,9 +80,9 @@ public class OneProportionZ {
 		double pValue = obj.computeFiniteZProbMidpointRiemann(zCritical, 1000.0); 
 		
 		if (pValue < data.alpha) {
-			return "There is statistically signficant evidence that the true P0 is greater than the given P0 - reject H0"; 
+			return "There is statistically signficant evidence that the true P0 > given P0 - reject H0"; 
 		} else if (pValue > data.alpha) {
-			return "There is no statistically signficant evidence that the true P0 is greater than the given P0 - fail to reject H0"; 
+			return "There is no statistically signficant evidence that the true P0 > given P0 - fail to reject H0"; 
 		} else { // pValue equals alpha 
 			return ""; 
 		}
@@ -100,9 +100,9 @@ public class OneProportionZ {
 		double pValue = obj.computeFiniteZProbMidpointRiemann((Math.abs(zCritical)), 1000.0) * 2.0; 
 		
 		if (pValue < data.alpha) {
-			return "There is statistically signficant evidence that the true P0 not equals the given P0 - reject H0"; 
+			return "There is statistically signficant evidence that the true P0 ≠ the given P0 - reject H0"; 
 		} else if (pValue > data.alpha) {
-			return "There is no statistically signficant evidence that the true P0 not equals the given P0 - fail to reject H0"; 
+			return "There is no statistically signficant evidence that the true P0 ≠ the given P0 - fail to reject H0"; 
 		} else { // pValue equals alpha 
 			return ""; 
 		}
@@ -139,12 +139,13 @@ public class OneProportionZ {
 		myZTestData.sampleSize = 500; 
 		myZTestData.alpha = 0.10;
 		myZTestData.pNought = 0.08;
-		myZTestData.alternativeHypothesis = "p-nought greater than value"; 
+		myZTestData.alternativeHypothesis = "p-nought > value"; 
 		
 		////////////////////////////////////////////////////
 		
-		System.out.println(myObj.computeOnePropZConfInt(myConfIntData)); 
-		System.out.println(myObj.computeOnePropZSigTest(myZTestData)); 
+		System.out.println("Confidence interval: " + myObj.computeOnePropZConfInt(myConfIntData)); 
+		System.out.println(); 
+		System.out.println("Significance test: " + myObj.computeOnePropZSigTest(myZTestData)); 
 		
 		System.out.println(); 
 		System.out.println("-------"); 

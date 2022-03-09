@@ -2,7 +2,7 @@
   <img src="https://github.com/CaptMD-11/imageWIPs/blob/master/vstatslogo.png?raw=true" alt="test"/>
 </p>
 
-This is a repository where I push my code for various statistical calculations. This library contains computations regarding one-variable statistics, the standard normal distribution, confidence intervals, signficance tests, linear regression, binomial & geometric distributions, and more. I am currently working on the <samp>OneProportionZ</samp> class, which computes confidence intervals & significance tests for a single-proportion scenario, using the <i>z</i>-distribution. 
+This is a repository where I push my code for various statistical calculations. This library contains computations for one-variable statistics, the standard normal distribution, confidence intervals, signficance tests, linear regression, binomial & geometric distributions, and more. I am currently working on the <samp>OneProportionZ</samp> class, which computes confidence intervals & significance tests for a single-proportion scenario, using the <i>z</i>-distribution. 
 
 ### How does the user input data? ###
 

@@ -41,7 +41,7 @@ public class OneProportionZ {
 			return computeOnePropZSigTestP0GreaterThanValue(data);
 		} else if (data.alternativeHypothesis.equals("p-nought < value")) {
 			return computeOnePropZSigTestP0LessThanValue(data);
-		} else if (data.alternativeHypothesis.equals("p-nought not equals value")) {
+		} else if (data.alternativeHypothesis.equals("p-nought not equal to value")) {
 			return computeOnePropZSigTestP0NotEqualsValue(data);
 		} else {
 			return "ERROR in Ha statement - please check typing/syntax"; 
@@ -139,7 +139,7 @@ public class OneProportionZ {
 		myZTestData.sampleSize = 500; 
 		myZTestData.alpha = 0.10;
 		myZTestData.pNought = 0.08;
-		myZTestData.alternativeHypothesis = "p-nought > value"; 
+		myZTestData.alternativeHypothesis = "p-nought not equal to value"; 
 		
 		////////////////////////////////////////////////////
 		

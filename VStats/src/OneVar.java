@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 
 public class OneVar {
 
@@ -287,6 +287,27 @@ public class OneVar {
 	public double atIndex(int i) {
 		
 		return inputData[i]; 
+		
+	}
+	
+	public double computeIQR() {
+		
+		return computeQuartile3() - computeQuartile1(); 
+		
+	}
+	
+	public ArrayList<Double> computeOutliers() {
+		
+		double lowBound = computeQuartile1() - (1.5 * computeIQR()); 
+		double highBound = computeQuartile3() + (1.5 * computeIQR()); 
+		ArrayList<Double> res = new ArrayList<Double>(); 
+		
+		for (int i = 0; i < inputData.length; i++) {
+			if ((inputData[i] < lowBound) || (highBound > highBound))
+				res.add(inputData[i]); 
+		}
+		
+		return res; 
 		
 	}
 	

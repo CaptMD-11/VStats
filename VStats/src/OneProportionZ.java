@@ -120,7 +120,7 @@ public class OneProportionZ {
 		SinglePropZConfData myConfIntData = new SinglePropZConfData(); 
 		SinglePropZTestData myZTestData = new SinglePropZTestData(); 
 		
-		System.out.println("Single Proportion Z: "); 
+		System.out.println("One-Proportion Z: "); 
 		System.out.println(); 
 		
 		////////////////////////////////////////////////////

@@ -302,38 +302,25 @@ public class OneVar {
 		
 		double[] data = {1,5,3,3,6,6,7.2,7}; // input Array Data Set here! 
 		OneVar myOneVarObject = new OneVar(data);
-		  
-		myOneVarObject.computeMean();
-		myOneVarObject.computeRange();
-		myOneVarObject.computeVariance(); 
-		myOneVarObject.computeStanDev();
-		myOneVarObject.computeMinimum(); 
-		myOneVarObject.computeMedian();
-		myOneVarObject.computeMaximum();
-		myOneVarObject.computeNumValues();
-		myOneVarObject.computeSumValues();
-		myOneVarObject.computeQuartile1();
-		myOneVarObject.computeQuartile3();
-		myOneVarObject.computeMode();
+		
 		
 		System.out.println("One-Variable Statistics: ");
 		System.out.println();
-		System.out.println("number of data values = " + myOneVarObject.getNumValues());
-		System.out.println("sum of data values = " + myOneVarObject.getSumValues());
-		System.out.println("mean = " + myOneVarObject.getMean());
-		System.out.println("range = " + myOneVarObject.getRange()); 
-		System.out.println("mode = " + myOneVarObject.getMode());
-		System.out.println("variance = " + myOneVarObject.getVariance());
-		System.out.println("standard deviation = " + myOneVarObject.getStanDev());
+		System.out.println("number of data values = " + myOneVarObject.computeNumValues());
+		System.out.println("sum of data values = " + myOneVarObject.computeSumValues());
+		System.out.println("mean = " + myOneVarObject.computeMean());
+		System.out.println("range = " + myOneVarObject.computeRange()); 
+		System.out.println("mode = " + myOneVarObject.computeMode());
+		System.out.println("variance = " + myOneVarObject.computeVariance());
+		System.out.println("standard deviation = " + myOneVarObject.computeStanDev());
 		System.out.println();
 		
-		
 		System.out.println("5-Number Summary: ");
-		System.out.println("minimum = " + myOneVarObject.getMinimum());
-		System.out.println("quartile 1 = " + myOneVarObject.getQuartile1());
-		System.out.println("median = " + myOneVarObject.getMedian());
-		System.out.println("quartile 3 = " + myOneVarObject.getQuartile3());
-		System.out.println("maximum = " + myOneVarObject.getMaximum());
+		System.out.println("minimum = " + myOneVarObject.computeMinimum());
+		System.out.println("quartile 1 = " + myOneVarObject.computeQuartile1());
+		System.out.println("median = " + myOneVarObject.computeMedian());
+		System.out.println("quartile 3 = " + myOneVarObject.computeQuartile3());
+		System.out.println("maximum = " + myOneVarObject.computeMaximum());
 		
 		System.out.println(); 
 		System.out.println("-------"); 

@@ -57,6 +57,7 @@ public class Boxplot extends JPanel implements ActionListener, MouseListener, Ke
         for (double i = min; i <= max; i += numberIncrement) {
         	i = Math.round(i * 100.0) / 100.0; 
         	g.drawString((i + ""), windowIndexer, 300);
+        	incrementingVals.add(i); 
         	windowIndexer += windowIncrement; 
         }
         

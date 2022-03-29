@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -19,6 +20,7 @@ public class Boxplot extends JPanel implements ActionListener, MouseListener, Ke
 	
 	int frameWidth = 700;
 	int frameHeight = 400; 
+	double[] inputData;
 	
 	
 	public void paint(Graphics g) {
@@ -29,20 +31,43 @@ public class Boxplot extends JPanel implements ActionListener, MouseListener, Ke
 		
         Font smallFont = new Font("Monospaced", Font.PLAIN, 20);
         g.setFont(smallFont);
-        g.drawString("Boxplot (based on OneVar data)", 170, 30);
+        g.drawString("Boxplot", 300, 30);
         
-        OneVar oneVarObj = new OneVar(); 
-        double median = oneVarObj.computeMedian();
+        OneVar oneVarObj = new OneVar(inputData); 
+        
+        // 5-number summary 
+        double min = oneVarObj.computeMinimum();
         double q1 = oneVarObj.computeQuartile1();
+        double median = oneVarObj.computeMedian();
         double q3 = oneVarObj.computeQuartile3();
+        double max = oneVarObj.computeMaximum();
+        double range = oneVarObj.computeRange(); 
         
+        // graph scaling 
+        // need 15 "increments" 
+        double numberIncrement = (range / 15.0); 
+        int windowIncrement = (frameWidth / 16); 
+        int windowIndexer = windowIncrement/4;
+        
+        ArrayList<Double> incrementingVals = new ArrayList<Double>(); 
+        
+        Font currFont = new Font("Monospaced", Font.PLAIN, 10); 
+        g.setFont(currFont); 
+        
+        for (double i = min; i <= max; i += numberIncrement) {
+        	i = Math.round(i * 100.0) / 100.0; 
+        	g.drawString((i + ""), windowIndexer, 300);
+        	windowIndexer += windowIncrement; 
+        }
+        
+        // draw rectangles 
         
 		
 	}
 
-	public Boxplot(OneVar obj) {
-		
-		JFrame f = new JFrame("Boxplot (based on OneVar data)");
+	public Boxplot(double[] data) {
+		inputData = data; 
+		JFrame f = new JFrame("Boxplot");
 		f.setSize(new Dimension(frameWidth, frameHeight));
 		f.setBackground(Color.black); 
 		f.add(this);
@@ -56,12 +81,22 @@ public class Boxplot extends JPanel implements ActionListener, MouseListener, Ke
 		f.setVisible(true);
 	}
 	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
+///////////////////////////////////////////////////////////////
+		
+		// enter your data here! 
 		double[] data = {1,2,3}; 
-		OneVar myOneVarObj = new OneVar(data); 
-		Boxplot boxplot = new Boxplot(myOneVarObj);
+		
+///////////////////////////////////////////////////////////////
+		
+		Boxplot boxplot = new Boxplot(data);
 	}
+	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	@Override
 	public void keyTyped(KeyEvent e) {

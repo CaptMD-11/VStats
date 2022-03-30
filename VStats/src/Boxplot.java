@@ -54,14 +54,19 @@ public class Boxplot extends JPanel implements ActionListener, MouseListener, Ke
         Font currFont = new Font("Monospaced", Font.PLAIN, 10); 
         g.setFont(currFont); 
         
+        // draw scaling axis & axis tick marks 
         for (double i = min; i <= max; i += numberIncrement) {
         	i = Math.round(i * 100.0) / 100.0; 
-        	g.drawString((i + ""), windowIndexer, 300);
+        	String temp = i+""; 
+        	if (temp.length() < 4)
+        		temp += "0"; 
+        	g.drawString(temp, windowIndexer, 300);
+        	g.fillRect(windowIndexer+10, 270, 5, 10); 
         	incrementingVals.add(i); 
         	windowIndexer += windowIncrement; 
         }
         
-        // draw rectangles 
+        
         
 		
 	}

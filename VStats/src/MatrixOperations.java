@@ -103,44 +103,74 @@ public class MatrixOperations {
 		
 	}
 	
-	public double[][] computeMatrixMultiplicationBySquareMatrices(MatrixData data) { // matrix1 * matrix2 
+	public ArrayList<Double> TEST(MatrixData data) {
 		
-		double[][] res = new double[data.matrix1.length][data.matrix1[0].length];
-		ArrayList<Double> matrix1Products = new ArrayList<Double>(); 
-		ArrayList<Double> matrix2Products = new ArrayList<Double>(); 
+		ArrayList<Double> res = new ArrayList<Double>(); 
 		
 		for (int i = 0; i < data.matrix1.length; i++) {
-			matrix1Products.add(getRowProduct(data.matrix1, i)); 
-		}
-		
-		for (int i = 0; i < data.matrix2.length; i++) {
-			matrix2Products.add(getColumnProduct(data.matrix2, i)); 
-		}
-		
-		Stack<Double> infoStack1 = new Stack<Double>(); 
-		
-		for (int i = 0; i < matrix1Products.size(); i++) {
-			for (int j = 0; j < matrix1Products.size(); i++) {
-				infoStack1.push(matrix1Products.get(i) + matrix2Products.get(j));
-			}
-		} // all elements in stack - but in reverse order 
-		
-		Stack<Double> infoStack2 = new Stack<Double>();
-		int infoStack1Size = infoStack1.size(); 
-		
-		for (int i = 0; i < infoStack1Size; i++) {
-			infoStack2.push(infoStack1.pop());
-		} // all elements - in "correct" order 
-		
-		for (int i = 0; i < res.length; i++) {
-			for (int j = 0; j < res[i].length; j++) {
-				res[i][j] = infoStack2.pop(); 
+			for (int j = 0; j < data.matrix1[i].length; j++) {
+				res.add(data.matrix1[j][i]); 
 			}
 		}
 		
 		return res; 
-		
+		 
 	}
+	
+//	public double[][] computeMatrixMultiplicationBySquareMatrices(MatrixData data) { // matrix1 * matrix2 
+//		
+//		double[][] res = new double[data.matrix1.length][data.matrix1[0].length];
+//		ArrayList<Double> matrix1Arr = new ArrayList<Double>(); 
+//		ArrayList<Double> matrix2Arr = new ArrayList<Double>(); 
+//		int dimension = data.matrix1.length; 
+//		int iterations = data.matrix1.length * data.matrix1[0].length; 
+//		
+//		Stack<Double> backwardsStack = new Stack<Double>(); 
+//
+//		for (int i = 0; i < res.length; i++) {
+//			for (int j = 0; j < res[i].length; j++) {
+//				
+//				for (int l = 0; l < res.length; l++) {
+//					for (int k = 0; k < res[l].length; k++) {
+//					//	backwardsStack.push(data.matrix1[i][j] * data.matrix2[k][l]); 
+//						System.out.println(data.matrix1[i][j] * data.matrix2[k][l]); 
+//					}
+//				}
+//				
+//				
+//			}
+//		}
+		
+//		for (int i = 0; i < res.length; i++) {
+//			for (int j = 0; j < res[i].length; i++) {
+//				matrix2Arr.add(data.matrix2[j][i]); 
+//			}
+//		}
+		
+//		Stack<Double> backwardsStack = new Stack<Double>(); 
+//		
+//		for (int i = 0; i < matrix1Arr.size(); i+=2) {
+//			for (int j = 0; j < matrix2Arr.size()-2; i++) {
+//				backwardsStack.push();
+//			}
+//		}
+//		
+//		Stack<Double> correctStack = new Stack<Double>(); 
+//		int correctStackSize = correctStack.size(); 
+//		
+//		for (int i = 0; i < correctStackSize; i++) {
+//			correctStack.push(backwardsStack.pop());
+//		}
+//		
+//		for (int i = 0; i < res.length; i++) {
+//			for (int j = 0; j < res[i].length; j++) {
+//				res[i][j] = correctStack.pop(); 
+//			}
+//		}
+		
+//		return res; 
+//		
+//	}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
@@ -159,56 +189,55 @@ public class MatrixOperations {
 		
 		// enter your data below! 
 		
-		myData.matrix1 = new double[][] {{2, 3}, {3, 4}};
-		myData.matrix2 = new double[][] {{2,2}, {3,2}}; 
+		myData.matrix1 = new double[][] {{1, 2}, {3, 4}};
+		myData.matrix2 = new double[][] {{5,6}, {7,8}}; 
 		myData.generalMatrix = new double[][] {{3,4} , {2,3}}; 
 		myData.scalar = 2; 
 		
 		///////////////////////////////////////////////////////
 		
-		double[][] tempAddition = myObj.computeMatrixAddition(myData); 
-		System.out.println("Matrix addition result: "); 
-		for (int i = 0; i < tempAddition.length; i++) {
-			for (int j = 0; j < tempAddition[i].length; j++) {
-				System.out.print(tempAddition[i][j] + " "); 
-			}
-			System.out.println(); 
-		}
+//		double[][] tempAddition = myObj.computeMatrixAddition(myData); 
+//		System.out.println("Matrix addition result: "); 
+//		for (int i = 0; i < tempAddition.length; i++) {
+//			for (int j = 0; j < tempAddition[i].length; j++) {
+//				System.out.print(tempAddition[i][j] + " "); 
+//			}
+//			System.out.println(); 
+//		}
+//		
+//		System.out.println(); 
+//		
+//		double[][] tempSubtraction = myObj.computeMatrixSubtraction(myData); 
+//		System.out.println("Matrix subtraction result: "); 
+//		for (int i = 0; i < tempSubtraction.length; i++) {
+//			for (int j = 0; j < tempSubtraction[i].length; j++) {
+//				System.out.print(tempSubtraction[i][j] + " "); 
+//			}
+//			System.out.println(); 
+//		}
+		
+//		System.out.println();
+//		
+//		double[][] tempScalarMultiplication = myObj.computeMatrixMultiplicationByScalar(myData); 
+//		System.out.println("Matrix multiplicaion by scalar result: "); 
+//		for (int i = 0; i < tempScalarMultiplication.length; i++) {
+//			for (int j = 0; j < tempScalarMultiplication[i].length; j++) {
+//				System.out.print(tempScalarMultiplication[i][j] + " "); 
+//			}
+//			System.out.println(); 
+//		}
 		
 		System.out.println(); 
 		
-		double[][] tempSubtraction = myObj.computeMatrixSubtraction(myData); 
-		System.out.println("Matrix subtraction result: "); 
-		for (int i = 0; i < tempSubtraction.length; i++) {
-			for (int j = 0; j < tempSubtraction[i].length; j++) {
-				System.out.print(tempSubtraction[i][j] + " "); 
-			}
-			System.out.println(); 
-		}
+//		double[][] tempMatrixMultiplicationBySquareMatrices = myObj.computeMatrixMultiplicationBySquareMatrices(myData); 
+//		System.out.println("Matrix multiplication by square matrices result: "); 
+//		for (int i = 0; i < tempMatrixMultiplicationBySquareMatrices.length; i++) {
+//			for (int j = 0; j < tempMatrixMultiplicationBySquareMatrices[i].length; j++) {
+//				System.out.print(tempMatrixMultiplicationBySquareMatrices[i][j] + " "); 
+//			}
+//			System.out.println(); 
+//		}
 		
-		System.out.println();
-		
-		double[][] tempScalarMultiplication = myObj.computeMatrixMultiplicationByScalar(myData); 
-		System.out.println("Matrix multiplicaion by scalar result: "); 
-		for (int i = 0; i < tempScalarMultiplication.length; i++) {
-			for (int j = 0; j < tempScalarMultiplication[i].length; j++) {
-				System.out.print(tempScalarMultiplication[i][j] + " "); 
-			}
-			System.out.println(); 
-		}
-		
-		System.out.println(); 
-		
-		double[][] tempMatrixMultiplicationBySquareMatrices = myObj.computeMatrixMultiplicationBySquareMatrices(myData); 
-		System.out.println("Matrix multiplication by square matrices result: "); 
-		for (int i = 0; i < tempMatrixMultiplicationBySquareMatrices.length; i++) {
-			for (int j = 0; j < tempMatrixMultiplicationBySquareMatrices[i].length; j++) {
-				System.out.print(tempMatrixMultiplicationBySquareMatrices[i][j] + " "); 
-			}
-			System.out.println(); 
-		}
-		
-		//System.out.println("Matrix addition result: " + myObj.computeMatrixAddition(myData)); 
 		
 		System.out.println(); 
 		System.out.println("-------"); 

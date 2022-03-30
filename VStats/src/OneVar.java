@@ -321,7 +321,7 @@ public class OneVar {
 		
 		long before = System.nanoTime(); 
 		
-		double[] data = {1,5,3,3,6,6,7.2,7}; // input Array Data Set here! 
+		double[] data = {1,2,3}; // input Array Data Set here! 
 		OneVar myOneVarObject = new OneVar(data);
 		
 		

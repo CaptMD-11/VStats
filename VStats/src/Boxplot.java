@@ -10,11 +10,36 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+
+class DrawValues {
+	
+	private double value;
+	private int xLoc; 
+	private int yLoc; 
+	
+	public DrawValues(double inputValue, int inputXLoc, int inputYLoc) {
+		value = inputValue; 
+		xLoc = inputXLoc; 
+		yLoc = inputYLoc; 
+	}
+	
+	public double getValue() {
+		return value; 
+	}
+	
+	public int getXLoc() {
+		return xLoc; 
+	}
+	
+	public int getYLoc() {
+		return yLoc; 
+	}
+	
+}
 
 public class Boxplot extends JPanel implements ActionListener, MouseListener, KeyListener {
 	
@@ -35,7 +60,7 @@ public class Boxplot extends JPanel implements ActionListener, MouseListener, Ke
         
         OneVar oneVarObj = new OneVar(inputData); 
         
-        // 5-number summary 
+        // initializing 5-number summary 
         double min = oneVarObj.computeMinimum();
         double q1 = oneVarObj.computeQuartile1();
         double median = oneVarObj.computeMedian();
@@ -47,9 +72,11 @@ public class Boxplot extends JPanel implements ActionListener, MouseListener, Ke
         // need 15 "increments" 
         double numberIncrement = (range / 15.0); 
         int windowIncrement = (frameWidth / 16); 
-        int windowIndexer = windowIncrement/4;
+        int windowIndexer = (windowIncrement/4) + 5;
         
         ArrayList<Double> incrementingVals = new ArrayList<Double>(); 
+        
+        ArrayList<DrawValues> drawValuesTracker = new ArrayList<DrawValues>(); 
         
         Font currFont = new Font("Monospaced", Font.PLAIN, 10); 
         g.setFont(currFont); 
@@ -61,13 +88,65 @@ public class Boxplot extends JPanel implements ActionListener, MouseListener, Ke
         	if (temp.length() < 4)
         		temp += "0"; 
         	g.drawString(temp, windowIndexer, 300);
-        	g.fillRect(windowIndexer+10, 270, 5, 10); 
+        	drawValuesTracker.add(new DrawValues(i, windowIndexer, 300)); 
+        	g.fillRect(windowIndexer+10, 270, 1, 10); 
         	incrementingVals.add(i); 
         	windowIndexer += windowIncrement; 
         }
+        // now, drawValuesTracker is filled incrementing values & their respective "locations" 
+        
+        // raw incrementingVals is sorted from least to greatest 
+        // adding 5-number summary to respective indexes in incrementingVals 
+        
+        ArrayList<Double> fiveNumberSummary = new ArrayList<Double>(5); 
+        
+        fiveNumberSummary.add(min);
+        fiveNumberSummary.add(q1);
+        fiveNumberSummary.add(median); 
+        fiveNumberSummary.add(q3); 
+        fiveNumberSummary.add(max); 
+        
+//        for (int j = 0; j < fiveNumberSummary.size(); j++) {
+//        	for (int i = 0; i < incrementingVals.size(); i++) {
+//            	if ((i == 0) && (fiveNumberSummary.get(j) < incrementingVals.get(i+1))) {
+//            		incrementingVals.add(i, fiveNumberSummary.get(j)); 
+//            	} else if ((i == incrementingVals.size()-1) && (fiveNumberSummary.get(j) > incrementingVals.get(i-1))) {
+//            		incrementingVals.add(i, fiveNumberSummary.get(j)); 
+//            	} else if (((i > 0) && (i < incrementingVals.size()-1)) && ((fiveNumberSummary.get(j) > incrementingVals.get(i-1)) && (fiveNumberSummary.get(j) < incrementingVals.get(i+1)))) {
+//            		incrementingVals.add(i, fiveNumberSummary.get(j)); 
+//            	}
+//            }
+//        }
+        // now the 5-number summary is placed in the correct indexes in incrementingVals 
+        
+        // now, need to transfer 5-number summary information to drawValuesTracker 
+        for (int j = 0; j < fiveNumberSummary.size(); j++) {
+        	for (int i = 0; i < incrementingVals.size(); i++) {
+            	if ((i == 0) && (fiveNumberSummary.get(j) < incrementingVals.get(i+1))) {
+            		drawValuesTracker.add(i, new DrawValues(fiveNumberSummary.get(j), drawValuesTracker.get(i+1).getXLoc()-5, 50)); 
+            	} else if ((i == incrementingVals.size()-1) && (fiveNumberSummary.get(j) > incrementingVals.get(i-1))) {
+            		drawValuesTracker.add(i, new DrawValues(fiveNumberSummary.get(j), drawValuesTracker.get(i-1).getXLoc()+5, 50)); 
+            	} else if (((i > 0) && (i < incrementingVals.size()-1)) && ((fiveNumberSummary.get(j) > incrementingVals.get(i-1)) && (fiveNumberSummary.get(j) < incrementingVals.get(i+1)))) {
+            		int temp = ((drawValuesTracker.get(i+1).getXLoc()) + (drawValuesTracker.get(i-1).getXLoc())) / 2; 
+            		drawValuesTracker.add(i, new DrawValues(fiveNumberSummary.get(j), temp, 50)); 
+            	}
+            }
+        }
         
         
+        //for (int j = 0; j < )
         
+        g.setColor(Color.blue); 
+        
+        for (int i = drawValuesTracker.size()-1; i >= 0; i--) {
+        	if ((drawValuesTracker.get(i).getValue() != q1) || (drawValuesTracker.get(i).getValue() != median) || (drawValuesTracker.get(i).getValue() != q3)) {
+        		drawValuesTracker.remove(i); 
+        	}
+        }
+        
+        for (int i = 0; i < drawValuesTracker.size(); i++) {
+        	g.fillRect(drawValuesTracker.get(i).getXLoc(), drawValuesTracker.get(i).getYLoc(), 3, 10); 
+        }
 		
 	}
 
@@ -92,6 +171,8 @@ public class Boxplot extends JPanel implements ActionListener, MouseListener, Ke
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
+		long before = System.nanoTime();
+		System.out.println("Boxplot: "); 
 ///////////////////////////////////////////////////////////////
 		
 		// enter your data here! 
@@ -100,6 +181,13 @@ public class Boxplot extends JPanel implements ActionListener, MouseListener, Ke
 ///////////////////////////////////////////////////////////////
 		
 		Boxplot boxplot = new Boxplot(data);
+		
+		System.out.println(); 
+		System.out.println("-------");  
+		System.out.println(); 
+		long after = System.nanoTime();
+		System.out.println("Time for completion: " + (after - before) + " nanoseconds"); 
+		
 	}
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////

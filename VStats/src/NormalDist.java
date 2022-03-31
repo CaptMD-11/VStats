@@ -57,31 +57,31 @@ public class NormalDist {
 		
 	}
 
-//	public String computeInvNormApproxOBSOLETE(double input) { // input confidence level 
-//		
-//		double res = 0.0; 
-//		
-//		if ( (input == 0) || (input == 1) ) {
-//			return "∞"; 
-//		} else if ( ((input > 0) && (input < 0.01)) || ((input > 0.99) && (input < 1)) ) {
-//			
-//			res = Math.tan((Math.PI / 0.1) * (input - 0.95)); 
-//			
-//			return res + ""; 
-//			
-//		} else if ( (input >= 0.01) && (input <= 0.99) ) { // good
-//			
-//			res = Math.tan((Math.PI / 1.34) * (input - 0.5)); 
-//			
-//			return res + ""; 
-//			
-//		} else if ( (input < 0) || (input > 1) ) { // good
-//			return "invalid input"; 
-//		}
-//		
-//		return ""; 
-//		
-//	}
+	public String computeInvNormApproxOBSOLETE(double input) { // input confidence level 
+		
+		double res = 0.0; 
+		
+		if ( (input == 0) || (input == 1) ) {
+			return "∞"; 
+		} else if ( ((input > 0) && (input < 0.01)) || ((input > 0.99) && (input < 1)) ) {
+			
+			res = Math.tan((Math.PI / 0.1) * (input - 0.95)); 
+			
+			return res + ""; 
+			
+		} else if ( (input >= 0.01) && (input <= 0.99) ) { // good
+			
+			res = Math.tan((Math.PI / 1.34) * (input - 0.5)); 
+			
+			return res + ""; 
+			
+		} else if ( (input < 0) || (input > 1) ) { // good
+			return "invalid input"; 
+		}
+		
+		return ""; 
+		
+	}
 	
 	public String computeInvNormApprox(double input) { // works, but highly inefficient 
 		// with respect to probability to the left of input value 

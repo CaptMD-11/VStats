@@ -57,26 +57,50 @@ public class NormalDist {
 		
 	}
 
-	public String computeInvNormApprox(double input) { // input confidence level 
+//	public String computeInvNormApproxOBSOLETE(double input) { // input confidence level 
+//		
+//		double res = 0.0; 
+//		
+//		if ( (input == 0) || (input == 1) ) {
+//			return "∞"; 
+//		} else if ( ((input > 0) && (input < 0.01)) || ((input > 0.99) && (input < 1)) ) {
+//			
+//			res = Math.tan((Math.PI / 0.1) * (input - 0.95)); 
+//			
+//			return res + ""; 
+//			
+//		} else if ( (input >= 0.01) && (input <= 0.99) ) { // good
+//			
+//			res = Math.tan((Math.PI / 1.34) * (input - 0.5)); 
+//			
+//			return res + ""; 
+//			
+//		} else if ( (input < 0) || (input > 1) ) { // good
+//			return "invalid input"; 
+//		}
+//		
+//		return ""; 
+//		
+//	}
+	
+	public String computeInvNormApprox(double input) { // works, but highly inefficient 
+		// with respect to probability to the left of input value 
 		
-		double res = 0.0; 
-		
-		if ( (input == 0) || (input == 1) ) {
-			return "∞"; 
-		} else if ( ((input > 0) && (input < 0.01)) || ((input > 0.99) && (input < 1)) ) {
-			
-			res = Math.tan((Math.PI / 0.1) * (input - 0.95)); 
-			
-			return res + ""; 
-			
-		} else if ( (input >= 0.01) && (input <= 0.99) ) { // good
-			
-			res = Math.tan((Math.PI / 1.34) * (input - 0.5)); 
-			
-			return res + ""; 
-			
-		} else if ( (input < 0) || (input > 1) ) { // good
+		if ((input < 0) || (input > 1))
 			return "invalid input"; 
+		else if (input == 0)
+			return "-∞"; 
+		else if (input == 1)
+			return "∞"; 
+		else {
+			double starter = 0.0; 
+			
+			while (starter <= 1) {
+				if (computeFiniteZProbMidpointRiemann(-100000.0, starter) == input) 
+					return starter + ""; 
+				starter += 0.0000001;
+			}
+
 		}
 		
 		return ""; 
@@ -98,7 +122,7 @@ public class NormalDist {
 		System.out.println("Probability Left: " + myObj.computeFiniteZProbLeftRiemann(-1.5, 2.0337)); 
 		System.out.println("Probability Avg: " + myObj.computeFiniteZProbAvgLeftRightRiemann(-1.5, 2.0337));
 		System.out.println("Probability Midpoint: " + myObj.computeFiniteZProbMidpointRiemann(-1.5, 2.0337)); 
-		System.out.println("Very approximate z-score: " + myObj.computeInvNormApprox(0.001));
+		System.out.println("Very approximate z-score: " + myObj.computeInvNormApprox(0.84));
 		System.out.println(); 
 		
 		System.out.println("-------"); 

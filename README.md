@@ -11,3 +11,11 @@ It's actually quite simple. For all the classes, I have included <samp>main</sam
 <p align="center">
   <img src="https://github.com/CaptMD-11/imageWIPs/blob/master/userinputscreenshot.png?raw=true" alt="test" width="570" height="215.5">
 </p>
+
+### How does the user receive outputs? ###
+
+Every <samp>main</samp> method inside each class has statements that print out the output for the respective class. The user does not need to add any print statements, as everything has been pre-written. For example, here is the console output for the <samp>OneVar</samp> class: 
+  
+<p align="center">
+  <img src="https://github.com/CaptMD-11/imageWIPs/blob/master/onevarstatsoutput.png?raw=true" alt="test" width="570" height="500">
+</p>

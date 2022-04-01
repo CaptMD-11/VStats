@@ -15,7 +15,8 @@ public class NormalDist {
 		
 		double sum = 0.0; 
 		
-		double increment = (inputZHigh - inputZLow)/(Math.pow(10, 7)); 
+		//double increment = (inputZHigh - inputZLow)/(Math.pow(10, 7)); 
+		double increment = 1.0 / (Math.pow(10, 7)); 
 
 		for (double i = inputZLow; i < inputZHigh; i += increment) {
 			sum += ((NormalPDF(i)) * (increment)); 
@@ -28,7 +29,8 @@ public class NormalDist {
 		
 		double sum = 0.0; 
 		
-		double increment = (inputZHigh - inputZLow)/(Math.pow(10, 7)); 
+		//double increment = (inputZHigh - inputZLow)/(Math.pow(10, 7)); 
+		double increment = 1.0 / (Math.pow(10, 7)); 
 		
 		for (double i = (inputZLow + increment); i <= inputZHigh; i += increment) {
 			sum += (NormalPDF(i) * increment); 
@@ -47,10 +49,26 @@ public class NormalDist {
 		
 		double sum = 0.0;
 		
-		double increment = (inputZHigh - inputZLow)/(Math.pow(10, 7)); 
+		//double increment = (inputZHigh - inputZLow)/(Math.pow(10, 7)); 
+		double increment = 1.0 / (Math.pow(10, 7)); 
 		
 		for (double i = (inputZLow + (increment/2)); i < inputZHigh; i+= increment) {
 			sum += (NormalPDF(i) * increment); 
+		}
+		
+		return sum; 
+		
+	}
+	
+	public double computeFiniteZProbTrapezoidRiemann(double inputZLow, double inputZHigh) {
+		
+		double sum = 0.0; 
+		
+		//double increment = (inputZHigh - inputZLow)/(Math.pow(10, 7)); 
+		double increment = 1.0 / (Math.pow(10, 7)); 
+				
+		for (double i = inputZLow; i < (inputZHigh-increment); i += increment) {
+			sum += ((0.5) * (NormalPDF(i) + NormalPDF(i + increment)) * (increment)); 
 		}
 		
 		return sum; 

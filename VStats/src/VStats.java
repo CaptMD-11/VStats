@@ -92,7 +92,7 @@ public class VStats {
 
 	}
 
-	public double computeStanDev(double[] data) {
+	public double computeStandardDeviation(double[] data) {
 		// assert variance != 0;
 		return Math.sqrt(computeVariance(data));
 	}
@@ -287,22 +287,22 @@ public class VStats {
 		}
 
 	}
-	
+
 	public double computePGeoPdf(double pSuccess, int xVal) {
-	    return (pSuccess) * (Math.pow((1-pSuccess), (xVal-1)));
+		return (pSuccess) * (Math.pow((1 - pSuccess), (xVal - 1)));
 	}
 
 	public double computePGeoCdf(double pSuccess, int xVal) {
-		return (pSuccess) * (Math.pow((1-pSuccess), (xVal-1)));
+		return (pSuccess) * (Math.pow((1 - pSuccess), (xVal - 1)));
 	}
 
-	public double computePGeoCdf(double pSuccess, int xVal, int inputLowBound , int inputHighBound) {
-		double sum = 0.0; 
+	public double computePGeoCdf(double pSuccess, int xVal, int inputLowBound, int inputHighBound) {
+		double sum = 0.0;
 		for (int i = inputLowBound; i <= inputHighBound; i++) {
-			xVal = i; 
+			xVal = i;
 			sum += computePGeoCdf(pSuccess, xVal);
 		}
-		return sum; 
+		return sum;
 	}
 
 	public double NormalPDF(double inputZ) {
@@ -444,93 +444,201 @@ public class VStats {
 	public double computeDiscreteStandardDeviation(double[] dataArray, double[] probabilitiesArray) {
 		return Math.sqrt(computeDiscreteVariance(dataArray, probabilitiesArray));
 	}
-	
-public double getRowSum(double[][] data, int row) {
-		
-		double sum = 0; 
-		
-		for (int i = 0; i < data[0].length; i++) {
-			sum += data[row][i]; 
-		}
-		
-		return sum; 
-		
-	}
-	
-	public double getColumnSum(double[][] data, int col) {
-		
+
+	public double computeRowSum(double[][] data, int row) {
+
 		double sum = 0;
-		
-		for (int i = 0; i < data.length; i++) {
-			sum += data[i][col]; 
-		}
-		
-		return sum; 
-		
-	}
-	
-	public double getRowProduct(double[][] data, int row) {
-		
-		double sum = 0; 
-		
+
 		for (int i = 0; i < data[0].length; i++) {
-			sum *= data[row][i]; 
+			sum += data[row][i];
 		}
-		
-		return sum; 
+
+		return sum;
+
 	}
-	
-	public double getColumnProduct(double[][] data, int col) {
-		
+
+	public double computeColumnSum(double[][] data, int col) {
+
 		double sum = 0;
-		
+
 		for (int i = 0; i < data.length; i++) {
-			sum *= data[i][col]; 
+			sum += data[i][col];
 		}
-		
-		return sum; 
+
+		return sum;
+
 	}
-	
-	public double[][] computeMatrixAddition(double[][] arr1, double[][] arr2) { // matrix1 & matrix2 must have same dimensions 
-		
-		double[][] res = new double[arr1.length][arr1[0].length]; 
-		
+
+	public double computeRowProduct(double[][] data, int row) {
+
+		double sum = 0;
+
+		for (int i = 0; i < data[0].length; i++) {
+			sum *= data[row][i];
+		}
+
+		return sum;
+	}
+
+	public double computeColumnProduct(double[][] data, int col) {
+
+		double sum = 0;
+
+		for (int i = 0; i < data.length; i++) {
+			sum *= data[i][col];
+		}
+
+		return sum;
+	}
+
+	public double[][] computeMatrixAddition(double[][] arr1, double[][] arr2) { // matrix1 & matrix2 must have same
+																				// dimensions
+
+		double[][] res = new double[arr1.length][arr1[0].length];
+
 		for (int i = 0; i < res.length; i++) {
 			for (int j = 0; j < res[i].length; j++) {
 				res[i][j] = (arr1[i][j] + arr2[i][j]);
 			}
 		}
-		
-		return res; 
-		
+
+		return res;
+
 	}
-	
+
 	public double[][] computeMatrixSubtraction(double[][] arr1, double[][] arr2) {
-		
-		double[][] res = new double[arr1.length][arr1[0].length]; 
-		
+
+		double[][] res = new double[arr1.length][arr1[0].length];
+
 		for (int i = 0; i < res.length; i++) {
 			for (int j = 0; j < res[i].length; j++) {
 				res[i][j] = (arr1[i][j] - arr2[i][j]);
 			}
 		}
-		
-		return res; 
-		
+
+		return res;
+
 	}
-	
+
 	public double[][] computeMatrixMultiplicationByScalar(double[][] arr, double scalar) {
-		
-		double[][] res = new double[arr.length][arr[0].length]; 
-		
+
+		double[][] res = new double[arr.length][arr[0].length];
+
 		for (int i = 0; i < arr.length; i++) {
 			for (int j = 0; j < arr[i].length; j++) {
-				res[i][j] = (scalar) * (arr[i][j]); 
+				res[i][j] = (scalar) * (arr[i][j]);
 			}
 		}
-		
-		return res; 
-		
+
+		return res;
+
+	}
+
+	public double computeSe(double[] indVar, double[] depVar) {
+
+		return Math.sqrt((computeSumOfResidualsSquared(indVar, depVar)) / (computeLength(depVar)));
+
+	}
+
+	public double computeSumOfResidualsSquared(double[] indVar, double[] depVar) {
+
+		double sum = 0.0;
+
+		double[] temp = computeResidualValues(indVar, depVar);
+
+		for (int i = 0; i < temp.length; i++) {
+			sum += (Math.pow(temp[i], 2));
+		}
+
+		return sum;
+
+	}
+
+	public double[] computeResidualValues(double[] indVar, double[] depVar) {
+
+		double[] res = new double[computeLength(indVar)];
+
+		for (int i = 0; i < res.length; i++) {
+			res[i] = (atIndex(depVar, i)) - (computeLSRLOutput(indVar, depVar, atIndex(indVar, i)));
+		}
+
+		return res;
+
+	}
+
+	public double[] computeYPredictedValues(double[] indVar, double[] depVar) {
+
+		double[] res = new double[computeLength(indVar)];
+
+		for (int i = 0; i < res.length; i++) {
+			res[i] = computeLSRLOutput(indVar, depVar, atIndex(indVar, i));
+		}
+
+		return res;
+
+	}
+
+	public double computeLSRLOutput(double[] indVar, double[] depVar, double input) {
+
+		return ((computeA(indVar, depVar)) + (computeB(indVar, depVar) * input));
+
+	}
+
+	public String displayLSRLEquation(double[] indVar, double[] depVar) {
+
+		String res = "";
+
+		res = "Ypredicted = " + (computeA(indVar, depVar)) + " + " + (computeB(indVar, depVar)) + "x";
+
+		if (computeB(indVar, depVar) < 0) {
+			res = "Ypredicted = " + (computeA(indVar, depVar)) + " - " + (-1 * computeB(indVar, depVar)) + "x";
+		} else if (computeB(indVar, depVar) >= 0) {
+			res = "Ypredicted = " + (computeA(indVar, depVar)) + " + " + (computeB(indVar, depVar)) + "x";
+		}
+
+		return res;
+
+	}
+
+	public double computeA(double[] indVar, double[] depVar) {
+
+		return (computeMean(depVar)) - ((computeB(indVar, depVar)) * (computeMean(indVar)));
+
+	}
+
+	public double computeB(double[] indVar, double[] depVar) {
+
+		double r = computeR(indVar, depVar);
+
+		double b = r * (computeStandardDeviation(depVar) / computeStandardDeviation(indVar));
+
+		return b;
+
+	}
+
+	public double computeR(double[] indVar, double[] depVar) {
+
+		double sumOfProducts = 0.0;
+
+		double arr1Bar = computeMean(indVar);
+		double arr1Sigma = computeStandardDeviation(indVar);
+
+		double arr2Bar = computeMean(depVar);
+		double arr2Sigma = computeStandardDeviation(depVar);
+
+		for (int i = 0; i < indVar.length; i++) { // both arrays must have the same length
+			sumOfProducts += ((atIndex(indVar, i) - arr1Bar) / (arr1Sigma))
+					* ((atIndex(depVar, i) - arr2Bar) / (arr2Sigma));
+		}
+
+		return sumOfProducts / (indVar.length - 1);
+
+	}
+
+	public double computeRSquaredValue(double[] indVar, double[] depVar) {
+
+		return Math.pow((computeR(indVar, depVar)), 2.0);
+
 	}
 
 }

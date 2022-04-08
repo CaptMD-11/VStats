@@ -903,6 +903,6 @@ public class VStats {
 
 		double z = (valueForComparison - newMu) / (newSD);
 		return computeFiniteZProbMidpointRiemann(-1000, z);
-	}
+	} 
 
 }

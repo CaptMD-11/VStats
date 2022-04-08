@@ -735,21 +735,25 @@ public class VStats {
 
 	}
 
-	public String computeOnePropZSigTest(double successes, double pNought, double sampleSize, double alpha, String alternativeHypothesis) { 
+	public String computeOnePropZSigTest(double successes, double pNought, double sampleSize, double alpha,
+			String alternativeHypothesis) {
 
 		if (alternativeHypothesis.equals("p-nought > value")) {
-			return computeOnePropZSigTestP0GreaterThanValue(successes, pNought, sampleSize, alpha, alternativeHypothesis);
+			return computeOnePropZSigTestP0GreaterThanValue(successes, pNought, sampleSize, alpha,
+					alternativeHypothesis);
 		} else if (alternativeHypothesis.equals("p-nought < value")) {
 			return computeOnePropZSigTestP0LessThanValue(successes, pNought, sampleSize, alpha, alternativeHypothesis);
 		} else if (alternativeHypothesis.equals("p-nought not equal to value")) {
-			return computeOnePropZSigTestP0NotEqualToValue(successes, pNought, sampleSize, alpha, alternativeHypothesis);
+			return computeOnePropZSigTestP0NotEqualToValue(successes, pNought, sampleSize, alpha,
+					alternativeHypothesis);
 		} else {
 			return "ERROR in Ha statement - please check typing/syntax";
 		}
 
 	}
 
-	public String computeOnePropZSigTestP0LessThanValue(double successes, double pNought, double sampleSize, double alpha, String alternativeHypothesis) {
+	public String computeOnePropZSigTestP0LessThanValue(double successes, double pNought, double sampleSize,
+			double alpha, String alternativeHypothesis) {
 
 		double pHat = 1.0 * (successes / sampleSize);
 		double qNought = 1 - pNought;
@@ -768,7 +772,8 @@ public class VStats {
 
 	}
 
-	public String computeOnePropZSigTestP0GreaterThanValue(double successes, double pNought, double sampleSize, double alpha, String alternativeHypothesis) {
+	public String computeOnePropZSigTestP0GreaterThanValue(double successes, double pNought, double sampleSize,
+			double alpha, String alternativeHypothesis) {
 
 		double pHat = 1.0 * (successes / sampleSize);
 		double qNought = 1 - pNought;
@@ -787,7 +792,8 @@ public class VStats {
 
 	}
 
-	public String computeOnePropZSigTestP0NotEqualToValue(double successes, double pNought, double sampleSize, double alpha, String alternativeHypothesis) {
+	public String computeOnePropZSigTestP0NotEqualToValue(double successes, double pNought, double sampleSize,
+			double alpha, String alternativeHypothesis) {
 
 		double pHat = 1.0 * (successes / sampleSize);
 		double qNought = 1 - pNought;
@@ -803,6 +809,59 @@ public class VStats {
 		} else { // pValue equals alpha
 			return "";
 		}
+
+	}
+
+	public double computeSampleMeansMu(double mu, double sigma, int sampleSize, double meanForComparison,
+			String statement) {
+		return mu;
+	}
+
+	public double computeSampleMeansStandardDeviation(double mu, double sigma, int sampleSize, double meanForComparison,
+			String statement) {
+		return ((sigma) / (Math.sqrt(sampleSize)));
+	}
+
+	public double computeSampleMeansProbabilityLessThan(double mu, double sigma, int sampleSize,
+			double meanForComparison, String statement) {
+		double z = (meanForComparison - mu)
+				/ (computeSampleMeansStandardDeviation(mu, sigma, sampleSize, meanForComparison, statement));
+		return computeFiniteZProbMidpointRiemann(-1000.0, z);
+	}
+
+	public double computeSampleMeansProbabilityGreaterThan(double mu, double sigma, int sampleSize,
+			double meanForComparison, String statement) {
+		double z = (meanForComparison - mu)
+				/ (computeSampleMeansStandardDeviation(mu, sigma, sampleSize, meanForComparison, statement));
+		return computeFiniteZProbMidpointRiemann(z, 1000.0);
+	}
+
+	public double computeSampleProportionsMu(double pHat, int sampleSize, double proportionForComparison,
+			String statement) {
+		return pHat;
+	}
+
+	public double computeSampleProportionsStandardDeviation(double pHat, int sampleSize, double proportionForComparison,
+			String statement) {
+		double numerator = (pHat) * (1 - pHat);
+		return Math.sqrt(numerator / (sampleSize));
+	}
+
+	public double computeSampleProportionsProbabilityLessThanValue(double pHat, int sampleSize,
+			double proportionForComparison, String statement) {
+
+		double z = (proportionForComparison - pHat)
+				/ (computeSampleProportionsStandardDeviation(pHat, sampleSize, proportionForComparison, statement));
+		return computeFiniteZProbMidpointRiemann(-1000, z);
+
+	}
+
+	public double computeSampleProportionsProbabilityGreaterThanValue(double pHat, int sampleSize,
+			double proportionForComparison, String statement) {
+
+		double z = (proportionForComparison - pHat)
+				/ (computeSampleProportionsStandardDeviation(pHat, sampleSize, proportionForComparison, statement));
+		return computeFiniteZProbMidpointRiemann(z, 1000);
 
 	}
 

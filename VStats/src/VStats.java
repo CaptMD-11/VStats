@@ -865,4 +865,44 @@ public class VStats {
 
 	}
 
+	public double computeContinuousRandomVar1LessThanVar2(double mu1, double standardDeviation1, double mu2,
+			double standardDeviation2, double valueForComparison) {
+		double newMu = mu1 - mu2;
+		double newVariance = (Math.pow(standardDeviation1, 2) + Math.pow(standardDeviation2, 2));
+		double newSD = Math.sqrt(newVariance);
+
+		double z = (0 - newMu) / (newSD);
+		return computeFiniteZProbMidpointRiemann(-1000, z);
+	}
+
+	public double var1GreaterThanVar2(double mu1, double standardDeviation1, double mu2, double standardDeviation2,
+			double valueForComparisona) {
+		double newMu = mu1 - mu2;
+		double newVariance = (Math.pow(standardDeviation1, 2) + Math.pow(standardDeviation2, 2));
+		double newSD = Math.sqrt(newVariance);
+
+		double z = (0 - newMu) / (newSD);
+		return computeFiniteZProbMidpointRiemann(z, 1000);
+	}
+
+	public double computeContinuousRandomSumOfBothVarsGreaterThanValue(double mu1, double standardDeviation1,
+			double mu2, double standardDeviation2, double valueForComparison) {
+		double newMu = mu1 + mu2;
+		double newVariance = (Math.pow(standardDeviation1, 2) + Math.pow(standardDeviation2, 2));
+		double newSD = Math.sqrt(newVariance);
+
+		double z = (valueForComparison - newMu) / (newSD);
+		return computeFiniteZProbMidpointRiemann(z, 1000);
+	}
+
+	public double computeContinuousRandomSumOfBothVarsLessThanValue(double mu1, double standardDeviation1, double mu2,
+			double standardDeviation2, double valueForComparison) {
+		double newMu = mu1 + mu2;
+		double newVariance = (Math.pow(standardDeviation1, 2) + Math.pow(standardDeviation2, 2));
+		double newSD = Math.sqrt(newVariance);
+
+		double z = (valueForComparison - newMu) / (newSD);
+		return computeFiniteZProbMidpointRiemann(-1000, z);
+	}
+
 }

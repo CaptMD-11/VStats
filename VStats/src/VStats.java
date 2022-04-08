@@ -1,7 +1,5 @@
 import java.util.ArrayList;
 
-import ZDistConfidence.ZConfidenceData;
-
 public class VStats {
 
 	public VStats(double[] in) {
@@ -657,15 +655,154 @@ public class VStats {
 
 		String res = "";
 
-		double lowBound = mu
-				- (computeZStar(confidenceLevel) * ((sigma) / (Math.sqrt(sampleSize))));
+		double lowBound = mu - (computeZStar(confidenceLevel) * ((sigma) / (Math.sqrt(sampleSize))));
 
-		double highBound = mu
-				+ (computeZStar(confidenceLevel) * ((sigma) / (Math.sqrt(sampleSize))));
+		double highBound = mu + (computeZStar(confidenceLevel) * ((sigma) / (Math.sqrt(sampleSize))));
 
 		res = "(" + lowBound + ", " + highBound + ")";
 
 		return res;
+
+	}
+
+	public String computeZSigTestHaGreaterThanH0(double mu, double sigma, double sampleMean, int sampleSize,
+			double alpha, String alternateHypothesis) {
+
+		double zCritical = (sampleMean - mu) / (sigma / (Math.sqrt(sampleSize)));
+
+		double pValue = computeFiniteZProbMidpointRiemann(zCritical, 1000.0);
+
+		if (pValue < alpha) {
+			return "There is statistically significant evidence that Ha > H0... reject H0";
+		} else if (pValue > alpha) {
+			return "There is no statistically significant evidence that Ha > H0... fail to reject H0";
+		} else if (pValue == alpha) {
+			return "";
+		}
+
+		return "";
+
+	}
+
+	public String computeZSigTestHaLessThanH0(double mu, double sigma, double sampleMean, int sampleSize, double alpha,
+			String alternateHypothesis) {
+
+		double zCritical = (sampleMean - mu) / (sigma / (Math.sqrt(sampleSize)));
+
+		double pValue = computeFiniteZProbMidpointRiemann(-1000.0, zCritical);
+
+		if (pValue < alpha) {
+			return "There is statistically significant evidence that Ha < H0... reject H0";
+		} else if (pValue > alpha) {
+			return "There is no statistically significant evidence that Ha < H0... fail to reject H0";
+		} else if (pValue == alpha) {
+			return "";
+		}
+
+		return "";
+
+	}
+
+	public String computeZSigTestHaNotEqualToH0(double mu, double sigma, double sampleMean, int sampleSize,
+			double alpha, String alternateHypothesis) {
+
+		double zCritical = (sampleMean - mu) / (sigma / (Math.sqrt(sampleSize)));
+
+		double pValue = (computeFiniteZProbMidpointRiemann((Math.abs(zCritical)), 1000.0)) * 2.0;
+
+		if (pValue < alpha) {
+			return "There is statistically significant evidence that Ha ≠ H0... reject H0";
+		} else if (pValue > alpha) {
+			return "There is no statistically significant evidence that Ha ≠ H0... fail to reject H0";
+		} else if (pValue == alpha) {
+			return "";
+		}
+
+		return "";
+
+	}
+
+	public String computeOnePropZConfInt(double successes, double sampleSize, double confidenceLevel) {
+
+		double pHat = 1.0 * (successes / sampleSize);
+		double qHat = pHat;
+		double zStar = computeZStar(confidenceLevel);
+		double standardError = Math.sqrt((pHat * qHat) / (sampleSize));
+		double low = pHat - (zStar * standardError);
+		double high = pHat + (zStar * standardError);
+
+		return "(" + low + ", " + high + ")";
+
+	}
+
+	public String computeOnePropZSigTest(double successes, double pNought, double sampleSize, double alpha, String alternativeHypothesis) { 
+
+		if (alternativeHypothesis.equals("p-nought > value")) {
+			return computeOnePropZSigTestP0GreaterThanValue(successes, pNought, sampleSize, alpha, alternativeHypothesis);
+		} else if (alternativeHypothesis.equals("p-nought < value")) {
+			return computeOnePropZSigTestP0LessThanValue(successes, pNought, sampleSize, alpha, alternativeHypothesis);
+		} else if (alternativeHypothesis.equals("p-nought not equal to value")) {
+			return computeOnePropZSigTestP0NotEqualToValue(successes, pNought, sampleSize, alpha, alternativeHypothesis);
+		} else {
+			return "ERROR in Ha statement - please check typing/syntax";
+		}
+
+	}
+
+	public String computeOnePropZSigTestP0LessThanValue(double successes, double pNought, double sampleSize, double alpha, String alternativeHypothesis) {
+
+		double pHat = 1.0 * (successes / sampleSize);
+		double qNought = 1 - pNought;
+
+		double zCritical = (pHat - pNought) / (Math.sqrt((pNought * qNought) / (sampleSize)));
+
+		double pValue = computeFiniteZProbMidpointRiemann(-1000.0, zCritical);
+
+		if (pValue < alpha) {
+			return "There is statistically signficant evidence that the true P0 < given P0 - reject H0";
+		} else if (pValue > alpha) {
+			return "There is no statistically signficant evidence that the true P0 < given P0 - fail to reject H0";
+		} else { // pValue equals alpha
+			return "";
+		}
+
+	}
+
+	public String computeOnePropZSigTestP0GreaterThanValue(double successes, double pNought, double sampleSize, double alpha, String alternativeHypothesis) {
+
+		double pHat = 1.0 * (successes / sampleSize);
+		double qNought = 1 - pNought;
+
+		double zCritical = (pHat - pNought) / (Math.sqrt((pNought * qNought) / (sampleSize)));
+
+		double pValue = computeFiniteZProbMidpointRiemann(zCritical, 1000.0);
+
+		if (pValue < alpha) {
+			return "There is statistically signficant evidence that the true P0 > given P0 - reject H0";
+		} else if (pValue > alpha) {
+			return "There is no statistically signficant evidence that the true P0 > given P0 - fail to reject H0";
+		} else { // pValue equals alpha
+			return "";
+		}
+
+	}
+
+	public String computeOnePropZSigTestP0NotEqualToValue(double successes, double pNought, double sampleSize, double alpha, String alternativeHypothesis) {
+
+		double pHat = 1.0 * (successes / sampleSize);
+		double qNought = 1 - pNought;
+
+		double zCritical = (pHat - pNought) / (Math.sqrt((pNought * qNought) / (sampleSize)));
+
+		double pValue = computeFiniteZProbMidpointRiemann((Math.abs(zCritical)), 1000.0) * 2.0;
+
+		if (pValue < alpha) {
+			return "There is statistically signficant evidence that the true P0 ≠ the given P0 - reject H0";
+		} else if (pValue > alpha) {
+			return "There is no statistically signficant evidence that the true P0 ≠ the given P0 - fail to reject H0";
+		} else { // pValue equals alpha
+			return "";
+		}
 
 	}
 

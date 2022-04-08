@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+import ZDistConfidence.ZConfidenceData;
+
 public class VStats {
 
 	public VStats(double[] in) {
@@ -381,21 +383,24 @@ public class VStats {
 	public String computeInverseNormalApprox(double input) { // works, but highly inefficient
 		// with respect to probability to the left of input value
 
-		if ((input < 0) || (input > 1))
-			return "invalid input";
-		else if (input == 0)
-			return "-∞";
-		else if (input == 1)
+		double res = 0.0;
+
+		if ((input == 0) || (input == 1)) {
 			return "∞";
-		else {
-			double starter = 0.0;
+		} else if (((input > 0) && (input < 0.01)) || ((input > 0.99) && (input < 1))) {
 
-			while (starter <= 1) {
-				if (computeFiniteZProbMidpointRiemann(-100000.0, starter) == input)
-					return starter + "";
-				starter += 0.0000001;
-			}
+			res = Math.tan((Math.PI / 0.1) * (input - 0.95));
 
+			return res + "";
+
+		} else if ((input >= 0.01) && (input <= 0.99)) { // good
+
+			res = Math.tan((Math.PI / 1.34) * (input - 0.5));
+
+			return res + "";
+
+		} else if ((input < 0) || (input > 1)) { // good
+			return "invalid input";
 		}
 
 		return "";
@@ -638,6 +643,29 @@ public class VStats {
 	public double computeRSquaredValue(double[] indVar, double[] depVar) {
 
 		return Math.pow((computeR(indVar, depVar)), 2.0);
+
+	}
+
+	public double computeZStar(double inputConfidenceLevel) {
+
+		double invNormInput = inputConfidenceLevel + ((1 - inputConfidenceLevel) / (2));
+		return Double.parseDouble(computeInverseNormalApprox(invNormInput));
+
+	}
+
+	public String computeZConfidenceInterval(double mu, double sigma, double sampleSize, double confidenceLevel) {
+
+		String res = "";
+
+		double lowBound = mu
+				- (computeZStar(confidenceLevel) * ((sigma) / (Math.sqrt(sampleSize))));
+
+		double highBound = mu
+				+ (computeZStar(confidenceLevel) * ((sigma) / (Math.sqrt(sampleSize))));
+
+		res = "(" + lowBound + ", " + highBound + ")";
+
+		return res;
 
 	}
 

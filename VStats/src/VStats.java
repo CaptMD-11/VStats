@@ -19,6 +19,19 @@ public class VStats {
 
 	}
 
+	public double computeMAD(double[] data) {
+		double dataMean = computeMean(data); 
+		ArrayList<Double> res = new ArrayList<Double>(); 
+		for (int i = 0; i < data.length; i++) {
+			res.add(Math.abs(data[i] - dataMean)); 
+		}
+		double sum = 0.0; 
+		for (int i = 0; i < res.size(); i++) {
+			sum += res.get(i); 
+		}
+		return sum / (data.length * 1.0); 
+	}
+
 	public void sort(double[] data) {
 
 		for (int j = 1; j < data.length; j++) {

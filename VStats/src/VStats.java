@@ -1,12 +1,17 @@
 import java.util.ArrayList;
 
-public class VStats {
+public final class VStats {
 
 	public VStats(double[] in) {
 
 	}
 
-	public double computeMean(double[] data) {
+	/**
+	 * Returns the mean of a double array
+	 * @param data
+	 * @return
+	 */
+	public static double computeMean(double[] data) {
 		double sum = 0;
 		double count = 0.0;
 

@@ -4,7 +4,7 @@ public final class VStats {
 
 	public VStats(double[] in) {
 
-	}
+	} 
 
 	/**
 	 * Returns the mean of a double array

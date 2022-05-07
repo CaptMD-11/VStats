@@ -2,79 +2,95 @@ import java.util.ArrayList;
 
 public final class VStats {
 
-	public VStats(double[] in) {
+	public VStats(double[] in) { 
 
 	} 
 
 	/**
-	 * Returns the mean of a double array
-	 * @param data
-	 * @return
+	 * Returns the mean (average) of a <code>double</code> array, in a <code>double</code> format. 
+	 * @param inputData , a <code>double</code> array. 
+	 * @return the mean of <strong>inputData</strong>. 
 	 */
-	public static double computeMean(double[] data) {
+	public static double computeMean(double[] inputData) {
 		double sum = 0;
-		double count = 0.0;
 
-		for (int i = 0; i < data.length; i++) {
-			sum += data[i];
-			count++;
+		for (int i = 0; i < inputData.length; i++) {
+			sum += inputData[i];
 		}
 
-		return ((sum * 1.0) / count);
+		return ((sum * 1.0) / inputData.length);
 
 	}
 
-	public double computeMAD(double[] data) {
-		double dataMean = computeMean(data); 
+	/**
+	 * Returns the mean absolute deviation (MAD) of a <code>double</code> array, in a <code>double</code> format. 
+	 * <p>
+	 * The MAD of an array the absolute value of the average distance from each inputData value to the mean. 
+	 * 
+	 * @param inputData , a <code>double</code> array. 
+	 * @return the mean absolute deviation of <strong>inputData</strong>. 
+	 */
+	public static double computeMAD(double[] inputData) {
+		double inputDataMean = computeMean(inputData); 
 		ArrayList<Double> res = new ArrayList<Double>(); 
-		for (int i = 0; i < data.length; i++) {
-			res.add(Math.abs(data[i] - dataMean)); 
+		for (int i = 0; i < inputData.length; i++) {
+			res.add(Math.abs(inputData[i] - inputDataMean)); 
 		}
 		double sum = 0.0; 
 		for (int i = 0; i < res.size(); i++) {
 			sum += res.get(i); 
 		}
-		return sum / (data.length * 1.0); 
+		return sum / (inputData.length * 1.0); 
 	}
 
-	public void sort(double[] data) {
-
-		for (int j = 1; j < data.length; j++) {
-			double temp = data[j];
-			int possibleIndex = j;
-			while (possibleIndex > 0 && temp < data[possibleIndex - 1]) {
-				data[possibleIndex] = data[possibleIndex - 1];
-				possibleIndex--;
-			}
-			data[possibleIndex] = temp;
-		}
-
-	}
-
-	public double computeMedian(double[] data) { // this code computes median using the insertion sort algorithm
+	/**
+	 * Returns the median (second quartile) of a <code>double</code> array, in a <code>double</code> format. 
+	 * @param inputData , a <code>double</code> array. 
+	 * @return the median of <strong>inputData</strong>. 
+	 */
+	public static double computeMedian(double[] inputData) { // this code computes median using the insertion sort algorithm
 
 		int middleIndex = 0;
-		sort(data);
+		sort(inputData);
 
 		// sorted.
-		middleIndex = (data.length / 2);
+		middleIndex = (inputData.length / 2);
 		double temp = 0.0;
-		if (data.length % 2 != 0) { // odd
-			temp = data[middleIndex]; // median is good for odd number of values
+		if (inputData.length % 2 != 0) { // odd
+			temp = inputData[middleIndex]; // median is good for odd number of values
 			return temp;
 		} else {
-			temp = (data[middleIndex - 1] + data[middleIndex]) / 2.0;
+			temp = (inputData[middleIndex - 1] + inputData[middleIndex]) / 2.0;
 			return temp;
 		}
 
 	}
 
-	public double computeMinimum(double[] data) {
-		double minTemp = data[0];
+	public static void sort(double[] inputData) {
 
-		for (int i = 0; i < data.length; i++) {
-			if (data[i] < minTemp) {
-				minTemp = data[i];
+		for (int j = 1; j < inputData.length; j++) {
+			double temp = inputData[j];
+			int possibleIndex = j;
+			while (possibleIndex > 0 && temp < inputData[possibleIndex - 1]) {
+				inputData[possibleIndex] = inputData[possibleIndex - 1];
+				possibleIndex--;
+			}
+			inputData[possibleIndex] = temp;
+		}
+
+	}
+
+	/**
+	 * Returns the minimum value in a <code>double</code> array, in a <code>double</code> format. 
+	 * @param inputData , a <code>double</code> array. 
+	 * @return the minimum value in <strong>inputData</strong>. 
+	 */
+	public static double computeMinimum(double[] inputData) {
+		double minTemp = inputData[0];
+
+		for (int i = 0; i < inputData.length; i++) {
+			if (inputData[i] < minTemp) {
+				minTemp = inputData[i];
 			}
 		}
 
@@ -82,12 +98,17 @@ public final class VStats {
 
 	}
 
-	public double computeMaximum(double[] data) {
-		double maxTemp = data[0];
+	/**
+	 * Returns the maximum value in a <code>double</code> array, in a <code>double</code> format. 
+	 * @param inputData , a <code>double</code> array. 
+	 * @return the maximum value in <strong>inputData</strong>. 
+	 */
+	public static double computeMaximum(double[] inputData) {
+		double maxTemp = inputData[0];
 
-		for (int i = 0; i < data.length; i++) {
-			if (data[i] > maxTemp) {
-				maxTemp = data[i];
+		for (int i = 0; i < inputData.length; i++) {
+			if (inputData[i] > maxTemp) {
+				maxTemp = inputData[i];
 			}
 		}
 
@@ -95,88 +116,113 @@ public final class VStats {
 
 	}
 
-	public double computeRange(double[] data) {
-		return (computeMaximum(data) - computeMinimum(data)) * 1.0;
+	/**
+	 * Returns the range (maximum value - minimum value) of a <code>double</code> array, in a <code>double</code> format. 
+	 * @param inputData , a <code>double</code> array. 
+	 * @return the range of <strong>inputData</strong>. 
+	 */
+	public static double computeRange(double[] inputData) {
+		return (computeMaximum(inputData) - computeMinimum(inputData)) * 1.0;
 	}
 
-	public double computeVariance(double[] data) {
+	/**
+	 * Returns the variance of a <code>double</code> array, in a <code>double</code> format. 
+	 * @param inputData , a <code>double</code> array. 
+	 * @return the variance of <strong>inputData</strong>. 
+	 */
+	public static double computeVariance(double[] inputData) {
 		double sumDiff = 0.0;
 
-		for (int i = 0; i < data.length; i++) {
-			sumDiff += ((data[i] - computeMean(data)) * (data[i] - computeMean(data)));
+		for (int i = 0; i < inputData.length; i++) {
+			sumDiff += ((inputData[i] - computeMean(inputData)) * (inputData[i] - computeMean(inputData)));
 		}
 
-		return sumDiff / (data.length - 1);
+		return sumDiff / (inputData.length - 1);
 
 	}
 
-	public double computeStandardDeviation(double[] data) {
+	/**
+	 * Returns the standard deviation of a <code>double</code> array, in a <code>double</code> format. 
+	 * @param inputData , a <code>double</code> array. 
+	 * @return the standard deviation of <strong>inputData</strong>. 
+	 */
+	public static double computeStandardDeviation(double[] inputData) {
 		// assert variance != 0;
-		return Math.sqrt(computeVariance(data));
+		return Math.sqrt(computeVariance(inputData));
 	}
 
-	public double computeQuartile1(double[] data) {
-		int middleIndex = data.length / 2;
+	/**
+	 * Returns the first quartile of a <code>double</code> array, in a <code>double</code> format. 
+	 * @param inputData , a <code>double</code> array. 
+	 * @return the first quartile of <strong>inputData</strong>. 
+	 */
+	public static double computeQuartile1(double[] inputData) {
+		int middleIndex = inputData.length / 2;
 		int count = -1;
 		double quartile1 = 0.0;
-		sort(data);
+		sort(inputData);
 
 		for (int i = 0; i <= middleIndex - 1; i++) {
 			count++;
 		}
 
-		if ((data.length % 2 == 0) && (count % 2 != 0)) {
-			quartile1 = (data[count / 2] + data[(count / 2) + 1]) / 2.0;
+		if ((inputData.length % 2 == 0) && (count % 2 != 0)) {
+			quartile1 = (inputData[count / 2] + inputData[(count / 2) + 1]) / 2.0;
 		}
 
-		if ((data.length % 2 == 0) && (count % 2 == 0)) {
-			quartile1 = data[count / 2];
+		if ((inputData.length % 2 == 0) && (count % 2 == 0)) {
+			quartile1 = inputData[count / 2];
 		}
 
-		if ((data.length % 2 != 0) && (count % 2 == 0)) {
-			quartile1 = data[count / 2];
+		if ((inputData.length % 2 != 0) && (count % 2 == 0)) {
+			quartile1 = inputData[count / 2];
 		}
 
-		if ((data.length % 2 != 0) && (count % 2 != 0)) {
-			quartile1 = (data[count / 2] + data[(count / 2) + 1]) / 2.0;
+		if ((inputData.length % 2 != 0) && (count % 2 != 0)) {
+			quartile1 = (inputData[count / 2] + inputData[(count / 2) + 1]) / 2.0;
 		}
 
 		return quartile1;
 
 	}
 
-	public double computeQuartile3(double[] data) {
-		int middleIndex = data.length / 2;
+	/**
+	 * Returns the first quartile of a <code>double</code> array, in a <code>double</code> format. 
+	 * @param inputData , a <code>double</code> array. 
+	 * @return the third quartile of <strong>inputData</strong>. 
+	 */
+	public static double computeQuartile3(double[] inputData) {
+		int middleIndex = inputData.length / 2;
 		int arrayEvenCounter = 0;
 		int arrayOddCounter = 0;
 		double quartile3 = 0.0;
-		sort(data);
+		sort(inputData);
 
-		for (int i = middleIndex + 1; i < data.length; i++) {
+		for (int i = middleIndex + 1; i < inputData.length; i++) {
 			arrayEvenCounter++;
 		}
 
-		if ((data.length % 2 != 0) && (arrayEvenCounter % 2 != 0)) {
-			quartile3 = data[middleIndex + ((arrayEvenCounter / 2) + 1)]; // this if statement block is done
+		if ((inputData.length % 2 != 0) && (arrayEvenCounter % 2 != 0)) {
+			quartile3 = inputData[middleIndex + ((arrayEvenCounter / 2) + 1)]; // this if statement block is done
 		}
 
-		if ((data.length % 2 != 0) && (arrayEvenCounter % 2 == 0)) {
-			quartile3 = (data[middleIndex + (arrayEvenCounter / 2)] + data[middleIndex + (arrayEvenCounter / 2) + 1])
+		if ((inputData.length % 2 != 0) && (arrayEvenCounter % 2 == 0)) {
+			quartile3 = (inputData[middleIndex + (arrayEvenCounter / 2)] + inputData[middleIndex + (arrayEvenCounter / 2) + 1])
 					/ 2.0;
 		}
 
-		for (int i = middleIndex; i < data.length; i++) {
+		for (int i = middleIndex; i < inputData.length; i++) {
 			arrayOddCounter++;
 		}
 
-		if ((data.length % 2 == 0) && (arrayOddCounter % 2 != 0)) {
-			quartile3 = data[middleIndex + (arrayOddCounter / 2)];
+		if ((inputData.length % 2 == 0) && (arrayOddCounter % 2 != 0)) {
+			quartile3 = inputData[middleIndex + (arrayOddCounter / 2)];
 		}
 
-		if ((data.length % 2 == 0) && (arrayOddCounter % 2 == 0)) {
-			// quartile3 = (inputData[middleIndex + ((arrayOddCounter / 2) - 1)] +
-			// inputData[middleIndex + (arrayOddCounter / 2)] ) / 2;
-			quartile3 = (data[middleIndex + (arrayOddCounter / 2) - 1] + data[middleIndex + (arrayOddCounter / 2)])
+		if ((inputData.length % 2 == 0) && (arrayOddCounter % 2 == 0)) {
+			// quartile3 = (inputinputData[middleIndex + ((arrayOddCounter / 2) - 1)] +
+			// inputinputData[middleIndex + (arrayOddCounter / 2)] ) / 2;
+			quartile3 = (inputData[middleIndex + (arrayOddCounter / 2) - 1] + inputData[middleIndex + (arrayOddCounter / 2)])
 					/ 2.0;
 		}
 
@@ -184,18 +230,18 @@ public final class VStats {
 
 	}
 
-	public double computeMode(double[] data) {
+	public double computeMode(double[] inputData) {
 
-		int[] modeFinder = new int[data.length];
+		int[] modeFinder = new int[inputData.length];
 		double mode = 0.0;
 
 		for (int i = 0; i < modeFinder.length; i++) {
 			modeFinder[i] = 1;
 		}
 
-		for (int i = 0; i < data.length; i++) {
-			for (int j = 0; j < data.length; j++) {
-				if (data[i] == data[j]) {
+		for (int i = 0; i < inputData.length; i++) {
+			for (int j = 0; j < inputData.length; j++) {
+				if (inputData[i] == inputData[j]) {
 					modeFinder[i]++;
 				}
 			}
@@ -216,49 +262,49 @@ public final class VStats {
 			}
 		}
 
-		mode = data[tempIndex];
+		mode = inputData[tempIndex];
 
 		return mode;
 
 	}
 
-	public double computeNumValues(double[] data) {
-		return (data.length * 1.0);
+	public double computeNumValues(double[] inputData) {
+		return (inputData.length * 1.0);
 	}
 
-	public double computeSumValues(double[] data) {
+	public double computeSumValues(double[] inputData) {
 		double sumValues = 0.0;
-		for (int i = 0; i < data.length; i++) {
-			sumValues += data[i];
+		for (int i = 0; i < inputData.length; i++) {
+			sumValues += inputData[i];
 		}
 
 		return sumValues;
 
 	}
 
-	public int computeLength(double[] data) {
-		return data.length;
+	public int computeLength(double[] inputData) {
+		return inputData.length;
 	}
 
-	public double atIndex(double[] data, int i) {
-		return data[i];
+	public double atIndex(double[] inputData, int i) {
+		return inputData[i];
 	}
 
-	public double computeIQR(double[] data) {
+	public double computeIQR(double[] inputData) {
 
-		return computeQuartile3(data) - computeQuartile1(data);
+		return computeQuartile3(inputData) - computeQuartile1(inputData);
 
 	}
 
-	public ArrayList<Double> computeOutliers(double[] data) {
+	public ArrayList<Double> computeOutliers(double[] inputData) {
 
-		double lowBound = computeQuartile1(data) - (1.5 * computeIQR(data));
-		double highBound = computeQuartile3(data) + (1.5 * computeIQR(data));
+		double lowBound = computeQuartile1(inputData) - (1.5 * computeIQR(inputData));
+		double highBound = computeQuartile3(inputData) + (1.5 * computeIQR(inputData));
 		ArrayList<Double> res = new ArrayList<Double>();
 
-		for (int i = 0; i < data.length; i++) {
-			if ((data[i] < lowBound) || (highBound > highBound))
-				res.add(data[i]);
+		for (int i = 0; i < inputData.length; i++) {
+			if ((inputData[i] < lowBound) || (highBound > highBound))
+				res.add(inputData[i]);
 		}
 
 		return res;
@@ -435,26 +481,26 @@ public final class VStats {
 		return (computeFactorial(numberOfObservations)) / (computeFactorial(numberOfObservations - numberChoose));
 	}
 
-	public double computeDiscreteExpectedValue(double[] dataArray, double[] probabilitiesArray) {
+	public double computeDiscreteExpectedValue(double[] inputDataArray, double[] probabilitiesArray) {
 
 		double sum = 0.0;
 
-		for (int i = 0; i < computeLength(dataArray); i++) {
-			sum += ((atIndex(dataArray, i)) * (atIndex(probabilitiesArray, i)));
+		for (int i = 0; i < computeLength(inputDataArray); i++) {
+			sum += ((atIndex(inputDataArray, i)) * (atIndex(probabilitiesArray, i)));
 		}
 
 		return sum;
 
 	}
 
-	public double computeDiscreteVariance(double[] dataArray, double[] probabilitiesArray) {
+	public double computeDiscreteVariance(double[] inputDataArray, double[] probabilitiesArray) {
 
 		double sum = 0.0;
-		double meanOfX = computeDiscreteExpectedValue(dataArray, probabilitiesArray);
+		double meanOfX = computeDiscreteExpectedValue(inputDataArray, probabilitiesArray);
 
-		for (int i = 0; i < computeLength(dataArray); i++) {
+		for (int i = 0; i < computeLength(inputDataArray); i++) {
 
-			sum += ((Math.pow((atIndex(dataArray, i) - meanOfX), 2)) * (atIndex(probabilitiesArray, i)));
+			sum += ((Math.pow((atIndex(inputDataArray, i) - meanOfX), 2)) * (atIndex(probabilitiesArray, i)));
 
 		}
 
@@ -462,51 +508,51 @@ public final class VStats {
 
 	}
 
-	public double computeDiscreteStandardDeviation(double[] dataArray, double[] probabilitiesArray) {
-		return Math.sqrt(computeDiscreteVariance(dataArray, probabilitiesArray));
+	public double computeDiscreteStandardDeviation(double[] inputDataArray, double[] probabilitiesArray) {
+		return Math.sqrt(computeDiscreteVariance(inputDataArray, probabilitiesArray));
 	}
 
-	public double computeRowSum(double[][] data, int row) {
+	public double computeRowSum(double[][] inputData, int row) {
 
 		double sum = 0;
 
-		for (int i = 0; i < data[0].length; i++) {
-			sum += data[row][i];
+		for (int i = 0; i < inputData[0].length; i++) {
+			sum += inputData[row][i];
 		}
 
 		return sum;
 
 	}
 
-	public double computeColumnSum(double[][] data, int col) {
+	public double computeColumnSum(double[][] inputData, int col) {
 
 		double sum = 0;
 
-		for (int i = 0; i < data.length; i++) {
-			sum += data[i][col];
+		for (int i = 0; i < inputData.length; i++) {
+			sum += inputData[i][col];
 		}
 
 		return sum;
 
 	}
 
-	public double computeRowProduct(double[][] data, int row) {
+	public double computeRowProduct(double[][] inputData, int row) {
 
 		double sum = 0;
 
-		for (int i = 0; i < data[0].length; i++) {
-			sum *= data[row][i];
+		for (int i = 0; i < inputData[0].length; i++) {
+			sum *= inputData[row][i];
 		}
 
 		return sum;
 	}
 
-	public double computeColumnProduct(double[][] data, int col) {
+	public double computeColumnProduct(double[][] inputData, int col) {
 
 		double sum = 0;
 
-		for (int i = 0; i < data.length; i++) {
-			sum *= data[i][col];
+		for (int i = 0; i < inputData.length; i++) {
+			sum *= inputData[i][col];
 		}
 
 		return sum;

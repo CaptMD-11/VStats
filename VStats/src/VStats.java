@@ -230,7 +230,12 @@ public final class VStats {
 
 	}
 
-	public double computeMode(double[] inputData) {
+	/**
+	 * Returns the mode (most occurring value) of a <code>double</code> array, in a <code>double</code> format. 
+	 * @param inputData , a <code>double</code> array. 
+	 * @return the mode of <strong>inputData</strong>. 
+	 */
+	public static double computeMode(double[] inputData) {
 
 		int[] modeFinder = new int[inputData.length];
 		double mode = 0.0;
@@ -268,11 +273,12 @@ public final class VStats {
 
 	}
 
-	public double computeNumValues(double[] inputData) {
-		return (inputData.length * 1.0);
-	}
-
-	public double computeSumValues(double[] inputData) {
+	/**
+	 * Returns the sum of the values of a <code>double</code> array, in an <code>double</code> format. 
+	 * @param inputData , a <code>double</code> array. 
+	 * @return the sum of the values in <strong>inputData</strong>. 
+	 */
+	public static double computeSumValues(double[] inputData) {
 		double sumValues = 0.0;
 		for (int i = 0; i < inputData.length; i++) {
 			sumValues += inputData[i];
@@ -282,15 +288,31 @@ public final class VStats {
 
 	}
 
-	public int computeLength(double[] inputData) {
+	/**
+	 * Returns the number of values in a <code>double</code> array, in an <code>int</code> format. 
+	 * @param inputData , a <code>double</code> array. 
+	 * @return the length of <strong>inputData</strong>. 
+	 */
+	public static int computeLength(double[] inputData) {
 		return inputData.length;
 	}
 
-	public double atIndex(double[] inputData, int i) {
+	/**
+	 * Returns the value at a given index of a <code>double</code> array, in an <code>double</code> format. 
+	 * @param inputData , a <code>double</code> array. 
+	 * @param i , the index of interest. 
+	 * @return the value at the index of interest. 
+	 */
+	public static double atIndex(double[] inputData, int i) {
 		return inputData[i];
 	}
 
-	public double computeIQR(double[] inputData) {
+	/**
+	 * Returns the interquartile range (IQR) of a <code>double</code> array, in an <code>double</code> format. 
+	 * @param inputData , a <code>double</code> array. 
+	 * @return the IQR of <strong>inputData</strong>. 
+	 */
+	public static double computeIQR(double[] inputData) {
 
 		return computeQuartile3(inputData) - computeQuartile1(inputData);
 

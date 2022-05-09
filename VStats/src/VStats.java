@@ -318,7 +318,12 @@ public final class VStats {
 
 	}
 
-	public ArrayList<Double> computeOutliers(double[] inputData) {
+	/**
+	 * Returns a <code>double</code> <code>ArrayList</code> containing any possible outliers in a <code>double</code> array. 
+	 * @param inputData , a <code>double</code> array. 
+	 * @return an <code>ArrayList</code> which contains any possible outliers in <strong>inputData</strong>. 
+	 */
+	public static ArrayList<Double> computeOutliers(double[] inputData) {
 
 		double lowBound = computeQuartile1(inputData) - (1.5 * computeIQR(inputData));
 		double highBound = computeQuartile3(inputData) + (1.5 * computeIQR(inputData));
@@ -333,7 +338,12 @@ public final class VStats {
 
 	}
 
-	public int computeFactorial(int inputVal) {
+	/**
+	 * Returns the factorial (in <code>int</code> format) of an <code>int</code>. 
+	 * @param inputVal , an <code>int</code>. 
+	 * @return the factorial of <strong>inputVal</strong>. 
+	 */
+	public static int computeFactorial(int inputVal) {
 
 		int resFactorial = 1;
 
@@ -343,11 +353,18 @@ public final class VStats {
 		return resFactorial;
 	}
 
-	public double computeCombination(int numTrials, int xVal) {
+	/**
+	 * Returns the number of combinations (in <code>int</code> format) possible when given the n-value and r-value (with respect to the format: nCr). 
+	 * @param n , the n-value in the format "nCr." 
+	 * @param r , the r-value in the format "nCr." 
+	 * @return the number of combinations of "nCr." 
+	 */
+	public static int computeCombination(int n, int r) {
 
-		return ((computeFactorial(numTrials)) / ((computeFactorial(xVal)) * (computeFactorial(numTrials - xVal)))
+		return (int)((computeFactorial(n)) / ((computeFactorial(r)) * (computeFactorial(n - r)))
 				* 1.0);
 	}
+
 
 	public double computeBinomialPdf(int numTrials, int xVal, double pSuccess) {
 		return ((computeCombination(numTrials, xVal)) * (Math.pow(pSuccess, xVal))
@@ -391,7 +408,14 @@ public final class VStats {
 		return sum;
 	}
 
-	public double NormalPDF(double inputZ) {
+	/**
+	 * Returns the output (in <code>double</code> format) of the probability density function (for normal distributions). 
+	 * <p>
+	 * This method assumes that µ=0 and σ=1. 
+	 * @param inputZ , the input value
+	 * @return the normal probability density function's output when <strong>inputZ</strong> is the input. 
+	 */
+	public static double NormalPDF(double inputZ) {
 
 		double constant = (1) / (Math.sqrt(2 * Math.PI));
 		double exponent = (Math.pow(inputZ, 2.0)) / (-2);

@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public final class VStats {
 
-	public VStats(double[] in) { 
+	public VStats() { 
 
 	} 
 
@@ -43,6 +43,25 @@ public final class VStats {
 		return sum / (inputData.length * 1.0); 
 	}
 
+	public double[] sort(double[] inputData) {
+
+		double[] res = new double[inputData.length]; 
+
+		for (int j = 1; j < inputData.length; j++) {
+			double temp = inputData[j];
+			int possibleIndex = j;
+			while (possibleIndex > 0 && temp < inputData[possibleIndex - 1]) {
+				inputData[possibleIndex] = inputData[possibleIndex - 1];
+				possibleIndex--;
+			}
+			inputData[possibleIndex] = temp;
+		}
+
+		res = inputData; 
+		return res; 
+
+	}
+
 	/**
 	 * Returns the median (second quartile) of a <code>double</code> array, in a <code>double</code> format. 
 	 * @param inputData , a <code>double</code> array. 
@@ -51,7 +70,8 @@ public final class VStats {
 	public static double computeMedian(double[] inputData) { // this code computes median using the insertion sort algorithm
 
 		int middleIndex = 0;
-		sort(inputData);
+		VStats obj = new VStats(); 
+		inputData = obj.sort(inputData); 
 
 		// sorted.
 		middleIndex = (inputData.length / 2);
@@ -62,20 +82,6 @@ public final class VStats {
 		} else {
 			temp = (inputData[middleIndex - 1] + inputData[middleIndex]) / 2.0;
 			return temp;
-		}
-
-	}
-
-	public static void sort(double[] inputData) {
-
-		for (int j = 1; j < inputData.length; j++) {
-			double temp = inputData[j];
-			int possibleIndex = j;
-			while (possibleIndex > 0 && temp < inputData[possibleIndex - 1]) {
-				inputData[possibleIndex] = inputData[possibleIndex - 1];
-				possibleIndex--;
-			}
-			inputData[possibleIndex] = temp;
 		}
 
 	}
@@ -160,7 +166,8 @@ public final class VStats {
 		int middleIndex = inputData.length / 2;
 		int count = -1;
 		double quartile1 = 0.0;
-		sort(inputData);
+		VStats obj = new VStats(); 
+		inputData = obj.sort(inputData); 
 
 		for (int i = 0; i <= middleIndex - 1; i++) {
 			count++;
@@ -196,7 +203,8 @@ public final class VStats {
 		int arrayEvenCounter = 0;
 		int arrayOddCounter = 0;
 		double quartile3 = 0.0;
-		sort(inputData);
+		VStats obj = new VStats(); 
+		inputData = obj.sort(inputData); 
 
 		for (int i = middleIndex + 1; i < inputData.length; i++) {
 			arrayEvenCounter++;

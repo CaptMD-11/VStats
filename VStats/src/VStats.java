@@ -400,7 +400,7 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the output (in <code>double</code> format) of the probability density function (for normal distributions). 
+	 * Returns the output (in a <code>double</code> format) of the probability density function (for normal distributions). 
 	 * <p>
 	 * This method assumes that µ=0 and σ=1. 
 	 * @param inputZ , the input value
@@ -752,13 +752,29 @@ public final class VStats {
 
 	}
 
-	public double computeSe(double[] indVar, double[] depVar) {
+	/**
+	 * Returns the standard error (Se) of the residuals, in a <code>double</code> format. 
+	 * <p>
+	 * This method uses linear regression to model the relationship between the 2 variables. 
+	 * @param indVar , a <code>double</code> array containing the independent variable values. 
+	 * @param depVar , a <code>double</code> array containing the dependent variable values. 
+	 * @return Se with respect to <strong>indVar</strong> and <strong>depVar</strong>. 
+	 */
+	public static double computeSe(double[] indVar, double[] depVar) {
 
-		return Math.sqrt((computeSumOfResidualsSquared(indVar, depVar)) / (depVar.length));
+		return Math.sqrt((computeSumOfResidualsSquared(indVar, depVar)) / (depVar.length - 2));
 
 	}
 
-	public double computeSumOfResidualsSquared(double[] indVar, double[] depVar) {
+	/**
+	 * Returns the sum of the residuals squared of the residuals, in a <code>double</code> format. 
+	 * <p>
+	 * This method uses linear regression to model the relationship between the 2 variables. 
+	 * @param indVar , a <code>double</code> array containing the independent variable values. 
+	 * @param depVar , a <code>double</code> array containing the dependent variable values. 
+	 * @return sum of the residuals squared with respect to <strong>indVar</strong> and <strong>depVar</strong>. 
+	 */
+	public static double computeSumOfResidualsSquared(double[] indVar, double[] depVar) {
 
 		double sum = 0.0;
 
@@ -772,7 +788,15 @@ public final class VStats {
 
 	}
 
-	public double[] computeResidualValues(double[] indVar, double[] depVar) {
+	/**
+	 * Returns a <code>double</code> array containing the residual values. 
+	 * <p>
+	 * This method uses linear regression to model the relationship between the 2 variables. 
+	 * @param indVar , a <code>double</code> array containing the independent variable values. 
+	 * @param depVar , a <code>double</code> array containing the dependent variable values. 
+	 * @return an array containing the residual values with respect to <strong>indVar</strong> and <strong>depVar</strong>. 
+	 */
+	public static double[] computeResidualValues(double[] indVar, double[] depVar) {
 
 		double[] res = new double[indVar.length];
 
@@ -784,7 +808,15 @@ public final class VStats {
 
 	}
 
-	public double[] computeYPredictedValues(double[] indVar, double[] depVar) {
+	/**
+	 * Returns a <code>double</code> array containing the predicted y-values (ŷ). 
+	 * <p>
+	 * This method uses linear regression to model the relationship between the 2 variables. 
+	 * @param indVar , a <code>double</code> array containing the independent variable values. 
+	 * @param depVar , a <code>double</code> array containing the dependent variable values. 
+	 * @return an array containing the predicted y-values with respect to <strong>indVar</strong> and <strong>depVar</strong>. 
+	 */
+	public static double[] computeYPredictedValues(double[] indVar, double[] depVar) {
 
 		double[] res = new double[indVar.length];
 
@@ -796,35 +828,68 @@ public final class VStats {
 
 	}
 
-	public double computeLSRLOutput(double[] indVar, double[] depVar, double input) {
+	/**
+	 * Returns a <code>double</code> which represents the predicted y-value (ŷ) when an x-value is inputted into the least-squares regression line (LSRL). 
+	 * <p>
+	 * This method uses linear regression to model the relationship between the 2 variables. 
+	 * @param indVar , a <code>double</code> array containing the independent variable values. 
+	 * @param depVar , a <code>double</code> array containing the dependent variable values. 
+	 * @param input , a <code>double</code> which is the value to be inputted into the LSRL. 
+	 * @return the predicted y-value with respect to <strong>indVar</strong> and <strong>depVar</strong>. 
+	 */
+	public static double computeLSRLOutput(double[] indVar, double[] depVar, double input) {
 
 		return ((computeA(indVar, depVar)) + (computeB(indVar, depVar) * input));
 
 	}
 
-	public String displayLSRLEquation(double[] indVar, double[] depVar) {
+	/**
+	 * Returns the least-squares regression line (LSRL) equation, in a <code>String</code> format. 
+	 * <p>
+	 * This method uses linear regression to model the relationship between the 2 variables. 
+	 * @param indVar , a <code>double</code> array containing the independent variable values. 
+	 * @param depVar , a <code>double</code> array containing the dependent variable values. 
+	 * @return the LSRL equation with respect to <strong>indVar</strong> and <strong>depVar</strong>. 
+	 */
+	public static String displayLSRLEquation(double[] indVar, double[] depVar) {
 
 		String res = "";
 
-		res = "Ypredicted = " + (computeA(indVar, depVar)) + " + " + (computeB(indVar, depVar)) + "x";
+		res = "ŷ = " + (computeA(indVar, depVar)) + " + " + (computeB(indVar, depVar)) + "x";
 
 		if (computeB(indVar, depVar) < 0) {
-			res = "Ypredicted = " + (computeA(indVar, depVar)) + " - " + (-1 * computeB(indVar, depVar)) + "x";
+			res = "ŷ = " + (computeA(indVar, depVar)) + " - " + (-1 * computeB(indVar, depVar)) + "x";
 		} else if (computeB(indVar, depVar) >= 0) {
-			res = "Ypredicted = " + (computeA(indVar, depVar)) + " + " + (computeB(indVar, depVar)) + "x";
+			res = "ŷ = " + (computeA(indVar, depVar)) + " + " + (computeB(indVar, depVar)) + "x";
 		}
 
 		return res;
 
 	}
 
-	public double computeA(double[] indVar, double[] depVar) {
+	/**
+	 * Returns the y-intercept of the least-squares regression line (LSRL) equation, in a <code>double</code> format. 
+	 * <p>
+	 * This method uses linear regression to model the relationship between the 2 variables. 
+	 * @param indVar , a <code>double</code> array containing the independent variable values. 
+	 * @param depVar , a <code>double</code> array containing the dependent variable values. 
+	 * @return the y-intercept of the LSRL equation with respect to <strong>indVar</strong> and <strong>depVar</strong>. 
+	 */
+	public static double computeA(double[] indVar, double[] depVar) {
 
 		return (computeMean(depVar)) - ((computeB(indVar, depVar)) * (computeMean(indVar)));
 
 	}
 
-	public double computeB(double[] indVar, double[] depVar) {
+	/**
+	 * Returns the slope of the least-squares regression line (LSRL) equation, in a <code>double</code> format. 
+	 * <p>
+	 * This method uses linear regression to model the relationship between the 2 variables. 
+	 * @param indVar , a <code>double</code> array containing the independent variable values. 
+	 * @param depVar , a <code>double</code> array containing the dependent variable values. 
+	 * @return the slope of the LSRL equation with respect to <strong>indVar</strong> and <strong>depVar</strong>. 
+	 */
+	public static double computeB(double[] indVar, double[] depVar) {
 
 		double r = computeR(indVar, depVar);
 
@@ -834,7 +899,15 @@ public final class VStats {
 
 	}
 
-	public double computeR(double[] indVar, double[] depVar) {
+	/**
+	 * Returns the correlation coefficient (r-value) of the relationship between the independent and dependent variables, in a <code>double</code> format. 
+	 * <p>
+	 * This method uses linear regression to model the relationship between the 2 variables. 
+	 * @param indVar , a <code>double</code> array containing the independent variable values. 
+	 * @param depVar , a <code>double</code> array containing the dependent variable values. 
+	 * @return the r-value of the LSRL with respect to <strong>indVar</strong> and <strong>depVar</strong>. 
+	 */
+	public static double computeR(double[] indVar, double[] depVar) {
 
 		double sumOfProducts = 0.0;
 
@@ -853,20 +926,47 @@ public final class VStats {
 
 	}
 
-	public double computeRSquaredValue(double[] indVar, double[] depVar) {
+	/**
+	 * Returns the r^2-value of the relationship between the independent and dependent variables, in a <code>double</code> format. 
+	 * <p>
+	 * This method uses linear regression to model the relationship between the 2 variables. 
+	 * @param indVar , a <code>double</code> array containing the independent variable values. 
+	 * @param depVar , a <code>double</code> array containing the dependent variable values. 
+	 * @return the r^2-value of the LSRL with respect to <strong>indVar</strong> and <strong>depVar</strong>. 
+	 */
+	public static double computeRSquaredValue(double[] indVar, double[] depVar) {
 
 		return Math.pow((computeR(indVar, depVar)), 2.0);
 
 	}
 
-	public double computeZStar(double inputConfidenceLevel) {
+	/**
+	 * Returns a <code>double</code> which represents the z-star (z-critical) value when a confidence level is inputted. 
+	 * <p>
+	 * This method is only an approximation. 
+	 * @param inputConfidenceLevel , a <code>double</code> representing the input confidence level. 
+	 * @return the z-star value with respect to <strong>inputConfidenceLevel</strong>. 
+	 */
+	public static double computeZStar(double inputConfidenceLevel) {
 
 		double invNormInput = inputConfidenceLevel + ((1 - inputConfidenceLevel) / (2));
 		return computeInverseNormalApprox(invNormInput);
 
 	}
 
-	public String computeZConfidenceInterval(double mu, double sigma, double sampleSize, double confidenceLevel) {
+	/**
+	 * Returns a <code>String</code> which represents the confidence interval for the means, making use of the z-distribution. 
+	 * <p>
+	 * This method assumes that µ=0 and σ=1. 
+	 * <p>
+	 * This method is only an approximation. 
+	 * @param mu , the mean of the sample. 
+	 * @param sigma , the standard deviation of the population. 
+	 * @param sampleSize , the size of the sample. 
+	 * @param confidenceLevel , the input confidence level. 
+	 * @return the confidence interval for means. 
+	 */
+	public static String computeZConfidenceIntervalMeans(double mu, double sigma, int sampleSize, double confidenceLevel) {
 
 		String res = "";
 

@@ -424,7 +424,17 @@ public final class VStats {
 
 	}
 
-	public double computeFiniteZProbLeftRiemann(double inputZLow, double inputZHigh) {
+	/**
+	 * Returns the probability between two z-scores for the probability density function (for normal distributions) using a left Riemann sum. 
+	 * <p>
+	 * This method assumes that µ=0 and σ=1. 
+	 * <p>
+	 * Enter large absolute value z-scores for the bounds, for improper integral approximation. 
+	 * @param inputZLow , the low bound z-score. 
+	 * @param inputZHigh , the high bound z-score. 
+	 * @return the probability between <strong>inputZLow</strong> and <strong>inputZHigh</strong>. 
+	 */
+	public static double computeZProbLeftRiemann(double inputZLow, double inputZHigh) {
 
 		double sum = 0.0;
 
@@ -438,7 +448,17 @@ public final class VStats {
 		return sum;
 	}
 
-	public double computeFiniteZProbRightRiemann(double inputZLow, double inputZHigh) {
+	/**
+	 * Returns the probability between two z-scores for the probability density function (for normal distributions) using a right Riemann sum. 
+	 * <p>
+	 * This method assumes that µ=0 and σ=1. 
+	 * <p>
+	 * Enter large absolute value z-scores for the bounds, for improper integral approximation. 
+	 * @param inputZLow , the low bound z-score. 
+	 * @param inputZHigh , the high bound z-score. 
+	 * @return the probability between <strong>inputZLow</strong> and <strong>inputZHigh</strong>. 
+	 */
+	public static double computeZProbRightRiemann(double inputZLow, double inputZHigh) {
 
 		double sum = 0.0;
 
@@ -453,12 +473,32 @@ public final class VStats {
 
 	}
 
-	public double computeFiniteZProbAvgLeftRightRiemann(double inputZLow, double inputZHigh) {
-		return ((computeFiniteZProbRightRiemann(inputZLow, inputZHigh))
-				+ (computeFiniteZProbLeftRiemann(inputZLow, inputZHigh))) / 2;
+	/**
+	 * Returns the probability between two z-scores for the probability density function (for normal distributions) using the average of a left & right Riemann sum. 
+	 * <p>
+	 * This method assumes that µ=0 and σ=1. 
+	 * <p>
+	 * Enter large absolute value z-scores for the bounds, for improper integral approximation. 
+	 * @param inputZLow , the low bound z-score. 
+	 * @param inputZHigh , the high bound z-score. 
+	 * @return the probability between <strong>inputZLow</strong> and <strong>inputZHigh</strong>. 
+	 */
+	public static double computeZProbAvgLeftRightRiemann(double inputZLow, double inputZHigh) {
+		return ((computeZProbRightRiemann(inputZLow, inputZHigh))
+				+ (computeZProbLeftRiemann(inputZLow, inputZHigh))) / 2;
 	}
 
-	public double computeFiniteZProbMidpointRiemann(double inputZLow, double inputZHigh) {
+	/**
+	 * Returns the probability between two z-scores for the probability density function (for normal distributions) using a midpoint Riemann sum. 
+	 * <p>
+	 * This method assumes that µ=0 and σ=1. 
+	 * <p>
+	 * Enter large absolute value z-scores for the bounds, for improper integral approximation. 
+	 * @param inputZLow , the low bound z-score. 
+	 * @param inputZHigh , the high bound z-score. 
+	 * @return the probability between <strong>inputZLow</strong> and <strong>inputZHigh</strong>. 
+	 */
+	public static double computeZProbMidpointRiemann(double inputZLow, double inputZHigh) {
 
 		double sum = 0.0;
 
@@ -473,7 +513,17 @@ public final class VStats {
 
 	}
 
-	public double computeFiniteZProbTrapezoidRiemann(double inputZLow, double inputZHigh) {
+	/**
+	 * Returns the probability between two z-scores for the probability density function (for normal distributions) using a trapezoidal Riemann sum. 
+	 * <p>
+	 * This method assumes that µ=0 and σ=1. 
+	 * <p>
+	 * Enter large absolute value z-scores for the bounds, for improper integral approximation. 
+	 * @param inputZLow , the low bound z-score. 
+	 * @param inputZHigh , the high bound z-score. 
+	 * @return the probability between <strong>inputZLow</strong> and <strong>inputZHigh</strong>. 
+	 */
+	public static double computeZProbTrapezoidRiemann(double inputZLow, double inputZHigh) {
 
 		double sum = 0.0;
 
@@ -488,38 +538,59 @@ public final class VStats {
 
 	}
 
-	public String computeInverseNormalApprox(double input) { // works, but highly inefficient
+	/**
+	 * Returns the corresponding z-score with respect to the left area under the probability density function (for normal distributions). 
+	 * <p>
+	 * This method assumes that µ=0 and σ=1. 
+	 * <p>
+	 * Method is only an approximation, and does not return an exact value. 
+	 * @param input , the area under the probability density function (to the left). 
+	 * @return the corresponding z-score to the <strong>input</strong> area. 
+	 */
+	public static double computeInverseNormalApprox(double input) { // works, but highly inefficient
 		// with respect to probability to the left of input value
 
 		double res = 0.0;
 
 		if ((input == 0) || (input == 1)) {
-			return "∞";
+			return (Double) null;
 		} else if (((input > 0) && (input < 0.01)) || ((input > 0.99) && (input < 1))) {
 
 			res = Math.tan((Math.PI / 0.1) * (input - 0.95));
 
-			return res + "";
+			return res; 
 
 		} else if ((input >= 0.01) && (input <= 0.99)) { // good
 
 			res = Math.tan((Math.PI / 1.34) * (input - 0.5));
 
-			return res + "";
+			return res; 
 
 		} else if ((input < 0) || (input > 1)) { // good
-			return "invalid input";
+			return (Double) null;
 		}
 
-		return "";
+		return (Double) null; 
 
 	}
 
-	public int computeRandomWholeNumber(int low, int high) {
+	/**
+	 * Returns a random <code>int</code> between 2 bounds, inclusive. 
+	 * @param low , the low bound of the range. 
+	 * @param high , the high bound of the range. 
+	 * @return a random <code>int</code> between <strong>low</strong> and <strong>high</strong>, inclusive. 
+	 */
+	public static int computeRandomInt(int low, int high) {
 		return (int) (Math.random() * (high - low + 1) + low);
 	}
 
-	public double computeRandomDecimalNumber(double low, double high) {
+	/**
+	 * Returns a random <code>double</code> between 2 bounds, inclusive. 
+	 * @param low , the low bound of the range. 
+	 * @param high , the high bound of the range. 
+	 * @return a random <code>double</code> between <strong>low</strong> and <strong>high</strong>, inclusive. 
+	 */
+	public static double computeRandomDouble(double low, double high) {
 		return Math.random() * (high - low + 1) + low;
 	}
 
@@ -757,7 +828,7 @@ public final class VStats {
 	public double computeZStar(double inputConfidenceLevel) {
 
 		double invNormInput = inputConfidenceLevel + ((1 - inputConfidenceLevel) / (2));
-		return Double.parseDouble(computeInverseNormalApprox(invNormInput));
+		return computeInverseNormalApprox(invNormInput);
 
 	}
 
@@ -780,7 +851,7 @@ public final class VStats {
 
 		double zCritical = (sampleMean - mu) / (sigma / (Math.sqrt(sampleSize)));
 
-		double pValue = computeFiniteZProbMidpointRiemann(zCritical, 1000.0);
+		double pValue = computeZProbMidpointRiemann(zCritical, 1000.0);
 
 		if (pValue < alpha) {
 			return "There is statistically significant evidence that Ha > H0... reject H0";
@@ -799,7 +870,7 @@ public final class VStats {
 
 		double zCritical = (sampleMean - mu) / (sigma / (Math.sqrt(sampleSize)));
 
-		double pValue = computeFiniteZProbMidpointRiemann(-1000.0, zCritical);
+		double pValue = computeZProbMidpointRiemann(-1000.0, zCritical);
 
 		if (pValue < alpha) {
 			return "There is statistically significant evidence that Ha < H0... reject H0";
@@ -818,7 +889,7 @@ public final class VStats {
 
 		double zCritical = (sampleMean - mu) / (sigma / (Math.sqrt(sampleSize)));
 
-		double pValue = (computeFiniteZProbMidpointRiemann((Math.abs(zCritical)), 1000.0)) * 2.0;
+		double pValue = (computeZProbMidpointRiemann((Math.abs(zCritical)), 1000.0)) * 2.0;
 
 		if (pValue < alpha) {
 			return "There is statistically significant evidence that Ha ≠ H0... reject H0";
@@ -870,7 +941,7 @@ public final class VStats {
 
 		double zCritical = (pHat - pNought) / (Math.sqrt((pNought * qNought) / (sampleSize)));
 
-		double pValue = computeFiniteZProbMidpointRiemann(-1000.0, zCritical);
+		double pValue = computeZProbMidpointRiemann(-1000.0, zCritical);
 
 		if (pValue < alpha) {
 			return "There is statistically signficant evidence that the true P0 < given P0 - reject H0";
@@ -890,7 +961,7 @@ public final class VStats {
 
 		double zCritical = (pHat - pNought) / (Math.sqrt((pNought * qNought) / (sampleSize)));
 
-		double pValue = computeFiniteZProbMidpointRiemann(zCritical, 1000.0);
+		double pValue = computeZProbMidpointRiemann(zCritical, 1000.0);
 
 		if (pValue < alpha) {
 			return "There is statistically signficant evidence that the true P0 > given P0 - reject H0";
@@ -910,7 +981,7 @@ public final class VStats {
 
 		double zCritical = (pHat - pNought) / (Math.sqrt((pNought * qNought) / (sampleSize)));
 
-		double pValue = computeFiniteZProbMidpointRiemann((Math.abs(zCritical)), 1000.0) * 2.0;
+		double pValue = computeZProbMidpointRiemann((Math.abs(zCritical)), 1000.0) * 2.0;
 
 		if (pValue < alpha) {
 			return "There is statistically signficant evidence that the true P0 ≠ the given P0 - reject H0";
@@ -936,14 +1007,14 @@ public final class VStats {
 			double meanForComparison, String statement) {
 		double z = (meanForComparison - mu)
 				/ (computeSampleMeansStandardDeviation(mu, sigma, sampleSize, meanForComparison, statement));
-		return computeFiniteZProbMidpointRiemann(-1000.0, z);
+		return computeZProbMidpointRiemann(-1000.0, z);
 	}
 
 	public double computeSampleMeansProbabilityGreaterThan(double mu, double sigma, int sampleSize,
 			double meanForComparison, String statement) {
 		double z = (meanForComparison - mu)
 				/ (computeSampleMeansStandardDeviation(mu, sigma, sampleSize, meanForComparison, statement));
-		return computeFiniteZProbMidpointRiemann(z, 1000.0);
+		return computeZProbMidpointRiemann(z, 1000.0);
 	}
 
 	public double computeSampleProportionsMu(double pHat, int sampleSize, double proportionForComparison,
@@ -962,7 +1033,7 @@ public final class VStats {
 
 		double z = (proportionForComparison - pHat)
 				/ (computeSampleProportionsStandardDeviation(pHat, sampleSize, proportionForComparison, statement));
-		return computeFiniteZProbMidpointRiemann(-1000, z);
+		return computeZProbMidpointRiemann(-1000, z);
 
 	}
 
@@ -971,7 +1042,7 @@ public final class VStats {
 
 		double z = (proportionForComparison - pHat)
 				/ (computeSampleProportionsStandardDeviation(pHat, sampleSize, proportionForComparison, statement));
-		return computeFiniteZProbMidpointRiemann(z, 1000);
+		return computeZProbMidpointRiemann(z, 1000);
 
 	}
 
@@ -982,7 +1053,7 @@ public final class VStats {
 		double newSD = Math.sqrt(newVariance);
 
 		double z = (0 - newMu) / (newSD);
-		return computeFiniteZProbMidpointRiemann(-1000, z);
+		return computeZProbMidpointRiemann(-1000, z);
 	}
 
 	public double var1GreaterThanVar2(double mu1, double standardDeviation1, double mu2, double standardDeviation2,
@@ -992,7 +1063,7 @@ public final class VStats {
 		double newSD = Math.sqrt(newVariance);
 
 		double z = (0 - newMu) / (newSD);
-		return computeFiniteZProbMidpointRiemann(z, 1000);
+		return computeZProbMidpointRiemann(z, 1000);
 	}
 
 	public double computeContinuousRandomSumOfBothVarsGreaterThanValue(double mu1, double standardDeviation1,
@@ -1002,7 +1073,7 @@ public final class VStats {
 		double newSD = Math.sqrt(newVariance);
 
 		double z = (valueForComparison - newMu) / (newSD);
-		return computeFiniteZProbMidpointRiemann(z, 1000);
+		return computeZProbMidpointRiemann(z, 1000);
 	}
 
 	public double computeContinuousRandomSumOfBothVarsLessThanValue(double mu1, double standardDeviation1, double mu2,
@@ -1012,7 +1083,7 @@ public final class VStats {
 		double newSD = Math.sqrt(newVariance);
 
 		double z = (valueForComparison - newMu) / (newSD);
-		return computeFiniteZProbMidpointRiemann(-1000, z);
+		return computeZProbMidpointRiemann(-1000, z);
 	} 
 
 }

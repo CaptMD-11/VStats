@@ -289,15 +289,6 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the number of values in a <code>double</code> array, in an <code>int</code> format. 
-	 * @param inputData , a <code>double</code> array. 
-	 * @return the length of <strong>inputData</strong>. 
-	 */
-	public static int computeLength(double[] inputData) {
-		return inputData.length;
-	}
-
-	/**
 	 * Returns the value at a given index of a <code>double</code> array, in an <code>double</code> format. 
 	 * @param inputData , a <code>double</code> array. 
 	 * @param i , the index of interest. 
@@ -574,35 +565,21 @@ public final class VStats {
 
 	}
 
-	/**
-	 * Returns a random <code>int</code> between 2 bounds, inclusive. 
-	 * @param low , the low bound of the range. 
-	 * @param high , the high bound of the range. 
-	 * @return a random <code>int</code> between <strong>low</strong> and <strong>high</strong>, inclusive. 
-	 */
-	public static int computeRandomInt(int low, int high) {
-		return (int) (Math.random() * (high - low + 1) + low);
-	}
-
-	/**
-	 * Returns a random <code>double</code> between 2 bounds, inclusive. 
-	 * @param low , the low bound of the range. 
-	 * @param high , the high bound of the range. 
-	 * @return a random <code>double</code> between <strong>low</strong> and <strong>high</strong>, inclusive. 
-	 */
-	public static double computeRandomDouble(double low, double high) {
-		return Math.random() * (high - low + 1) + low;
-	}
-
 	public double computePermutations(int numberOfObservations, int numberChoose) {
 		return (computeFactorial(numberOfObservations)) / (computeFactorial(numberOfObservations - numberChoose));
 	}
 
-	public double computeDiscreteExpectedValue(double[] inputDataArray, double[] probabilitiesArray) {
+	/**
+	 * Returns the expected value of a discrete random variable, in a <code>double</code> format. 
+	 * @param inputDataArray , an array containing the possible outcomes of the random variable. 
+	 * @param probabilitiesArray , an array containing the probabilities of the respective possible outcomes of the random variable. 
+	 * @return the expected value (µX) of the random variable. 
+	 */
+	public static double computeDiscreteExpectedValue(double[] inputDataArray, double[] probabilitiesArray) {
 
 		double sum = 0.0;
 
-		for (int i = 0; i < computeLength(inputDataArray); i++) {
+		for (int i = 0; i < inputDataArray.length; i++) {
 			sum += ((atIndex(inputDataArray, i)) * (atIndex(probabilitiesArray, i)));
 		}
 
@@ -610,12 +587,18 @@ public final class VStats {
 
 	}
 
-	public double computeDiscreteVariance(double[] inputDataArray, double[] probabilitiesArray) {
+	/**
+	 * Returns the variance of a discrete random variable, in a <code>double</code> format. 
+	 * @param inputDataArray , an array containing the possible outcomes of the random variable. 
+	 * @param probabilitiesArray , an array containing the probabilities of the respective possible outcomes of the random variable. 
+	 * @return the variance (σ2X) of the random variable. 
+	 */
+	public static double computeDiscreteVariance(double[] inputDataArray, double[] probabilitiesArray) {
 
 		double sum = 0.0;
 		double meanOfX = computeDiscreteExpectedValue(inputDataArray, probabilitiesArray);
 
-		for (int i = 0; i < computeLength(inputDataArray); i++) {
+		for (int i = 0; i < inputDataArray.length; i++) {
 
 			sum += ((Math.pow((atIndex(inputDataArray, i) - meanOfX), 2)) * (atIndex(probabilitiesArray, i)));
 
@@ -625,11 +608,23 @@ public final class VStats {
 
 	}
 
-	public double computeDiscreteStandardDeviation(double[] inputDataArray, double[] probabilitiesArray) {
+	/**
+	 * Returns the standard deviation of a discrete random variable, in a <code>double</code> format. 
+	 * @param inputDataArray , an array containing the possible outcomes of the random variable. 
+	 * @param probabilitiesArray , an array containing the probabilities of the respective possible outcomes of the random variable. 
+	 * @return the standard deviation (σX) of the random variable. 
+	 */
+	public static double computeDiscreteStandardDeviation(double[] inputDataArray, double[] probabilitiesArray) {
 		return Math.sqrt(computeDiscreteVariance(inputDataArray, probabilitiesArray));
 	}
 
-	public double computeRowSum(double[][] inputData, int row) {
+	/**
+	 * Returns the sum of a row in a 2D array (0-based index), in a <code>double</code> format. 
+	 * @param inputData , a 2D array. 
+	 * @param row , the row of interest. 
+	 * @return the sum of <strong>row</strong>, in <strong>inputData</strong>. 
+	 */
+	public static double computeRowSum(double[][] inputData, int row) {
 
 		double sum = 0;
 
@@ -641,7 +636,13 @@ public final class VStats {
 
 	}
 
-	public double computeColumnSum(double[][] inputData, int col) {
+	/**
+	 * Returns the sum of a column in a 2D array (0-based index), in a <code>double</code> format. 
+	 * @param inputData , a 2D array. 
+	 * @param col , the column of interest. 
+	 * @return the sum of <strong>col</strong>, in <strong>inputData</strong>. 
+	 */
+	public static double computeColumnSum(double[][] inputData, int col) {
 
 		double sum = 0;
 
@@ -653,7 +654,13 @@ public final class VStats {
 
 	}
 
-	public double computeRowProduct(double[][] inputData, int row) {
+	/**
+	 * Returns the product of a row in a 2D array (0-based index), in a <code>double</code> format. 
+	 * @param inputData , a 2D array. 
+	 * @param row , the row of interest. 
+	 * @return the product of <strong>row</strong>, in <strong>inputData</strong>. 
+	 */
+	public static double computeRowProduct(double[][] inputData, int row) {
 
 		double sum = 0;
 
@@ -664,7 +671,13 @@ public final class VStats {
 		return sum;
 	}
 
-	public double computeColumnProduct(double[][] inputData, int col) {
+	/**
+	 * Returns the product of a column in a 2D array (0-based index), in a <code>double</code> format. 
+	 * @param inputData , a 2D array. 
+	 * @param col , the row of interest. 
+	 * @return the product of <strong>col</strong>, in <strong>inputData</strong>. 
+	 */
+	public static double computeColumnProduct(double[][] inputData, int col) {
 
 		double sum = 0;
 
@@ -675,9 +688,16 @@ public final class VStats {
 		return sum;
 	}
 
-	public double[][] computeMatrixAddition(double[][] arr1, double[][] arr2) { // matrix1 & matrix2 must have same
-																				// dimensions
-
+	/**
+	 * Returns a <code>double</code> 2D array containing the sum of the 2 parameter matrices (2D arrays). 
+	 * <p>
+	 * The matrices must have the same dimensions. 
+	 * @param arr1 , a 2D array. 
+	 * @param arr2 , another 2D array. 
+	 * @return the sum of <strong>arr1</strong> and <strong>arr2</strong>, in a 2D array. 
+	 */
+	public static double[][] computeMatrixAddition(double[][] arr1, double[][] arr2) { 
+		// matrix1 & matrix2 must have the same dimensions 
 		double[][] res = new double[arr1.length][arr1[0].length];
 
 		for (int i = 0; i < res.length; i++) {
@@ -690,7 +710,15 @@ public final class VStats {
 
 	}
 
-	public double[][] computeMatrixSubtraction(double[][] arr1, double[][] arr2) {
+	/**
+	 * Returns a <code>double</code> 2D array containing the difference of the 2 parameter matrices (2D arrays). 
+	 * <p>
+	 * The matrices must have the same dimensions. 
+	 * @param arr1 , a 2D array. 
+	 * @param arr2 , another 2D array. 
+	 * @return the difference of <strong>arr1</strong> and <strong>arr2</strong>, in a 2D array. 
+	 */
+	public static double[][] computeMatrixSubtraction(double[][] arr1, double[][] arr2) {
 
 		double[][] res = new double[arr1.length][arr1[0].length];
 
@@ -704,7 +732,13 @@ public final class VStats {
 
 	}
 
-	public double[][] computeMatrixMultiplicationByScalar(double[][] arr, double scalar) {
+	/**
+	 * Returns a <code>double</code> 2D array containing the product of a matrix and a scalar. 
+	 * @param arr1 , a 2D array. 
+	 * @param scalar , the scalar. 
+	 * @return the product of <strong>arr</strong> and <strong>scalar</strong>. 
+	 */
+	public static double[][] computeMatrixMultiplicationByScalar(double[][] arr, double scalar) {
 
 		double[][] res = new double[arr.length][arr[0].length];
 
@@ -720,7 +754,7 @@ public final class VStats {
 
 	public double computeSe(double[] indVar, double[] depVar) {
 
-		return Math.sqrt((computeSumOfResidualsSquared(indVar, depVar)) / (computeLength(depVar)));
+		return Math.sqrt((computeSumOfResidualsSquared(indVar, depVar)) / (depVar.length));
 
 	}
 
@@ -740,7 +774,7 @@ public final class VStats {
 
 	public double[] computeResidualValues(double[] indVar, double[] depVar) {
 
-		double[] res = new double[computeLength(indVar)];
+		double[] res = new double[indVar.length];
 
 		for (int i = 0; i < res.length; i++) {
 			res[i] = (atIndex(depVar, i)) - (computeLSRLOutput(indVar, depVar, atIndex(indVar, i)));
@@ -752,7 +786,7 @@ public final class VStats {
 
 	public double[] computeYPredictedValues(double[] indVar, double[] depVar) {
 
-		double[] res = new double[computeLength(indVar)];
+		double[] res = new double[indVar.length];
 
 		for (int i = 0; i < res.length; i++) {
 			res[i] = computeLSRLOutput(indVar, depVar, atIndex(indVar, i));

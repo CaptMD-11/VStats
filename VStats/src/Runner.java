@@ -7,10 +7,9 @@ public class Runner {
         double[] temp = {6,7,3,2}; 
         double mean = VStats.computeMean(temp); 
 
-        
+        VStats.
         
 
-       // System.out.println(VStats.computeMean(res)); 
         
     }
     

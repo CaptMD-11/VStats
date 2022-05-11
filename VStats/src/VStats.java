@@ -381,7 +381,7 @@ public final class VStats {
 
 	}
 
-	public void computeBinomialCdf(int numTrials, int xVal, double pSuccess, int inputLBound, int inputHBound) {
+	public void computeBinomialCdfProb(int numTrials, int xVal, double pSuccess, int inputLBound, int inputHBound) {
 
 		for (int i = inputLBound; i <= inputHBound; i++) {
 			xVal = i;
@@ -390,19 +390,19 @@ public final class VStats {
 
 	}
 
-	public double computePGeoPdf(double pSuccess, int xVal) {
+	public double computeGeoPdfProb(double pSuccess, int xVal) {
 		return (pSuccess) * (Math.pow((1 - pSuccess), (xVal - 1)));
 	}
 
-	public double computePGeoCdf(double pSuccess, int xVal) {
+	public double computeGeoCdfProb(double pSuccess, int xVal) {
 		return (pSuccess) * (Math.pow((1 - pSuccess), (xVal - 1)));
 	}
 
-	public double computePGeoCdf(double pSuccess, int xVal, int inputLowBound, int inputHighBound) {
+	public double computeGeoCdfProb(double pSuccess, int xVal, int inputLowBound, int inputHighBound) {
 		double sum = 0.0;
 		for (int i = inputLowBound; i <= inputHighBound; i++) {
 			xVal = i;
-			sum += computePGeoCdf(pSuccess, xVal);
+			sum += computeGeoCdfProb(pSuccess, xVal);
 		}
 		return sum;
 	}

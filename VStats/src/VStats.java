@@ -367,50 +367,54 @@ public final class VStats {
 	/**
 	 * Returns the binomial probability of a single x-value, in a <code>double</code> format. 
 	 * @param numTrials , the number of trials. 
-	 * @param xVal , the trial number of interest. 
+	 * @param xVal , the x-value of interest. 
 	 * @param pSuccess , the probability of success. 
 	 * @return the probability of <strong>xVal</strong> occurring. 
 	 */
-	public double computeBinomialPdf(int numTrials, int xVal, double pSuccess) {
+	public static double computeBinomialPdf(int numTrials, int xVal, double pSuccess) {
 		return ((computeCombination(numTrials, xVal)) * (Math.pow(pSuccess, xVal))
 				* (Math.pow((1 - pSuccess), (numTrials - xVal))) * 1.0);
 	}
 
-	public double computepBinomialPdf(int numTrials, int xVal, double pSuccess) {
-
-		double pBinomialPdf = 0.0;
-
-		pBinomialPdf = (computeCombination(numTrials, xVal)) * (Math.pow(pSuccess, xVal))
-				* (Math.pow((1 - pSuccess), (numTrials - xVal)));
-
-		return pBinomialPdf;
-
-	}
-
-	public void computeBinomialCdfProb(int numTrials, int xVal, double pSuccess, int inputLBound, int inputHBound) {
-
+	/**
+	 * Returns the binomial probability of an interval of x-values, in a <code>double</code> format. 
+	 * @param numTrials , the number of trials. 
+	 * @param inputLBound , the low bound x-value. 
+	 * @param inputHBound , the high bound x-value. 
+	 * @param pSuccess , the probability of success. 
+	 * @return the probability of obtaining an x-value between <strong>inputLBound</strong> and <strong>inputHBound</strong>, inclusive. 
+	 */
+	public static double computeBinomialCdfProb(int numTrials, int inputLBound, int inputHBound, double pSuccess) {
+		double sum = 0.0; 
 		for (int i = inputLBound; i <= inputHBound; i++) {
-			xVal = i;
-			computepBinomialPdf(numTrials, xVal, pSuccess);
+			sum += computeBinomialPdf(numTrials, i, pSuccess); 
 		}
-
+		return sum; 
 	}
 
-	public double computeGeoPdfProb(double pSuccess, int xVal) {
+	/**
+	 * Returns the geometric probability of a single x-value, in a <code>double</code> format. 
+	 * @param xVal , the x-value of interest. 
+	 * @param pSuccess , the probability of success. 
+	 * @return the probability of the event occurring on the <strong>xVal</strong>th try. 
+	 */
+	public static double computeGeometricPdfProb(int xVal, double pSuccess) {
 		return (pSuccess) * (Math.pow((1 - pSuccess), (xVal - 1)));
 	}
 
-	public double computeGeoCdfProb(double pSuccess, int xVal) {
-		return (pSuccess) * (Math.pow((1 - pSuccess), (xVal - 1)));
-	}
-
-	public double computeGeoCdfProb(double pSuccess, int xVal, int inputLowBound, int inputHighBound) {
-		double sum = 0.0;
+	/**
+	 * Returns the geometric probability of an interval of x-values, in a <code>double</code> format. 
+	 * @param pSuccess , the probability of success. 
+	 * @param inputLowBound , the low bound x-value. 
+	 * @param inputHighBound , the high bound x-value. 
+	 * @return the probability of the event occurring on between the <strong>inputLowBound</strong>th and <strong>inputHighBound</strong>th try, inclusive. 
+	 */
+	public static double computeGeometricCdfProb(double pSuccess, int inputLowBound, int inputHighBound) {
+		double sum = 0.0; 
 		for (int i = inputLowBound; i <= inputHighBound; i++) {
-			xVal = i;
-			sum += computeGeoCdfProb(pSuccess, xVal);
+			sum += computeGeometricPdfProb(i, pSuccess); 
 		}
-		return sum;
+		return sum; 
 	}
 
 	/**
@@ -579,8 +583,14 @@ public final class VStats {
 
 	}
 
-	public double computePermutations(int numberOfObservations, int numberChoose) {
-		return (computeFactorial(numberOfObservations)) / (computeFactorial(numberOfObservations - numberChoose));
+	/**
+	 * Returns an <code>int</code> which represents the number of possible permutations, when the inputs are the n-value and the r-value. 
+	 * @param n , the n-value in the form "nPr." 
+	 * @param r , the r-value in the form "nPr." 
+	 * @return the number of permutations possible, with respect to <strong>n</strong> and <strong>r</strong>. 
+	 */
+	public int computePermutations(int n, int r) {
+		return (computeFactorial(n)) / (computeFactorial(n - r));
 	}
 
 	/**

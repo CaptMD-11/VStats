@@ -974,7 +974,7 @@ public final class VStats {
 	 * @param confidenceLevel , the input confidence level. 
 	 * @return the confidence interval for means. 
 	 */
-	public static String computeZConfidenceIntervalMeans(double mu, double sigma, int sampleSize, double confidenceLevel) {
+	public static String computeOneMeanZConfInt(double mu, double sigma, int sampleSize, double confidenceLevel) {
 
 		String res = "";
 
@@ -988,8 +988,24 @@ public final class VStats {
 
 	}
 
-	public String computeZSigTestHaGreaterThanH0(double mu, double sigma, double sampleMean, int sampleSize,
-			double alpha, String alternateHypothesis) {
+	/**
+	 * Returns the final decision (a <code>String</code>) of the significance test for means, utilizing the z-distribution. 
+	 * <p>
+	 * For this method: 
+	 * <p>
+	 * <ul>
+	 * 	<li>the null hypothesis should state that the population mean is equal to a certain value. </li>
+	 * 		<ul>
+	 * 			<li>the alternate hypothesis should state that the population mean is greater than a certain value. </li></ul></ul>
+	 * The decision could be to either reject the null hypothesis or fail to reject the null hypothesis. 
+	 * @param mu , the population mean to be tested. 
+	 * @param sigma , the population standard deviation. 
+	 * @param sampleMean , the mean of the sample. 
+	 * @param sampleSize , the size of the sample. 
+	 * @param alpha , the significance level (α) of the test. 
+	 * @return the final decision of the significance test. 
+	 */
+	public static String computeZMeansTestHaGreaterThanValue(double mu, double sigma, double sampleMean, int sampleSize, double alpha) {
 
 		double zCritical = (sampleMean - mu) / (sigma / (Math.sqrt(sampleSize)));
 
@@ -1007,8 +1023,24 @@ public final class VStats {
 
 	}
 
-	public String computeZSigTestHaLessThanH0(double mu, double sigma, double sampleMean, int sampleSize, double alpha,
-			String alternateHypothesis) {
+	/**
+	 * Returns the final decision (a <code>String</code>) of the significance test for means, utilizing the z-distribution. 
+	 * <p>
+	 * For this method: 
+	 * <p>
+	 * <ul>
+	 * 	<li>the null hypothesis should state that the population mean is equal to a certain value. </li>
+	 * 		<ul>
+	 * 			<li>the alternate hypothesis should state that the population mean is less than a certain value. </li></ul></ul>
+	 * The decision could be to either reject the null hypothesis or fail to reject the null hypothesis. 
+	 * @param mu , the population mean to be tested. 
+	 * @param sigma , the population standard deviation. 
+	 * @param sampleMean , the mean of the sample. 
+	 * @param sampleSize , the size of the sample. 
+	 * @param alpha , the significance level (α) of the test. 
+	 * @return the final decision of the significance test. 
+	 */
+	public static String computeZMeansTestHaLessThanValue(double mu, double sigma, double sampleMean, int sampleSize, double alpha) {
 
 		double zCritical = (sampleMean - mu) / (sigma / (Math.sqrt(sampleSize)));
 
@@ -1026,8 +1058,24 @@ public final class VStats {
 
 	}
 
-	public String computeZSigTestHaNotEqualToH0(double mu, double sigma, double sampleMean, int sampleSize,
-			double alpha, String alternateHypothesis) {
+	/**
+	 * Returns the final decision (a <code>String</code>) of the significance test for means, utilizing the z-distribution. 
+	 * <p>
+	 * For this method: 
+	 * <p>
+	 * <ul>
+	 * 	<li>the null hypothesis should state that the population mean is equal to a certain value. </li>
+	 * 		<ul>
+	 * 			<li>the alternate hypothesis should state that the population mean is not equal to a certain value. </li></ul></ul>
+	 * The decision could be to either reject the null hypothesis or fail to reject the null hypothesis. 
+	 * @param mu , the population mean to be tested. 
+	 * @param sigma , the population standard deviation. 
+	 * @param sampleMean , the mean of the sample. 
+	 * @param sampleSize , the size of the sample. 
+	 * @param alpha , the significance level (α) of the test. 
+	 * @return the final decision of the significance test. 
+	 */
+	public static String computeZMeansTestHaNotEqualToValue(double mu, double sigma, double sampleMean, int sampleSize, double alpha) {
 
 		double zCritical = (sampleMean - mu) / (sigma / (Math.sqrt(sampleSize)));
 
@@ -1045,10 +1093,18 @@ public final class VStats {
 
 	}
 
-	public String computeOnePropZConfInt(double successes, double sampleSize, double confidenceLevel) {
+	/**
+	 * Returns a <code>String</code> which represents the confidence interval for estimating a population proportion. 
+	 * <p>
+	 * This method is only an approximation. 
+	 * @param pHat , the sample proportion. 
+	 * @param sampleSize , the size of the sample. 
+	 * @param confidenceLevel , the confidence level needed. 
+	 * @return the confidence interval, where <strong>pHat</strong> is the center of the interval. 
+	 */
+	public static String computeOnePropZConfInt(double pHat, int sampleSize, double confidenceLevel) {
 
-		double pHat = 1.0 * (successes / sampleSize);
-		double qHat = pHat;
+		double qHat = 1-pHat;
 		double zStar = computeZStar(confidenceLevel);
 		double standardError = Math.sqrt((pHat * qHat) / (sampleSize));
 		double low = pHat - (zStar * standardError);
@@ -1058,27 +1114,24 @@ public final class VStats {
 
 	}
 
-	public String computeOnePropZSigTest(double successes, double pNought, double sampleSize, double alpha,
-			String alternativeHypothesis) {
+	/**
+	 * Returns the final decision (a <code>String</code>) of the significance test for proportions, utilizing the z-distribution. 
+	 * <p>
+	 * For this method: 
+	 * <p>
+	 * <ul>
+	 * 	<li>the null hypothesis should state that the population proportion is equal to a certain value. </li>
+	 * 		<ul>
+	 * 			<li>the alternate hypothesis should state that the population proportion is less than a certain value. </li></ul></ul>
+	 * The decision could be to either reject the null hypothesis or fail to reject the null hypothesis. 
+	 * @param pHat , the population proportion to be tested. 
+	 * @param pNought , the population standard deviation. 
+	 * @param sampleSize , the mean of the sample. 
+	 * @param alpha , the significance level (α) of the test. 
+	 * @return the final decision of the significance test. 
+	 */
+	public static String computeOnePropZTestP0LessThanValue(double pHat, double pNought, double sampleSize, double alpha) {
 
-		if (alternativeHypothesis.equals("p-nought > value")) {
-			return computeOnePropZSigTestP0GreaterThanValue(successes, pNought, sampleSize, alpha,
-					alternativeHypothesis);
-		} else if (alternativeHypothesis.equals("p-nought < value")) {
-			return computeOnePropZSigTestP0LessThanValue(successes, pNought, sampleSize, alpha, alternativeHypothesis);
-		} else if (alternativeHypothesis.equals("p-nought not equal to value")) {
-			return computeOnePropZSigTestP0NotEqualToValue(successes, pNought, sampleSize, alpha,
-					alternativeHypothesis);
-		} else {
-			return "ERROR in Ha statement - please check typing/syntax";
-		}
-
-	}
-
-	public String computeOnePropZSigTestP0LessThanValue(double successes, double pNought, double sampleSize,
-			double alpha, String alternativeHypothesis) {
-
-		double pHat = 1.0 * (successes / sampleSize);
 		double qNought = 1 - pNought;
 
 		double zCritical = (pHat - pNought) / (Math.sqrt((pNought * qNought) / (sampleSize)));
@@ -1095,10 +1148,24 @@ public final class VStats {
 
 	}
 
-	public String computeOnePropZSigTestP0GreaterThanValue(double successes, double pNought, double sampleSize,
-			double alpha, String alternativeHypothesis) {
+	/**
+	 * Returns the final decision (a <code>String</code>) of the significance test for proportions, utilizing the z-distribution. 
+	 * <p>
+	 * For this method: 
+	 * <p>
+	 * <ul>
+	 * 	<li>the null hypothesis should state that the population proportion is equal to a certain value. </li>
+	 * 		<ul>
+	 * 			<li>the alternate hypothesis should state that the population proportion is greater than a certain value. </li></ul></ul>
+	 * The decision could be to either reject the null hypothesis or fail to reject the null hypothesis. 
+	 * @param pHat , the population proportion to be tested. 
+	 * @param pNought , the population standard deviation. 
+	 * @param sampleSize , the mean of the sample. 
+	 * @param alpha , the significance level (α) of the test. 
+	 * @return the final decision of the significance test. 
+	 */
+	public static String computeOnePropZTestP0GreaterThanValue(double pHat, double pNought, double sampleSize, double alpha) {
 
-		double pHat = 1.0 * (successes / sampleSize);
 		double qNought = 1 - pNought;
 
 		double zCritical = (pHat - pNought) / (Math.sqrt((pNought * qNought) / (sampleSize)));
@@ -1115,10 +1182,24 @@ public final class VStats {
 
 	}
 
-	public String computeOnePropZSigTestP0NotEqualToValue(double successes, double pNought, double sampleSize,
-			double alpha, String alternativeHypothesis) {
+	/**
+	 * Returns the final decision (a <code>String</code>) of the significance test for proportions, utilizing the z-distribution. 
+	 * <p>
+	 * For this method: 
+	 * <p>
+	 * <ul>
+	 * 	<li>the null hypothesis should state that the population proportion is equal to a certain value. </li>
+	 * 		<ul>
+	 * 			<li>the alternate hypothesis should state that the population proportion is not equal to a certain value. </li></ul></ul>
+	 * The decision could be to either reject the null hypothesis or fail to reject the null hypothesis. 
+	 * @param pHat , the population proportion to be tested. 
+	 * @param pNought , the population standard deviation. 
+	 * @param sampleSize , the mean of the sample. 
+	 * @param alpha , the significance level (α) of the test. 
+	 * @return the final decision of the significance test. 
+	 */
+	public static String computeOnePropZTestP0NotEqualToValue(double pHat, double pNought, double sampleSize, double alpha) {
 
-		double pHat = 1.0 * (successes / sampleSize);
 		double qNought = 1 - pNought;
 
 		double zCritical = (pHat - pNought) / (Math.sqrt((pNought * qNought) / (sampleSize)));
@@ -1135,97 +1216,8 @@ public final class VStats {
 
 	}
 
-	public double computeSampleMeansMu(double mu, double sigma, int sampleSize, double meanForComparison,
-			String statement) {
-		return mu;
-	}
+	// NEED TO ADD CODE FOR TWO SAMPLE MEAN CONFIDENCE INTERVAL AND SIGNIFICANCE TESTS
 
-	public double computeSampleMeansStandardDeviation(double mu, double sigma, int sampleSize, double meanForComparison,
-			String statement) {
-		return ((sigma) / (Math.sqrt(sampleSize)));
-	}
-
-	public double computeSampleMeansProbabilityLessThan(double mu, double sigma, int sampleSize,
-			double meanForComparison, String statement) {
-		double z = (meanForComparison - mu)
-				/ (computeSampleMeansStandardDeviation(mu, sigma, sampleSize, meanForComparison, statement));
-		return computeZProbMidpointRiemann(-1000.0, z);
-	}
-
-	public double computeSampleMeansProbabilityGreaterThan(double mu, double sigma, int sampleSize,
-			double meanForComparison, String statement) {
-		double z = (meanForComparison - mu)
-				/ (computeSampleMeansStandardDeviation(mu, sigma, sampleSize, meanForComparison, statement));
-		return computeZProbMidpointRiemann(z, 1000.0);
-	}
-
-	public double computeSampleProportionsMu(double pHat, int sampleSize, double proportionForComparison,
-			String statement) {
-		return pHat;
-	}
-
-	public double computeSampleProportionsStandardDeviation(double pHat, int sampleSize, double proportionForComparison,
-			String statement) {
-		double numerator = (pHat) * (1 - pHat);
-		return Math.sqrt(numerator / (sampleSize));
-	}
-
-	public double computeSampleProportionsProbabilityLessThanValue(double pHat, int sampleSize,
-			double proportionForComparison, String statement) {
-
-		double z = (proportionForComparison - pHat)
-				/ (computeSampleProportionsStandardDeviation(pHat, sampleSize, proportionForComparison, statement));
-		return computeZProbMidpointRiemann(-1000, z);
-
-	}
-
-	public double computeSampleProportionsProbabilityGreaterThanValue(double pHat, int sampleSize,
-			double proportionForComparison, String statement) {
-
-		double z = (proportionForComparison - pHat)
-				/ (computeSampleProportionsStandardDeviation(pHat, sampleSize, proportionForComparison, statement));
-		return computeZProbMidpointRiemann(z, 1000);
-
-	}
-
-	public double computeContinuousRandomVar1LessThanVar2(double mu1, double standardDeviation1, double mu2,
-			double standardDeviation2, double valueForComparison) {
-		double newMu = mu1 - mu2;
-		double newVariance = (Math.pow(standardDeviation1, 2) + Math.pow(standardDeviation2, 2));
-		double newSD = Math.sqrt(newVariance);
-
-		double z = (0 - newMu) / (newSD);
-		return computeZProbMidpointRiemann(-1000, z);
-	}
-
-	public double var1GreaterThanVar2(double mu1, double standardDeviation1, double mu2, double standardDeviation2,
-			double valueForComparisona) {
-		double newMu = mu1 - mu2;
-		double newVariance = (Math.pow(standardDeviation1, 2) + Math.pow(standardDeviation2, 2));
-		double newSD = Math.sqrt(newVariance);
-
-		double z = (0 - newMu) / (newSD);
-		return computeZProbMidpointRiemann(z, 1000);
-	}
-
-	public double computeContinuousRandomSumOfBothVarsGreaterThanValue(double mu1, double standardDeviation1,
-			double mu2, double standardDeviation2, double valueForComparison) {
-		double newMu = mu1 + mu2;
-		double newVariance = (Math.pow(standardDeviation1, 2) + Math.pow(standardDeviation2, 2));
-		double newSD = Math.sqrt(newVariance);
-
-		double z = (valueForComparison - newMu) / (newSD);
-		return computeZProbMidpointRiemann(z, 1000);
-	}
-
-	public double computeContinuousRandomSumOfBothVarsLessThanValue(double mu1, double standardDeviation1, double mu2,
-			double standardDeviation2, double valueForComparison) {
-		double newMu = mu1 + mu2;
-		double newVariance = (Math.pow(standardDeviation1, 2) + Math.pow(standardDeviation2, 2));
-		double newSD = Math.sqrt(newVariance);
-
-		double z = (valueForComparison - newMu) / (newSD);
-		return computeZProbMidpointRiemann(-1000, z);
-	} 
+	// NEED TO ADD CODE FOR TWO SAMPLE PROPORTION CONFIDENCE INTERVAL AND SIGNIFICANCE TESTS 
 
 }

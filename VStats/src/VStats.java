@@ -364,7 +364,13 @@ public final class VStats {
 				* 1.0);
 	}
 
-
+	/**
+	 * Returns the binomial probability of a single x-value, in a <code>double</code> format. 
+	 * @param numTrials , the number of trials. 
+	 * @param xVal , the trial number of interest. 
+	 * @param pSuccess , the probability of success. 
+	 * @return the probability of <strong>xVal</strong> occurring. 
+	 */
 	public double computeBinomialPdf(int numTrials, int xVal, double pSuccess) {
 		return ((computeCombination(numTrials, xVal)) * (Math.pow(pSuccess, xVal))
 				* (Math.pow((1 - pSuccess), (numTrials - xVal))) * 1.0);

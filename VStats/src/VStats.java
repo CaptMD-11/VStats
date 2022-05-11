@@ -43,7 +43,7 @@ public final class VStats {
 		return sum / (inputData.length * 1.0); 
 	}
 
-	public double[] sort(double[] inputData) {
+	public double[] sort(double[] inputData) { // this method is only a helper method 
 
 		double[] res = new double[inputData.length]; 
 

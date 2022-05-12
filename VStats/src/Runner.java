@@ -7,7 +7,9 @@ public class Runner {
         double[] temp = {6,7,3,2}; 
         double mean = VStats.computeMean(temp); 
 
-        System.out.println(VStats.computeGeometricPdfProb(5, 0.2)); 
+       // System.out.println(VStats.computeGeometricPdfProb(5, 0.2)); 
+
+        System.out.println(VStats.computeZProbLeftRiemann(-1.0, 1.0)); 
 
         //System.out.println()
         

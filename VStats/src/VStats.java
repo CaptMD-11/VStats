@@ -1230,6 +1230,29 @@ public final class VStats {
 			return "";
 		}
 
+		public static String computeTwoPropZTestP1LessThanP2(int successes1, int sampleSize1, int successes2, int sampleSize2, double alpha) {
+
+			double pHat1 = (double) (successes1 / sampleSize1 * 1.0); 
+			double pHat2 = (double) (successes2 / sampleSize2 * 1.0); 
+			double pHatPooled = (double) ((successes1+successes2) / (sampleSize1+sampleSize2)); 
+			double qHatPooled = 1-pHatPooled; 
+
+			double z = (double) (pHat1-pHat2) / (Math.sqrt(((pHatPooled * qHatPooled) / sampleSize1 * 1.0) + ((pHatPooled * qHatPooled) / sampleSize2 * 1.0))); 
+
+			double methodPValue = computeZProbMidpointRiemann(Math.abs(z), 1000.0); 
+
+			if (methodPValue < alpha) {
+				return "There is statistically signficant evidence that the true P1 < P1 - reject H0";
+			} else if (methodPValue > alpha) {
+				return "There is no statistically signficant evidence that the true P1 < P1 - faile to reject H0";
+			} else { // pvalue equals alpha
+				return ""; 
+			}
+
+			return ""; 
+
+		}
+
 	}
 
 	/*

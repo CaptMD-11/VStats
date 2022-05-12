@@ -1232,8 +1232,9 @@ public final class VStats {
 
 	}
 
-	// NEED TO ADD CODE FOR TWO SAMPLE MEAN CONFIDENCE INTERVAL AND SIGNIFICANCE TESTS
-
-	// NEED TO ADD CODE FOR TWO SAMPLE PROPORTION CONFIDENCE INTERVAL AND SIGNIFICANCE TESTS 
+	/*
+	for v1.01, need to add code for 2-sample mean confidence interval & significance test. 
+	for v1.01, need to add code for 2-sample proportion confidence interval & significance test. 
+	*/
 
 }

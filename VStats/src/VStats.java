@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public final class VStats {
 
@@ -43,7 +44,7 @@ public final class VStats {
 		return sum / (inputData.length * 1.0); 
 	}
 
-	public double[] sort(double[] inputData) { // this method is only a helper method 
+	public double[] sortHELPER(double[] inputData) { // this method is only a helper method 
 
 		double[] res = new double[inputData.length]; 
 
@@ -67,11 +68,11 @@ public final class VStats {
 	 * @param inputData , a <code>double</code> array. 
 	 * @return the median of <strong>inputData</strong>. 
 	 */
-	public static double computeMedian(double[] inputData) { // this code computes median using the insertion sort algorithm
+	public static double computeMedian(double[] inputData) { // this code computes median using the insertion sortHELPER algorithm
 
 		int middleIndex = 0;
 		VStats obj = new VStats(); 
-		inputData = obj.sort(inputData); 
+		inputData = obj.sortHELPER(inputData); 
 
 		// sorted.
 		middleIndex = (inputData.length / 2);
@@ -167,7 +168,7 @@ public final class VStats {
 		int count = -1;
 		double quartile1 = 0.0;
 		VStats obj = new VStats(); 
-		inputData = obj.sort(inputData); 
+		inputData = obj.sortHELPER(inputData); 
 
 		for (int i = 0; i <= middleIndex - 1; i++) {
 			count++;
@@ -204,7 +205,7 @@ public final class VStats {
 		int arrayOddCounter = 0;
 		double quartile3 = 0.0;
 		VStats obj = new VStats(); 
-		inputData = obj.sort(inputData); 
+		inputData = obj.sortHELPER(inputData); 
 
 		for (int i = middleIndex + 1; i < inputData.length; i++) {
 			arrayEvenCounter++;
@@ -236,6 +237,22 @@ public final class VStats {
 
 		return quartile3;
 
+	}
+
+	public boolean valueExistsHELPER(double[] inputData, double val) {
+		for (double i : inputData) {
+			if (i == val)
+				return true; 
+		}
+		return false; 
+	}
+
+	public boolean isAddedHELPER(HashMap<Double, Integer> res, double val) {
+		for (double key : res.keySet()) {
+			if (val == key)
+				return true; 
+		}
+		return false; 
 	}
 
 	/**
@@ -1229,31 +1246,27 @@ public final class VStats {
 		} else { // pValue equals alpha
 			return "";
 		}
+	}
 
 	public static String computeTwoPropZTestP1LessThanP2(int successes1, int sampleSize1, int successes2, int sampleSize2, double alpha) {
+		double pHat1 = (double) (successes1 / sampleSize1 * 1.0); 
+		double pHat2 = (double) (successes2 / sampleSize2 * 1.0); 
+		double pHatPooled = (double) ((successes1+successes2) / (sampleSize1+sampleSize2)); 
+		double qHatPooled = 1-pHatPooled; 
 
-			double pHat1 = (double) (successes1 / sampleSize1 * 1.0); 
-			double pHat2 = (double) (successes2 / sampleSize2 * 1.0); 
-			double pHatPooled = (double) ((successes1+successes2) / (sampleSize1+sampleSize2)); 
-			double qHatPooled = 1-pHatPooled; 
+		double z = (double) (pHat1-pHat2) / (Math.sqrt(((pHatPooled * qHatPooled) / sampleSize1 * 1.0) + ((pHatPooled * qHatPooled) / sampleSize2 * 1.0))); 
 
-			double z = (double) (pHat1-pHat2) / (Math.sqrt(((pHatPooled * qHatPooled) / sampleSize1 * 1.0) + ((pHatPooled * qHatPooled) / sampleSize2 * 1.0))); 
+		double methodPValue = computeZProbMidpointRiemann(Math.abs(z), 1000.0); 
 
-			double methodPValue = computeZProbMidpointRiemann(Math.abs(z), 1000.0); 
-
-			if (methodPValue < alpha) {
-				return "There is statistically signficant evidence that the true P1 < P1 - reject H0";
-			} else if (methodPValue > alpha) {
-				return "There is no statistically signficant evidence that the true P1 < P1 - faile to reject H0";
-			} else { // pvalue equals alpha
-				return ""; 
-			}
-
+		if (methodPValue < alpha) {
+			return "There is statistically signficant evidence that the true P1 < P1 - reject H0";
+		} else if (methodPValue > alpha) {
+			return "There is no statistically signficant evidence that the true P1 < P1 - faile to reject H0";
+		} else { // pvalue equals alpha
 			return ""; 
-
-		}
-
+		}	
 	}
+
 
 	/*
 	for v1.01, need to add code for 2-sample mean confidence interval & significance test. 

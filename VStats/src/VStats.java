@@ -1230,7 +1230,7 @@ public final class VStats {
 			return "";
 		}
 
-		public static String computeTwoPropZTestP1LessThanP2(int successes1, int sampleSize1, int successes2, int sampleSize2, double alpha) {
+	public static String computeTwoPropZTestP1LessThanP2(int successes1, int sampleSize1, int successes2, int sampleSize2, double alpha) {
 
 			double pHat1 = (double) (successes1 / sampleSize1 * 1.0); 
 			double pHat2 = (double) (successes2 / sampleSize2 * 1.0); 

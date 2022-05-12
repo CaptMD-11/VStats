@@ -2,7 +2,7 @@
   <img src="VStats/images/vstatslogo.png" width="570">
 </p>
 
-This is a repository where I push my code for various statistical calculations. This library contains computations for one-variable statistics, the standard normal distribution, confidence intervals, significance tests, linear regression, binomial & geometric distributions, and more. I am currently working on the <samp>Boxplot</samp> class, which generates a boxplot based on a one-variable array data set. 
+This is a repository where I push my code for various statistical calculations. This library contains computations for one-variable statistics, the standard normal distribution, confidence intervals, significance tests, linear regression, binomial & geometric distributions, and more. I am currently working on finalizing documentation for all the current methods in the library, in order to release version 1.0. 
 
 ### How does the user input data? ###
 

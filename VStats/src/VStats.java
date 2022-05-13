@@ -1248,6 +1248,7 @@ public final class VStats {
 		}
 	}
 
+	// NEED TO CHECK 
 	public static String computeTwoPropZTestP1LessThanP2(int successes1, int sampleSize1, int successes2, int sampleSize2, double alpha) {
 		double pHat1 = (double) (successes1 / sampleSize1 * 1.0); 
 		double pHat2 = (double) (successes2 / sampleSize2 * 1.0); 
@@ -1261,7 +1262,47 @@ public final class VStats {
 		if (methodPValue < alpha) {
 			return "There is statistically signficant evidence that the true P1 < P1 - reject H0";
 		} else if (methodPValue > alpha) {
-			return "There is no statistically signficant evidence that the true P1 < P1 - faile to reject H0";
+			return "There is no statistically signficant evidence that the true P1 < P1 - fail to reject H0";
+		} else { // pvalue equals alpha
+			return ""; 
+		}	
+	}
+
+	// NEED TO CHECK 
+	public static String computeTwoPropZTestP1GreaterThanP2(int successes1, int sampleSize1, int successes2, int sampleSize2, double alpha) {
+		double pHat1 = (double) (successes1 / sampleSize1 * 1.0); 
+		double pHat2 = (double) (successes2 / sampleSize2 * 1.0); 
+		double pHatPooled = (double) ((successes1+successes2) / (sampleSize1+sampleSize2)); 
+		double qHatPooled = 1-pHatPooled; 
+
+		double z = (double) (pHat1-pHat2) / (Math.sqrt(((pHatPooled * qHatPooled) / sampleSize1 * 1.0) + ((pHatPooled * qHatPooled) / sampleSize2 * 1.0))); 
+
+		double methodPValue = computeZProbMidpointRiemann(Math.abs(z), 1000.0); 
+
+		if (methodPValue < alpha) {
+			return "There is statistically signficant evidence that the true P1 < P1 - reject H0";
+		} else if (methodPValue > alpha) {
+			return "There is no statistically signficant evidence that the true P1 < P1 - fail to reject H0";
+		} else { // pvalue equals alpha
+			return ""; 
+		}	
+	}
+
+	// NEED TO CHECK 
+	public static String computeTwoPropZTestP1NotEqualToP2(int successes1, int sampleSize1, int successes2, int sampleSize2, double alpha) {
+		double pHat1 = (double) (successes1 / sampleSize1 * 1.0); 
+		double pHat2 = (double) (successes2 / sampleSize2 * 1.0); 
+		double pHatPooled = (double) ((successes1+successes2) / (sampleSize1+sampleSize2)); 
+		double qHatPooled = 1-pHatPooled; 
+
+		double z = (double) (pHat1-pHat2) / (Math.sqrt(((pHatPooled * qHatPooled) / sampleSize1 * 1.0) + ((pHatPooled * qHatPooled) / sampleSize2 * 1.0))); 
+
+		double methodPValue = computeZProbMidpointRiemann(Math.abs(z), 1000.0); 
+
+		if (methodPValue < alpha) {
+			return "There is statistically signficant evidence that the true P1 < P1 - reject H0";
+		} else if (methodPValue > alpha) {
+			return "There is no statistically signficant evidence that the true P1 < P1 - fail to reject H0";
 		} else { // pvalue equals alpha
 			return ""; 
 		}	
@@ -1269,7 +1310,6 @@ public final class VStats {
 
 
 	/*
-	for v1.01, need to add code for 2-sample mean confidence interval & significance test. 
 	for v1.01, need to add code for 2-sample proportion confidence interval & significance test. 
 	*/
 

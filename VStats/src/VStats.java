@@ -378,7 +378,7 @@ public final class VStats {
 	 * @param pSuccess , the probability of success. 
 	 * @return the probability of <strong>xVal</strong> occurring. 
 	 */
-	public static double computeBinomialPdf(int numTrials, int xVal, double pSuccess) {
+	public static double computeBinomialPdfProb(int numTrials, int xVal, double pSuccess) {
 		return ((computeCombination(numTrials, xVal)) * (Math.pow(pSuccess, xVal))
 				* (Math.pow((1 - pSuccess), (numTrials - xVal))) * 1.0);
 	}
@@ -394,7 +394,7 @@ public final class VStats {
 	public static double computeBinomialCdfProb(int numTrials, int inputLBound, int inputHBound, double pSuccess) {
 		double sum = 0.0; 
 		for (int i = inputLBound; i <= inputHBound; i++) {
-			sum += computeBinomialPdf(numTrials, i, pSuccess); 
+			sum += computeBinomialPdfProb(numTrials, i, pSuccess); 
 		}
 		return sum; 
 	}
@@ -651,7 +651,7 @@ public final class VStats {
 	 * Returns the sum of a row in a 2D array (0-based index), in a <code>double</code> format. 
 	 * @param inputData , a 2D array. 
 	 * @param row , the row of interest. 
-	 * @return the sum of <strong>row</strong>, in <strong>inputData</strong>. 
+	 * @return the sum of the elements in <strong>row</strong>. 
 	 */
 	public static double computeRowSum(double[][] inputData, int row) {
 
@@ -669,7 +669,7 @@ public final class VStats {
 	 * Returns the sum of a column in a 2D array (0-based index), in a <code>double</code> format. 
 	 * @param inputData , a 2D array. 
 	 * @param col , the column of interest. 
-	 * @return the sum of <strong>col</strong>, in <strong>inputData</strong>. 
+	 * @return the sum of the elements in <strong>col</strong>. 
 	 */
 	public static double computeColumnSum(double[][] inputData, int col) {
 
@@ -687,34 +687,34 @@ public final class VStats {
 	 * Returns the product of a row in a 2D array (0-based index), in a <code>double</code> format. 
 	 * @param inputData , a 2D array. 
 	 * @param row , the row of interest. 
-	 * @return the product of <strong>row</strong>, in <strong>inputData</strong>. 
+	 * @return the product of the elements in <strong>row</strong>. 
 	 */
 	public static double computeRowProduct(double[][] inputData, int row) {
 
-		double sum = 0;
+		double product = 1;
 
 		for (int i = 0; i < inputData[0].length; i++) {
-			sum *= inputData[row][i];
+			product *= inputData[row][i];
 		}
 
-		return sum;
+		return product;
 	}
 
 	/**
 	 * Returns the product of a column in a 2D array (0-based index), in a <code>double</code> format. 
 	 * @param inputData , a 2D array. 
-	 * @param col , the row of interest. 
-	 * @return the product of <strong>col</strong>, in <strong>inputData</strong>. 
+	 * @param col , the column of interest. 
+	 * @return the product of the elements in <strong>col</strong>. 
 	 */
 	public static double computeColumnProduct(double[][] inputData, int col) {
 
-		double sum = 0;
+		double product = 1;
 
 		for (int i = 0; i < inputData.length; i++) {
-			sum *= inputData[i][col];
+			product *= inputData[i][col];
 		}
 
-		return sum;
+		return product;
 	}
 
 	/**

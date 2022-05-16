@@ -606,7 +606,7 @@ public final class VStats {
 	 * @param r , the r-value in the form "nPr." 
 	 * @return the number of permutations possible, with respect to <strong>n</strong> and <strong>r</strong>. 
 	 */
-	public int computePermutations(int n, int r) {
+	public static int computePermutations(int n, int r) {
 		return (computeFactorial(n)) / (computeFactorial(n - r));
 	}
 
@@ -1148,7 +1148,7 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the final decision (a <code>String</code>) of the significance test for proportions, utilizing the z-distribution. 
+	 * Returns the final decision (a <code>String</code>) of the significance test for a single proportion, utilizing the z-distribution. 
 	 * <p>
 	 * For this method: 
 	 * <p>
@@ -1182,7 +1182,7 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the final decision (a <code>String</code>) of the significance test for proportions, utilizing the z-distribution. 
+	 * Returns the final decision (a <code>String</code>) of the significance test for a single proportion, utilizing the z-distribution. 
 	 * <p>
 	 * For this method: 
 	 * <p>
@@ -1216,7 +1216,7 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the final decision (a <code>String</code>) of the significance test for proportions, utilizing the z-distribution. 
+	 * Returns the final decision (a <code>String</code>) of the significance test for a single proportion, utilizing the z-distribution. 
 	 * <p>
 	 * For this method: 
 	 * <p>
@@ -1248,7 +1248,23 @@ public final class VStats {
 		}
 	}
 
-	// NEED TO CHECK 
+	/**
+	 * Returns the final decision (a <code>String</code>) of the significance test for 2 proportions, utilizing the z-distribution. 
+	 * <p>
+	 * For this method: 
+	 * <p>
+	 * <ul>
+	 * 	<li>the null hypothesis should state that the population proportions are equal to each other. </li>
+	 * 		<ul>
+	 * 			<li>the alternate hypothesis should state that one population proportion (p1) is less than the other population proportion (p2). </li></ul></ul>
+	 * The decision could be to either reject the null hypothesis or fail to reject the null hypothesis. 
+	 * @param successes1 , the number of successes in the sample, with respect to p1. 
+	 * @param sampleSize1 , the size of the sample, with respect to p1. 
+	 * @param successes2 , the number of successes in the sample, with respect to p2. 
+	 * @param sampleSize2 , the size of the sample, with respect to p2. 
+	 * @param alpha , the significance level (α) of the test. 
+	 * @return the final decision of the significance test. 
+	 */
 	public static String computeTwoPropZTestP1LessThanP2(int successes1, int sampleSize1, int successes2, int sampleSize2, double alpha) {
 		double pHat1 = (double) (successes1 / sampleSize1 * 1.0); 
 		double pHat2 = (double) (successes2 / sampleSize2 * 1.0); 
@@ -1268,7 +1284,23 @@ public final class VStats {
 		}	
 	}
 
-	// NEED TO CHECK 
+	/**
+	 * Returns the final decision (a <code>String</code>) of the significance test for 2 proportions, utilizing the z-distribution. 
+	 * <p>
+	 * For this method: 
+	 * <p>
+	 * <ul>
+	 * 	<li>the null hypothesis should state that the population proportions are equal to each other. </li>
+	 * 		<ul>
+	 * 			<li>the alternate hypothesis should state that one population proportion (p1) is greater than the other population proportion (p2). </li></ul></ul>
+	 * The decision could be to either reject the null hypothesis or fail to reject the null hypothesis. 
+	 * @param successes1 , the number of successes in the sample, with respect to p1. 
+	 * @param sampleSize1 , the size of the sample, with respect to p1. 
+	 * @param successes2 , the number of successes in the sample, with respect to p2. 
+	 * @param sampleSize2 , the size of the sample, with respect to p2. 
+	 * @param alpha , the significance level (α) of the test. 
+	 * @return the final decision of the significance test. 
+	 */ 
 	public static String computeTwoPropZTestP1GreaterThanP2(int successes1, int sampleSize1, int successes2, int sampleSize2, double alpha) {
 		double pHat1 = (double) (successes1 / sampleSize1 * 1.0); 
 		double pHat2 = (double) (successes2 / sampleSize2 * 1.0); 
@@ -1288,7 +1320,23 @@ public final class VStats {
 		}	
 	}
 
-	// NEED TO CHECK 
+	/**
+	 * Returns the final decision (a <code>String</code>) of the significance test for 2 proportions, utilizing the z-distribution. 
+	 * <p>
+	 * For this method: 
+	 * <p>
+	 * <ul>
+	 * 	<li>the null hypothesis should state that the population proportions are equal to each other. </li>
+	 * 		<ul>
+	 * 			<li>the alternate hypothesis should state that one population proportion (p1) is not equal to the other population proportion (p2). </li></ul></ul>
+	 * The decision could be to either reject the null hypothesis or fail to reject the null hypothesis. 
+	 * @param successes1 , the number of successes in the sample, with respect to p1. 
+	 * @param sampleSize1 , the size of the sample, with respect to p1. 
+	 * @param successes2 , the number of successes in the sample, with respect to p2. 
+	 * @param sampleSize2 , the size of the sample, with respect to p2. 
+	 * @param alpha , the significance level (α) of the test. 
+	 * @return the final decision of the significance test. 
+	 */ 
 	public static String computeTwoPropZTestP1NotEqualToP2(int successes1, int sampleSize1, int successes2, int sampleSize2, double alpha) {
 		double pHat1 = (double) (successes1 / sampleSize1 * 1.0); 
 		double pHat2 = (double) (successes2 / sampleSize2 * 1.0); 
@@ -1307,10 +1355,5 @@ public final class VStats {
 			return ""; 
 		}	
 	}
-
-
-	/*
-	for v1.01, need to add code for 2-sample proportion confidence interval & significance test. 
-	*/
 
 }

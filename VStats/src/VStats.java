@@ -314,16 +314,6 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the value at a given index of a <code>double</code> array, in an <code>double</code> format. 
-	 * @param inputData , a <code>double</code> array. 
-	 * @param i , the index of interest. 
-	 * @return the value at the index of interest. 
-	 */
-	public static double atIndex(double[] inputData, int i) {
-		return inputData[i];
-	}
-
-	/**
 	 * Returns the interquartile range (IQR) of a <code>double</code> array, in an <code>double</code> format. 
 	 * @param inputData , a <code>double</code> array. 
 	 * @return the IQR of <strong>inputData</strong>. 
@@ -621,7 +611,7 @@ public final class VStats {
 		double sum = 0.0;
 
 		for (int i = 0; i < inputDataArray.length; i++) {
-			sum += ((atIndex(inputDataArray, i)) * (atIndex(probabilitiesArray, i)));
+			sum += (inputDataArray[i] * probabilitiesArray[i]); 
 		}
 
 		return sum;
@@ -640,9 +630,7 @@ public final class VStats {
 		double meanOfX = computeDiscreteExpectedValue(inputDataArray, probabilitiesArray);
 
 		for (int i = 0; i < inputDataArray.length; i++) {
-
-			sum += ((Math.pow((atIndex(inputDataArray, i) - meanOfX), 2)) * (atIndex(probabilitiesArray, i)));
-
+			sum += (Math.pow(inputDataArray[i]-meanOfX, 2) * probabilitiesArray[i]); 
 		}
 
 		return sum;
@@ -796,7 +784,7 @@ public final class VStats {
 	/**
 	 * Returns the standard error (Se) of the residuals, in a <code>double</code> format. 
 	 * <p>
-	 * This method uses linear regression to model the relationship between the 2 variables. 
+	 * This method uses linear regression to model the relationship between the 2 variables (least-squares regression line format: ŷ = a + bx). 
 	 * @param indVar , a <code>double</code> array containing the independent variable values. 
 	 * @param depVar , a <code>double</code> array containing the dependent variable values. 
 	 * @return Se with respect to <strong>indVar</strong> and <strong>depVar</strong>. 
@@ -810,7 +798,7 @@ public final class VStats {
 	/**
 	 * Returns the sum of the residuals squared of the residuals, in a <code>double</code> format. 
 	 * <p>
-	 * This method uses linear regression to model the relationship between the 2 variables. 
+	 * This method uses linear regression to model the relationship between the 2 variables (least-squares regression line format: ŷ = a + bx). 
 	 * @param indVar , a <code>double</code> array containing the independent variable values. 
 	 * @param depVar , a <code>double</code> array containing the dependent variable values. 
 	 * @return sum of the residuals squared with respect to <strong>indVar</strong> and <strong>depVar</strong>. 
@@ -832,7 +820,7 @@ public final class VStats {
 	/**
 	 * Returns a <code>double</code> array containing the residual values. 
 	 * <p>
-	 * This method uses linear regression to model the relationship between the 2 variables. 
+	 * This method uses linear regression to model the relationship between the 2 variables (least-squares regression line format: ŷ = a + bx). 
 	 * @param indVar , a <code>double</code> array containing the independent variable values. 
 	 * @param depVar , a <code>double</code> array containing the dependent variable values. 
 	 * @return an array containing the residual values with respect to <strong>indVar</strong> and <strong>depVar</strong>. 
@@ -842,7 +830,7 @@ public final class VStats {
 		double[] res = new double[indVar.length];
 
 		for (int i = 0; i < res.length; i++) {
-			res[i] = (atIndex(depVar, i)) - (computeLSRLOutput(indVar, depVar, atIndex(indVar, i)));
+			res[i] = (depVar[i] - computeLSRLOutput(indVar, depVar, indVar[i])); 
 		}
 
 		return res;
@@ -852,7 +840,7 @@ public final class VStats {
 	/**
 	 * Returns a <code>double</code> array containing the predicted y-values (ŷ). 
 	 * <p>
-	 * This method uses linear regression to model the relationship between the 2 variables. 
+	 * This method uses linear regression to model the relationship between the 2 variables (least-squares regression line format: ŷ = a + bx). 
 	 * @param indVar , a <code>double</code> array containing the independent variable values. 
 	 * @param depVar , a <code>double</code> array containing the dependent variable values. 
 	 * @return an array containing the predicted y-values with respect to <strong>indVar</strong> and <strong>depVar</strong>. 
@@ -862,7 +850,7 @@ public final class VStats {
 		double[] res = new double[indVar.length];
 
 		for (int i = 0; i < res.length; i++) {
-			res[i] = computeLSRLOutput(indVar, depVar, atIndex(indVar, i));
+			res[i] = computeLSRLOutput(indVar, depVar, indVar[i]); 
 		}
 
 		return res;
@@ -872,7 +860,7 @@ public final class VStats {
 	/**
 	 * Returns a <code>double</code> which represents the predicted y-value (ŷ) when an x-value is inputted into the least-squares regression line (LSRL). 
 	 * <p>
-	 * This method uses linear regression to model the relationship between the 2 variables. 
+	 * This method uses linear regression to model the relationship between the 2 variables (least-squares regression line format: ŷ = a + bx). 
 	 * @param indVar , a <code>double</code> array containing the independent variable values. 
 	 * @param depVar , a <code>double</code> array containing the dependent variable values. 
 	 * @param input , a <code>double</code> which is the value to be inputted into the LSRL. 
@@ -887,7 +875,7 @@ public final class VStats {
 	/**
 	 * Returns the least-squares regression line (LSRL) equation, in a <code>String</code> format. 
 	 * <p>
-	 * This method uses linear regression to model the relationship between the 2 variables. 
+	 * This method uses linear regression to model the relationship between the 2 variables (least-squares regression line format: ŷ = a + bx). 
 	 * @param indVar , a <code>double</code> array containing the independent variable values. 
 	 * @param depVar , a <code>double</code> array containing the dependent variable values. 
 	 * @return the LSRL equation with respect to <strong>indVar</strong> and <strong>depVar</strong>. 
@@ -911,7 +899,7 @@ public final class VStats {
 	/**
 	 * Returns the y-intercept of the least-squares regression line (LSRL) equation, in a <code>double</code> format. 
 	 * <p>
-	 * This method uses linear regression to model the relationship between the 2 variables. 
+	 * This method uses linear regression to model the relationship between the 2 variables (least-squares regression line format: ŷ = a + bx). 
 	 * @param indVar , a <code>double</code> array containing the independent variable values. 
 	 * @param depVar , a <code>double</code> array containing the dependent variable values. 
 	 * @return the y-intercept of the LSRL equation with respect to <strong>indVar</strong> and <strong>depVar</strong>. 
@@ -925,7 +913,7 @@ public final class VStats {
 	/**
 	 * Returns the slope of the least-squares regression line (LSRL) equation, in a <code>double</code> format. 
 	 * <p>
-	 * This method uses linear regression to model the relationship between the 2 variables. 
+	 * This method uses linear regression to model the relationship between the 2 variables (least-squares regression line format: ŷ = a + bx). 
 	 * @param indVar , a <code>double</code> array containing the independent variable values. 
 	 * @param depVar , a <code>double</code> array containing the dependent variable values. 
 	 * @return the slope of the LSRL equation with respect to <strong>indVar</strong> and <strong>depVar</strong>. 
@@ -943,7 +931,7 @@ public final class VStats {
 	/**
 	 * Returns the correlation coefficient (r-value) of the relationship between the independent and dependent variables, in a <code>double</code> format. 
 	 * <p>
-	 * This method uses linear regression to model the relationship between the 2 variables. 
+	 * This method uses linear regression to model the relationship between the 2 variables (least-squares regression line format: ŷ = a + bx). 
 	 * @param indVar , a <code>double</code> array containing the independent variable values. 
 	 * @param depVar , a <code>double</code> array containing the dependent variable values. 
 	 * @return the r-value of the LSRL with respect to <strong>indVar</strong> and <strong>depVar</strong>. 
@@ -959,8 +947,8 @@ public final class VStats {
 		double arr2Sigma = computeStandardDeviation(depVar);
 
 		for (int i = 0; i < indVar.length; i++) { // both arrays must have the same length
-			sumOfProducts += ((atIndex(indVar, i) - arr1Bar) / (arr1Sigma))
-					* ((atIndex(depVar, i) - arr2Bar) / (arr2Sigma));
+			sumOfProducts += ((indVar[i] - arr1Bar) / (arr1Sigma))
+					* ((depVar[i] - arr2Bar) / (arr2Sigma));
 		}
 
 		return sumOfProducts / (indVar.length - 1);
@@ -970,7 +958,7 @@ public final class VStats {
 	/**
 	 * Returns the r^2-value of the relationship between the independent and dependent variables, in a <code>double</code> format. 
 	 * <p>
-	 * This method uses linear regression to model the relationship between the 2 variables. 
+	 * This method uses linear regression to model the relationship between the 2 variables (least-squares regression line format: ŷ = a + bx). 
 	 * @param indVar , a <code>double</code> array containing the independent variable values. 
 	 * @param depVar , a <code>double</code> array containing the dependent variable values. 
 	 * @return the r^2-value of the LSRL with respect to <strong>indVar</strong> and <strong>depVar</strong>. 

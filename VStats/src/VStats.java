@@ -71,8 +71,7 @@ public final class VStats {
 	public static double computeMedian(double[] inputData) { // this code computes median using the insertion sortHELPER algorithm
 
 		int middleIndex = 0;
-		VStats obj = new VStats(); 
-		inputData = obj.sortHELPER(inputData); 
+		inputData = VStats.sortHELPER(inputData); 
 
 		// sorted.
 		middleIndex = (inputData.length / 2);
@@ -167,8 +166,7 @@ public final class VStats {
 		int middleIndex = inputData.length / 2;
 		int count = -1;
 		double quartile1 = 0.0;
-		VStats obj = new VStats(); 
-		inputData = obj.sortHELPER(inputData); 
+		inputData = VStats.sortHELPER(inputData); 
 
 		for (int i = 0; i <= middleIndex - 1; i++) {
 			count++;
@@ -204,8 +202,7 @@ public final class VStats {
 		int arrayEvenCounter = 0;
 		int arrayOddCounter = 0;
 		double quartile3 = 0.0;
-		VStats obj = new VStats(); 
-		inputData = obj.sortHELPER(inputData); 
+		inputData = VStats.sortHELPER(inputData); 
 
 		for (int i = middleIndex + 1; i < inputData.length; i++) {
 			arrayEvenCounter++;

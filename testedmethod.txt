@@ -1,0 +1,9 @@
+This is a txt file that lists the completed tested methods in the VStats class (still need to check documentation): 
+
+- computeMean
+- computeMAD 
+- sortHELPER
+- computeMedian 
+- computeMinimum 
+- computeMaximum 
+- computeRange 

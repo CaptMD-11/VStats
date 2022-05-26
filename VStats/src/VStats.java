@@ -559,7 +559,7 @@ public final class VStats {
 	 * Method is only an approximation, and does not return an exact value. 
 	 * @param input , the area under the probability density function (to the left). 
 	 * @return the corresponding z-score to the <strong>input</strong> area. 
-	 */
+	 */ 
 	public static double computeInverseNormalApprox(double input) { // works, but highly inefficient
 		// with respect to probability to the left of input value
 

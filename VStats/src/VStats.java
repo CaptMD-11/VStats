@@ -518,8 +518,8 @@ public final class VStats {
 
 		double sum = 0.0;
 
-		// double increment = (inputZHigh - inputZLow)/(Math.pow(10, 7));
-		double increment = 1.0 / (Math.pow(10, 7));
+		 double increment = (inputZHigh - inputZLow)/(Math.pow(10, 7));
+		//double increment = 1.0 / (Math.pow(10, 6));
 
 		for (double i = (inputZLow + (increment / 2)); i < inputZHigh; i += increment) {
 			sum += (NormalPDF(i) * increment);

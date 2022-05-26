@@ -7,3 +7,17 @@ This is a txt file that lists the completed tested methods in the VStats class (
 - computeMinimum 
 - computeMaximum 
 - computeRange 
+- computeVariance 
+- computeStandardDeviation
+- computeQuartile1
+- computeQuartile3
+- computeMode
+- computeSumValues
+- computeIQR
+- computeOutliers
+- computeFactorial 
+- computeCombination 
+- computeBinomialPdfProb
+- computeBinomialCdfProb
+- computeGeometricPdfProb
+- computeGeometricPdfProb

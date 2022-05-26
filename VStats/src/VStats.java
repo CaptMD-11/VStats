@@ -236,22 +236,6 @@ public final class VStats {
 
 	}
 
-	public boolean valueExistsHELPER(double[] inputData, double val) {
-		for (double i : inputData) {
-			if (i == val)
-				return true; 
-		}
-		return false; 
-	}
-
-	public boolean isAddedHELPER(HashMap<Double, Integer> res, double val) {
-		for (double key : res.keySet()) {
-			if (val == key)
-				return true; 
-		}
-		return false; 
-	}
-
 	/**
 	 * Returns the mode (most occurring value) of a <code>double</code> array, in a <code>double</code> format. 
 	 * @param inputData , a <code>double</code> array. 
@@ -333,7 +317,7 @@ public final class VStats {
 		ArrayList<Double> res = new ArrayList<Double>();
 
 		for (int i = 0; i < inputData.length; i++) {
-			if ((inputData[i] < lowBound) || (highBound > highBound))
+			if ((inputData[i] < lowBound) || (inputData[i] > highBound))
 				res.add(inputData[i]);
 		}
 

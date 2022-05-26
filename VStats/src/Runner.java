@@ -1,12 +1,13 @@
+import java.util.ArrayList;
+
 public class Runner {
 
     public static void main(String[] args) {
-    	double[] res = {3,4875,5,8,34}; 
-        //VStats obj = new VStats(res); 
-        
-        double[] temp = {6,7,3,2}; 
-       // double[] arr = VStats.sortHELPER(temp); 
-       System.out.println(VStats.computeRange(temp)); 
+
+        System.out.println(VStats.computeGeometricCdfProb(0.8, 1, 10)); 
+
+
+       //System.out.println(VStats.computeIQR(temp)); 
 
         // for (double i : arr) {
         //     System.out.println(i); 

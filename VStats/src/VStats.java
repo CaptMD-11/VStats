@@ -412,7 +412,7 @@ public final class VStats {
 	 * @param inputZ , the input value
 	 * @return the normal probability density function's output when <strong>inputZ</strong> is the input. 
 	 */
-	public static double NormalPDF(double inputZ) {
+	public static double computeNormalPDF(double inputZ) {
 
 		double constant = (1) / (Math.sqrt(2 * Math.PI));
 		double exponent = (Math.pow(inputZ, 2.0)) / (-2);
@@ -439,7 +439,7 @@ public final class VStats {
 		double increment = 1.0 / (Math.pow(10, 7));
 
 		for (double i = inputZLow; i < inputZHigh; i += increment) {
-			sum += ((NormalPDF(i)) * (increment));
+			sum += ((computeNormalPDF(i)) * (increment));
 		}
 
 		return sum;
@@ -463,7 +463,7 @@ public final class VStats {
 		double increment = 1.0 / (Math.pow(10, 7));
 
 		for (double i = (inputZLow + increment); i <= inputZHigh; i += increment) {
-			sum += (NormalPDF(i) * increment);
+			sum += (computeNormalPDF(i) * increment);
 		}
 
 		return sum;
@@ -503,7 +503,7 @@ public final class VStats {
 		//double increment = 1.0 / (Math.pow(10, 6));
 
 		for (double i = (inputZLow + (increment / 2)); i < inputZHigh; i += increment) {
-			sum += (NormalPDF(i) * increment);
+			sum += (computeNormalPDF(i) * increment);
 		}
 
 		return sum;
@@ -528,7 +528,7 @@ public final class VStats {
 		double increment = 1.0 / (Math.pow(10, 7));
 
 		for (double i = inputZLow; i < (inputZHigh - increment); i += increment) {
-			sum += ((0.5) * (NormalPDF(i) + NormalPDF(i + increment)) * (increment));
+			sum += ((0.5) * (computeNormalPDF(i) + computeNormalPDF(i + increment)) * (increment));
 		}
 
 		return sum;

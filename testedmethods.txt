@@ -20,4 +20,11 @@ This is a txt file that lists the completed tested methods in the VStats class (
 - computeBinomialPdfProb
 - computeBinomialCdfProb
 - computeGeometricPdfProb
-- computeGeometricPdfProb
+- computeGeometricCdfProb
+- computeNormalPDF
+- computeZProbLeftRiemann
+- computeZProbRightRiemann
+- computeZProbAvgLeftRightRiemann
+- computeZProbMidpointRiemann
+- computeZProbTrapezoidRiemann
+- 

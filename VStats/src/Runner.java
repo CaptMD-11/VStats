@@ -4,16 +4,16 @@ public class Runner {
 
     public static void main(String[] args) {
 
-        System.out.println(VStats.computeGeometricCdfProb(0.8, 1, 10)); 
+        System.out.println(VStats.computeZProbTrapezoidRiemann(0, 0.1)); 
 
-        double[] data = {2,2,6,4,5,4,1,7,3,5,1,6,7,8}; 
+        // double[] data = {2,2,6,4,5,4,1,7,3,5,1,6,7,8}; 
 
-        RecursiveMean obj = new RecursiveMean();
+        // RecursiveMean obj = new RecursiveMean();
 
-        ArrayList<Double> test = obj.computeRecursiveMean(data); 
+        // ArrayList<Double> test = obj.computeRecursiveMean(data); 
 
-        for (int i = 0; i < test.size(); i++) 
-            System.out.println(test.get(i)); 
+        // for (int i = 0; i < test.size(); i++) 
+        //     System.out.println(test.get(i)); 
 
        //System.out.println(VStats.computeIQR(temp)); 
 

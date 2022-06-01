@@ -4,7 +4,11 @@ public class Runner {
 
     public static void main(String[] args) {
 
-        System.out.println(VStats.computeZProbTrapezoidRiemann(0, 0.1)); 
+        //System.out.println(VStats.computeZProbTrapezoidRiemann(0, 0.1)); 
+
+        double[] arr = {80,55,77,51,65,80,92,51,55,92}; 
+
+        System.out.println(VStats.computeMedian(arr)); 
 
         // double[] data = {2,2,6,4,5,4,1,7,3,5,1,6,7,8}; 
 

@@ -27,4 +27,15 @@ This is a txt file that lists the completed tested methods in the VStats class (
 - computeZProbAvgLeftRightRiemann
 - computeZProbMidpointRiemann
 - computeZProbTrapezoidRiemann
-- 
+- computeInverseNormalApprox
+- computePermutations
+- computeDiscreteExpectedValue
+- computeDiscreteVariance
+- computeDiscreteStandardDeviation
+- computeRowSum
+- computeColumnSum
+- computeRowProduct
+- computeColumnProduct
+- computeMatrixAddition
+- computeMatrixSubtraction
+- computeMatrixMultiplicationByScalar

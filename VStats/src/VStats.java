@@ -346,7 +346,7 @@ public final class VStats {
 	 * @param r , the r-value in the format "nCr." 
 	 * @return the number of combinations of "nCr." 
 	 */
-	public static int computeCombination(int n, int r) {
+	public static int computeCombinations(int n, int r) {
 
 		return (int)((computeFactorial(n)) / ((computeFactorial(r)) * (computeFactorial(n - r)))
 				* 1.0);
@@ -360,7 +360,7 @@ public final class VStats {
 	 * @return the probability of <strong>xVal</strong> occurring. 
 	 */
 	public static double computeBinomialPdfProb(int numTrials, int xVal, double pSuccess) {
-		return ((computeCombination(numTrials, xVal)) * (Math.pow(pSuccess, xVal))
+		return ((computeCombinations(numTrials, xVal)) * (Math.pow(pSuccess, xVal))
 				* (Math.pow((1 - pSuccess), (numTrials - xVal))) * 1.0);
 	}
 

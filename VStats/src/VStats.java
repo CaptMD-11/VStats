@@ -1235,12 +1235,12 @@ public final class VStats {
 	 * @return the final decision of the significance test. 
 	 */
 	public static String computeTwoPropZTestP1LessThanP2(int successes1, int sampleSize1, int successes2, int sampleSize2, double alpha) {
-		double pHat1 = (double) (successes1 / sampleSize1 * 1.0); 
-		double pHat2 = (double) (successes2 / sampleSize2 * 1.0); 
-		double pHatPooled = (double) ((successes1+successes2) / (sampleSize1+sampleSize2)); 
+		double pHat1 = (successes1 * 1.0 / sampleSize1 * 1.0); 
+		double pHat2 = (successes2 * 1.0 / sampleSize2 * 1.0); 
+		double pHatPooled = ((successes1*1.0+successes2*1.0) / (sampleSize1*1.0+sampleSize2*1.0)) * 1.0; 
 		double qHatPooled = 1-pHatPooled; 
 
-		double z = (double) (pHat1-pHat2) / (Math.sqrt(((pHatPooled * qHatPooled) / sampleSize1 * 1.0) + ((pHatPooled * qHatPooled) / sampleSize2 * 1.0))); 
+		double z = (pHat1-pHat2) / (Math.sqrt(((pHatPooled * qHatPooled) / sampleSize1 * 1.0) + ((pHatPooled * qHatPooled) / sampleSize2 * 1.0))); 
 
 		double methodPValue = computeZProbMidpointRiemann(Math.abs(z), 1000.0); 
 
@@ -1271,14 +1271,14 @@ public final class VStats {
 	 * @return the final decision of the significance test. 
 	 */ 
 	public static String computeTwoPropZTestP1GreaterThanP2(int successes1, int sampleSize1, int successes2, int sampleSize2, double alpha) {
-		double pHat1 = (double) (successes1 / sampleSize1 * 1.0); 
-		double pHat2 = (double) (successes2 / sampleSize2 * 1.0); 
-		double pHatPooled = (double) ((successes1+successes2) / (sampleSize1+sampleSize2)); 
+		double pHat1 = (successes1*1.0 / sampleSize1 * 1.0); 
+		double pHat2 = (successes2*1.0 / sampleSize2 * 1.0); 
+		double pHatPooled = ((successes1*1.0+successes2*1.0) / (sampleSize1*1.0+sampleSize2*1.0)); 
 		double qHatPooled = 1-pHatPooled; 
 
-		double z = (double) (pHat1-pHat2) / (Math.sqrt(((pHatPooled * qHatPooled) / sampleSize1 * 1.0) + ((pHatPooled * qHatPooled) / sampleSize2 * 1.0))); 
+		double z = (pHat1-pHat2) / (Math.sqrt(((pHatPooled * qHatPooled) / sampleSize1 * 1.0) + ((pHatPooled * qHatPooled) / sampleSize2 * 1.0))); 
 
-		double methodPValue = computeZProbMidpointRiemann(Math.abs(z), 1000.0); 
+		double methodPValue = computeZProbMidpointRiemann(-1000.0, Math.abs(z)); 
 
 		if (methodPValue < alpha) {
 			return "There is statistically significant evidence that the true P1 > P2 - reject H0\np-value: " + methodPValue;
@@ -1307,14 +1307,14 @@ public final class VStats {
 	 * @return the final decision of the significance test. 
 	 */ 
 	public static String computeTwoPropZTestP1NotEqualToP2(int successes1, int sampleSize1, int successes2, int sampleSize2, double alpha) {
-		double pHat1 = (double) (successes1 / sampleSize1 * 1.0); 
-		double pHat2 = (double) (successes2 / sampleSize2 * 1.0); 
-		double pHatPooled = (double) ((successes1+successes2) / (sampleSize1+sampleSize2)); 
+		double pHat1 = (successes1*1.0 / sampleSize1 * 1.0); 
+		double pHat2 = (successes2*1.0 / sampleSize2 * 1.0); 
+		double pHatPooled = ((successes1*1.0+successes2*1.0) / (sampleSize1*1.0+sampleSize2*1.0)); 
 		double qHatPooled = 1-pHatPooled; 
 
-		double z = (double) (pHat1-pHat2) / (Math.sqrt(((pHatPooled * qHatPooled) / sampleSize1 * 1.0) + ((pHatPooled * qHatPooled) / sampleSize2 * 1.0))); 
+		double z = (pHat1-pHat2) / (Math.sqrt(((pHatPooled * qHatPooled) / sampleSize1 * 1.0) + ((pHatPooled * qHatPooled) / sampleSize2 * 1.0))); 
 
-		double methodPValue = computeZProbMidpointRiemann(Math.abs(z), 1000.0); 
+		double methodPValue = 2.0 * computeZProbMidpointRiemann(Math.abs(z), 1000.0); 
 
 		if (methodPValue < alpha) {
 			return "There is statistically significant evidence that the true P1 ≠ P2 - reject H0\np-value: " + methodPValue;

@@ -58,6 +58,6 @@ This is a txt file that lists the completed tested methods in the VStats class (
 - computeOnePropZTestP0LessThanValue
 - computeOnePropZTestP0GreaterThanValue
 - computeOnePropZTestP0NotEqualToValue
-- computeTwoPropZTestP1LessThanP2 --> NEED TO FIX 
-- computeTwoPropZTestP1GreaterThanP2 --> NEED TO FIX 
-- computeTwoPropZTestP1NotEqualToP2 --> NEED TO FIX 
+- computeTwoPropZTestP1LessThanP2
+- computeTwoPropZTestP1GreaterThanP2
+- computeTwoPropZTestP1NotEqualToP2

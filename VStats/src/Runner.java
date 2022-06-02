@@ -6,7 +6,7 @@ public class Runner {
 
         //System.out.println(VStats.computeZProbTrapezoidRiemann(0, 0.1)); 
 
-        System.out.println(VStats.computeTwoPropZTestP1NotEqualToP2(10, 100, 20, 100, 0.05)); 
+        // System.out.println(VStats.computeTwoPropZTestP1NotEqualToP2(10, 100, 20, 100, 0.05)); 
 
         // double[] indVar = {1,2,3,4,5}; 
         // double[] depVar = {8,9.8,16.2,19.8,20.5};

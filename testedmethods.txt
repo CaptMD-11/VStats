@@ -39,3 +39,25 @@ This is a txt file that lists the completed tested methods in the VStats class (
 - computeMatrixAddition
 - computeMatrixSubtraction
 - computeMatrixMultiplicationByScalar
+- computeSe
+- computeSumOfResidualsSquared 
+- computeResidualValues
+- computeYPredictedValues
+- computeLSRLOutput
+- displayLSRLEquation
+- computeA
+- computeB
+- computeR
+- computeRSquared
+- computeZStar
+- computeOneMeanZConfInt
+- computeZMeansTestHaGreaterThanValue
+- computeZMeansTestHaLessThanValue
+- computeZMeansTestHaNotEqualToValue
+- computeOnePropZConfInt
+- computeOnePropZTestP0LessThanValue
+- computeOnePropZTestP0GreaterThanValue
+- computeOnePropZTestP0NotEqualToValue
+- computeTwoPropZTestP1LessThanP2 --> NEED TO FIX 
+- computeTwoPropZTestP1GreaterThanP2 --> NEED TO FIX 
+- computeTwoPropZTestP1NotEqualToP2 --> NEED TO FIX 

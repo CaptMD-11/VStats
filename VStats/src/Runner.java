@@ -6,16 +6,30 @@ public class Runner {
 
         //System.out.println(VStats.computeZProbTrapezoidRiemann(0, 0.1)); 
 
-        double[][] arr1 = {{1,2,6,7},{3,4,9,6}}; 
-        double[][] arr2 = {{5,2,5,6},{5,3,7,4}}; 
+        System.out.println(VStats.computeTwoPropZTestP1NotEqualToP2(10, 100, 20, 100, 0.05)); 
 
-        double[][] arr = VStats.computeMatrixMultiplicationByScalar(arr1, 3); 
+        // double[] indVar = {1,2,3,4,5}; 
+        // double[] depVar = {8,9.8,16.2,19.8,20.5};
 
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr[i].length; j++) {
-                System.out.println(arr[i][j]); 
-            }
-        }
+        // double[] res = VStats.computeYPredictedValues(indVar, depVar); 
+
+        // System.out.println(VStats.computeRSquared(indVar, depVar)); 
+
+        // for (double d : res)
+        //     System.out.println(d); 
+
+        //System.out.println(VStats.computeSumOfResidualsSquared(indVar, depVar)); 
+
+        // double[][] arr1 = {{1,2,6,7},{3,4,9,6}}; 
+        // double[][] arr2 = {{5,2,5,6},{5,3,7,4}}; 
+
+        // double[][] arr = VStats.computeMatrixMultiplicationByScalar(arr1, 3); 
+
+        // for (int i = 0; i < arr.length; i++) {
+        //     for (int j = 0; j < arr[i].length; j++) {
+        //         System.out.println(arr[i][j]); 
+        //     }
+        // }
 
         //System.out.println(VStats.computeMatrixAddition(arr1, arr2)); 
 

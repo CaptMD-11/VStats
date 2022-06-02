@@ -944,7 +944,7 @@ public final class VStats {
 	 * @param depVar , a <code>double</code> array containing the dependent variable values. 
 	 * @return the r^2-value of the LSRL with respect to <strong>indVar</strong> and <strong>depVar</strong>. 
 	 */
-	public static double computeRSquaredValue(double[] indVar, double[] depVar) {
+	public static double computeRSquared(double[] indVar, double[] depVar) {
 
 		return Math.pow((computeR(indVar, depVar)), 2.0);
 
@@ -1014,9 +1014,9 @@ public final class VStats {
 		double pValue = computeZProbMidpointRiemann(zCritical, 1000.0);
 
 		if (pValue < alpha) {
-			return "There is statistically significant evidence that Ha > H0... reject H0";
+			return "There is statistically significant evidence that Ha > H0... reject H0\np-value: " + pValue;
 		} else if (pValue > alpha) {
-			return "There is no statistically significant evidence that Ha > H0... fail to reject H0";
+			return "There is no statistically significant evidence that Ha > H0... fail to reject H0\np-value: " + pValue;
 		} else if (pValue == alpha) {
 			return "";
 		}
@@ -1049,9 +1049,9 @@ public final class VStats {
 		double pValue = computeZProbMidpointRiemann(-1000.0, zCritical);
 
 		if (pValue < alpha) {
-			return "There is statistically significant evidence that Ha < H0... reject H0";
+			return "There is statistically significant evidence that Ha < H0... reject H0\np-value: " + pValue;
 		} else if (pValue > alpha) {
-			return "There is no statistically significant evidence that Ha < H0... fail to reject H0";
+			return "There is no statistically significant evidence that Ha < H0... fail to reject H0\np-value: " + pValue;
 		} else if (pValue == alpha) {
 			return "";
 		}
@@ -1084,9 +1084,9 @@ public final class VStats {
 		double pValue = (computeZProbMidpointRiemann((Math.abs(zCritical)), 1000.0)) * 2.0;
 
 		if (pValue < alpha) {
-			return "There is statistically significant evidence that Ha ≠ H0... reject H0";
+			return "There is statistically significant evidence that Ha ≠ H0... reject H0\np-value: " + pValue;
 		} else if (pValue > alpha) {
-			return "There is no statistically significant evidence that Ha ≠ H0... fail to reject H0";
+			return "There is no statistically significant evidence that Ha ≠ H0... fail to reject H0\np-value: " + pValue;
 		} else if (pValue == alpha) {
 			return "";
 		}
@@ -1141,9 +1141,9 @@ public final class VStats {
 		double pValue = computeZProbMidpointRiemann(-1000.0, zCritical);
 
 		if (pValue < alpha) {
-			return "There is statistically signficant evidence that the true P0 < given P0 - reject H0";
+			return "There is statistically signficant evidence that the true P0 < given P0 - reject H0\np-value: " + pValue;
 		} else if (pValue > alpha) {
-			return "There is no statistically signficant evidence that the true P0 < given P0 - fail to reject H0";
+			return "There is no statistically signficant evidence that the true P0 < given P0 - fail to reject H0\np-value: " + pValue;
 		} else { // pValue equals alpha
 			return "";
 		}
@@ -1175,9 +1175,9 @@ public final class VStats {
 		double pValue = computeZProbMidpointRiemann(zCritical, 1000.0);
 
 		if (pValue < alpha) {
-			return "There is statistically signficant evidence that the true P0 > given P0 - reject H0";
+			return "There is statistically signficant evidence that the true P0 > given P0 - reject H0\np-value: " + pValue;
 		} else if (pValue > alpha) {
-			return "There is no statistically signficant evidence that the true P0 > given P0 - fail to reject H0";
+			return "There is no statistically signficant evidence that the true P0 > given P0 - fail to reject H0\np-value: " + pValue;
 		} else { // pValue equals alpha
 			return "";
 		}
@@ -1209,9 +1209,9 @@ public final class VStats {
 		double pValue = computeZProbMidpointRiemann((Math.abs(zCritical)), 1000.0) * 2.0;
 
 		if (pValue < alpha) {
-			return "There is statistically signficant evidence that the true P0 ≠ the given P0 - reject H0";
+			return "There is statistically signficant evidence that the true P0 ≠ the given P0 - reject H0\np-value: " + pValue;
 		} else if (pValue > alpha) {
-			return "There is no statistically signficant evidence that the true P0 ≠ the given P0 - fail to reject H0";
+			return "There is no statistically signficant evidence that the true P0 ≠ the given P0 - fail to reject H0\np-value: " + pValue;
 		} else { // pValue equals alpha
 			return "";
 		}
@@ -1245,9 +1245,9 @@ public final class VStats {
 		double methodPValue = computeZProbMidpointRiemann(Math.abs(z), 1000.0); 
 
 		if (methodPValue < alpha) {
-			return "There is statistically signficant evidence that the true P1 < P2 - reject H0";
+			return "There is statistically significant evidence that the true P1 < P2 - reject H0\np-value: " + methodPValue;
 		} else if (methodPValue > alpha) {
-			return "There is no statistically signficant evidence that the true P1 < P2 - fail to reject H0";
+			return "There is no statistically significant evidence that the true P1 < P2 - fail to reject H0\np-value: " + methodPValue;
 		} else { // pvalue equals alpha
 			return ""; 
 		}	
@@ -1281,9 +1281,9 @@ public final class VStats {
 		double methodPValue = computeZProbMidpointRiemann(Math.abs(z), 1000.0); 
 
 		if (methodPValue < alpha) {
-			return "There is statistically signficant evidence that the true P1 > P2 - reject H0";
+			return "There is statistically signficant evidence that the true P1 > P2 - reject H0\np-value: " + methodPValue;
 		} else if (methodPValue > alpha) {
-			return "There is no statistically signficant evidence that the true P1 > P2 - fail to reject H0";
+			return "There is no statistically signficant evidence that the true P1 > P2 - fail to reject H0\np-value: " + methodPValue;
 		} else { // pvalue equals alpha
 			return ""; 
 		}	
@@ -1317,9 +1317,9 @@ public final class VStats {
 		double methodPValue = computeZProbMidpointRiemann(Math.abs(z), 1000.0); 
 
 		if (methodPValue < alpha) {
-			return "There is statistically signficant evidence that the true P1 ≠ P2 - reject H0";
+			return "There is statistically signficant evidence that the true P1 ≠ P2 - reject H0\np-value: " + methodPValue;
 		} else if (methodPValue > alpha) {
-			return "There is no statistically signficant evidence that the true P1 ≠ P2 - fail to reject H0";
+			return "There is no statistically signficant evidence that the true P1 ≠ P2 - fail to reject H0\np-value: " + methodPValue;
 		} else { // pvalue equals alpha
 			return ""; 
 		}	

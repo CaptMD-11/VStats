@@ -1351,11 +1351,35 @@ public final class VStats {
 	 * @return the output of the χ²-distribution. 
 	 */
 	public static double computeChiSquarePDF(double chiSqrValue, int degFree) {
-		double numerator = (Math.pow(chiSqrValue, ((degFree/2)-1))) * (Math.pow(Math.E, (-1*chiSqrValue/2))); 
-		double denominator = (Math.pow(2, (degFree/2))) * computeGammaFunction(degFree); 
-		return numerator / denominator; 
+		if (chiSqrValue<0)
+			return 0; 
+		else if (chiSqrValue==0)
+			return 0.5; 
+		else {
+			double numerator = (Math.pow(chiSqrValue, ((degFree/2)-1))) * (Math.pow(Math.E, (-1*chiSqrValue/2))); 
+			double denominator = (Math.pow(2, (degFree/2))) * computeGammaFunction(degFree); 
+			return numerator / denominator; 
+		}
 	}
 
-	
+	/**
+	 * Returns the probability of obtaining a χ²-value between a lower bound and an upper bound, in a <code>double</code> format. 
+	 * <p>
+	 * This is only an approximation. 
+	 * <p>
+	 * χ² ∈ [0, +∞)
+	 * @param lowerBound , the lower bound χ²-value. 
+	 * @param upperBound , the upper bound χ²-value. 
+	 * @param degFree , the number of degrees of freedom. 
+	 * @return the area under the χ²-distribution between <strong>lowerBound</strong> and <strong>upperBound</strong>. 
+	 */
+	public static double computeChiSquareCDF(double lowerBound, double upperBound, int degFree) {
+		double sum = 0.0; 
+		double increment = upperBound / (Math.pow(10, 7)); 
+		for (double i = (increment/2); i < upperBound; i+=increment) {
+			sum += increment * computeChiSquarePDF(i, degFree); 
+		}
+		return sum; 
+	}
 
 }

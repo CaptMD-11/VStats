@@ -1325,4 +1325,37 @@ public final class VStats {
 		}	
 	}
 
+	/**
+	 * Returns the output to the gamma function, in a <code>double</code> format. 
+	 * <p>
+	 * Thanks to Dr. Ali Everett who made a Desmos consisting of this function, detailing its specifics. The source can be found here: https://www.desmos.com/calculator/i7v2tq0oeg. 
+	 * @param value , the input to the gamma function. 
+	 * @return the output of the gamma function. 
+	 */
+	public static double computeGammaFunction(int value) {
+		if (value % 2 == 0)
+			return computeFactorial((value/2)-1); 
+		else {
+			double numerator = (Math.sqrt(Math.PI)) * computeFactorial(value-1); 
+			double denominator = (Math.pow(2, value-1)) * ((value/2)-0.5); 
+			return numerator / denominator; 
+		}
+	}
+
+	/**
+	 * Returns the output of the χ²-distribution, in a <code>double</code> format. 
+	 * <p>
+	 * Thanks to Dr. Ali Everett who made a Desmos page on this function, presenting it in a comprehendable format. The source can be found here: https://www.desmos.com/calculator/i7v2tq0oeg. 
+	 * @param chiSqrValue , the χ²-value input of the function. 
+	 * @param degFree , the number of degrees of freedom. 
+	 * @return the output of the χ²-distribution. 
+	 */
+	public static double computeChiSquarePDF(double chiSqrValue, int degFree) {
+		double numerator = (Math.pow(chiSqrValue, ((degFree/2)-1))) * (Math.pow(Math.E, (-1*chiSqrValue/2))); 
+		double denominator = (Math.pow(2, (degFree/2))) * computeGammaFunction(degFree); 
+		return numerator / denominator; 
+	}
+
+	
+
 }

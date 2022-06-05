@@ -4,6 +4,8 @@ public class Runner {
 
     public static void main(String[] args) {
 
+        System.out.println(VStats.computeChiSquarePDF(0, 2)); 
+
         //System.out.println(VStats.computeZProbTrapezoidRiemann(0, 0.1)); 
 
         // System.out.println(VStats.computeTwoPropZTestP1NotEqualToP2(10, 100, 20, 100, 0.05)); 

@@ -4,7 +4,9 @@ public class Runner {
 
     public static void main(String[] args) {
 
-        System.out.println(VStats.computeChiSquareCDF(0.7, 7.242, 4)); 
+       // System.out.println(VStats.computeChiSquareCDF(0.01, 100, 4)); 
+
+        System.out.println(VStats.computeZProbMidpointRiemann(0.5, 0.7)); 
 
         //System.out.println(VStats.test(5.242, 4)); 
 

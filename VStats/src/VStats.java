@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public final class VStats {
 
@@ -486,7 +485,7 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the probability between two z-scores for the probability density function (for normal distributions) using a midpoint Riemann sum. 
+	 * Returns the probability between two z-scores for the probability density function (for normal distributions) using a midpoint Riemann sum (accurate to about 6 decimal places). 
 	 * <p>
 	 * This method assumes that µ=0 and σ=1. 
 	 * <p>
@@ -1363,9 +1362,9 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the probability of obtaining a χ²-value between a lower bound and an upper bound, in a <code>double</code> format. 
+	 * Returns the area (probability) under the χ²-distribution between 2 boundaries, in a <code>double</code> format. 
 	 * <p>
-	 * This is only an approximation. 
+	 * This method uses a midpoint Riemann sum approximation to provide highly accurate integral values with respect to the function of the χ²-distribution (accurate to about 10 decimal places). 
 	 * <p>
 	 * χ² ∈ [0, +∞)
 	 * @param lowerBound , the lower bound χ²-value. 
@@ -1375,8 +1374,8 @@ public final class VStats {
 	 */
 	public static double computeChiSquareCDF(double lowerBound, double upperBound, int degFree) {
 		double sum = 0.0; 
-		double increment = upperBound / (Math.pow(10, 7)); 
-		for (double i = (increment/2); i < upperBound; i+=increment) {
+		double increment = (upperBound-lowerBound) / (Math.pow(10, 7)); 
+		for (double i = lowerBound + (increment/2); i < upperBound; i+=increment) {
 			sum += increment * computeChiSquarePDF(i, degFree); 
 		}
 		return sum; 

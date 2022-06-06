@@ -3,8 +3,19 @@ public class Runner {
 
     public static void main(String[] args) {
 
-        System.out.println(VStats.gammatestWORKS(5.06)); 
+       // System.out.println(VStats.computeChiSquareCDF(4, 7, 5)); 
+
+        // System.out.println(VStats.computeChiSquarePDF(4.25, 5)); 
+
+        //System.out.println(VStats.gammatestWORKS(5.06)); 
+
+        //System.out.println(VStats.computeGammaFunction(-4.5)); 
+
+       // System.out.println(VStats.computeChiSquarePDF(0, 1)); 
+
+        //System.out.println(VStats.chisquarepdfWORKS(4.023, 5)); 
         
+        //System.out.println(VStats.computeChiSquarePDF(4.023, 5)); 
 
        // System.out.println(VStats.computeChiSquareCDF(0.01, 100, 4));
 

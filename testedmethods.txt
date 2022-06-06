@@ -1,5 +1,7 @@
 This is a txt file that lists the completed tested methods in the VStats class (still need to check documentation): 
 
+ALL METHODS TESTED 
+
 - computeMean
 - computeMAD 
 - sortHELPER
@@ -61,3 +63,6 @@ This is a txt file that lists the completed tested methods in the VStats class (
 - computeTwoPropZTestP1LessThanP2
 - computeTwoPropZTestP1GreaterThanP2
 - computeTwoPropZTestP1NotEqualToP2
+- computeGammaFunction
+- computeChiSquarePDF
+- computeChiSquareCDF

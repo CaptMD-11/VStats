@@ -1326,27 +1326,10 @@ public final class VStats {
 
 	/**
 	 * Returns the output to the gamma function, in a <code>double</code> format. 
-	 * <p>
-	 * Thanks to Dr. Ali Everett who made a Desmos consisting of this function, detailing its specifics. The source can be found here: https://www.desmos.com/calculator/i7v2tq0oeg. 
-	 * @param value , the input to the gamma function. 
-	 * @return the output of the gamma function. 
-	 */
-	public static double computeGammaFunction(int value) {
-		if (value % 2 == 0)
-			return computeFactorial((value/2)-1); 
-		else {
-			double numerator = (Math.sqrt(Math.PI)) * computeFactorial(value-1); 
-			double denominator = (Math.pow(2, value-1)) * computeFactorial((int)((value/2)-0.5)); 
-			return numerator / denominator; 
-		}
-	}
-
-	/**
-	 * Returns the output to the gamma function, in a <code>double</code> format. 
 	 * @param inputZ , the input to the gamma function. 
 	 * @return the output of the gamma function. 
 	 */
-	public static double gammatestWORKS(double inputZ) {
+	public static double computeGammaFunction(double inputZ) {
 		double res = 1; 
 		for (int i = 1; i <= 1000000; i++) {
 			double numerator = Math.pow(1 + (1.0/i*1.0), inputZ); 
@@ -1358,18 +1341,16 @@ public final class VStats {
 
 	/**
 	 * Returns the output of the χ²-distribution, in a <code>double</code> format. 
-	 * <p>
-	 * Thanks to Dr. Ali Everett who made a Desmos page on this function, presenting it in a comprehendable format. The source can be found here: https://www.desmos.com/calculator/i7v2tq0oeg. 
 	 * @param chiSqrValue , the χ²-value input of the function. 
 	 * @param degFree , the number of degrees of freedom. 
 	 * @return the output of the χ²-distribution. 
 	 */
 	public static double computeChiSquarePDF(double chiSqrValue, int degFree) {
-		if ((chiSqrValue<0) || (degFree==3))
+		if (chiSqrValue < 0)
 			return 0; 
 		else {
-			double numerator = (Math.pow(chiSqrValue, ((degFree/2)-1))) * (Math.pow(Math.E, (-1*chiSqrValue/2))); 
-			double denominator = (Math.pow(2, (degFree/2))) * computeGammaFunction(degFree); 
+			double numerator = (Math.pow(chiSqrValue, (degFree/2.0)-1.0)) * (Math.pow(Math.E, -1.0*chiSqrValue/2.0)); 
+			double denominator = (Math.pow(2, degFree/2.0)) * computeGammaFunction(degFree/2.0); 
 			return numerator / denominator; 
 		}
 	}
@@ -1377,7 +1358,9 @@ public final class VStats {
 	/**
 	 * Returns the area (probability) under the χ²-distribution between 2 boundaries, in a <code>double</code> format. 
 	 * <p>
-	 * This method uses a midpoint Riemann sum approximation to provide highly accurate integral values with respect to the function of the χ²-distribution (accurate to about 10 decimal places). 
+	 * This method uses a midpoint Riemann sum approximation to provide highly accurate integral values with respect to the function of the χ²-distribution (accurate to about 5 decimal places). 
+	 * <p>
+	 * This method takes about 10 seconds to execute. 
 	 * <p>
 	 * χ² ∈ [0, +∞)
 	 * @param lowerBound , the lower bound χ²-value. 
@@ -1387,7 +1370,7 @@ public final class VStats {
 	 */
 	public static double computeChiSquareCDF(double lowerBound, double upperBound, int degFree) {
 		double sum = 0.0; 
-		double increment = 1.0 / (Math.pow(10, 5)); 
+		double increment = (upperBound-lowerBound) / (Math.pow(10, 2)); 
 		for (double i = lowerBound + (increment/2.0); i < upperBound; i+=increment) {
 			sum += (increment * computeChiSquarePDF(i, degFree)); 
 		}

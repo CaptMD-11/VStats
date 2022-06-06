@@ -1336,9 +1336,19 @@ public final class VStats {
 			return computeFactorial((value/2)-1); 
 		else {
 			double numerator = (Math.sqrt(Math.PI)) * computeFactorial(value-1); 
-			double denominator = (Math.pow(2, value-1)) * ((value/2)-0.5); 
+			double denominator = (Math.pow(2, value-1)) * computeFactorial((int)((value/2)-0.5)); 
 			return numerator / denominator; 
 		}
+	}
+
+	public static double gammatest(double inputZ) {
+		double res = 1; 
+		for (int i = 1; i <= 1000000; i++) {
+			double numerator = Math.pow(1 + (1.0/i*1.0), inputZ); 
+			double denominator = 1.0 + (inputZ/i*1.0); 
+			res *= numerator/denominator; 
+		}
+		return res * (1/inputZ*1.0); 
 	}
 
 	/**
@@ -1350,10 +1360,8 @@ public final class VStats {
 	 * @return the output of the χ²-distribution. 
 	 */
 	public static double computeChiSquarePDF(double chiSqrValue, int degFree) {
-		if (chiSqrValue<0)
+		if ((chiSqrValue<0) || (degFree==3))
 			return 0; 
-		else if (chiSqrValue==0)
-			return 0.5; 
 		else {
 			double numerator = (Math.pow(chiSqrValue, ((degFree/2)-1))) * (Math.pow(Math.E, (-1*chiSqrValue/2))); 
 			double denominator = (Math.pow(2, (degFree/2))) * computeGammaFunction(degFree); 
@@ -1374,9 +1382,9 @@ public final class VStats {
 	 */
 	public static double computeChiSquareCDF(double lowerBound, double upperBound, int degFree) {
 		double sum = 0.0; 
-		double increment = (upperBound-lowerBound) / (Math.pow(10, 7)); 
-		for (double i = lowerBound + (increment/2); i < upperBound; i+=increment) {
-			sum += increment * computeChiSquarePDF(i, degFree); 
+		double increment = 1.0 / (Math.pow(10, 5)); 
+		for (double i = lowerBound + (increment/2.0); i < upperBound; i+=increment) {
+			sum += (increment * computeChiSquarePDF(i, degFree)); 
 		}
 		return sum; 
 	}

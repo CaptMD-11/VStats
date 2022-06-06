@@ -1341,7 +1341,12 @@ public final class VStats {
 		}
 	}
 
-	public static double gammatest(double inputZ) {
+	/**
+	 * Returns the output to the gamma function, in a <code>double</code> format. 
+	 * @param inputZ , the input to the gamma function. 
+	 * @return the output of the gamma function. 
+	 */
+	public static double gammatestWORKS(double inputZ) {
 		double res = 1; 
 		for (int i = 1; i <= 1000000; i++) {
 			double numerator = Math.pow(1 + (1.0/i*1.0), inputZ); 

@@ -3,9 +3,12 @@ public class Runner {
 
     public static void main(String[] args) {
 
+        System.out.println(VStats.gammatestWORKS(5.06)); 
+        
+
        // System.out.println(VStats.computeChiSquareCDF(0.01, 100, 4));
 
-       System.out.println(VStats.computeChiSquarePDF(4.023, 5)); 
+       // System.out.println(VStats.computeChiSquarePDF(4.023, 5)); 
 
        //System.out.println(VStats.computeChiSquareCDF(4.023, 7.256, 5)); 
 

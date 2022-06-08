@@ -1377,4 +1377,28 @@ public final class VStats {
 		return sum; 
 	}
 
+	/**
+	 * Returns the result of a χ² goodness-of-fit (GOF) statistical test, in a <code>String</code> format. 
+	 * <p>
+	 * The result could be to either reject the null hypothesis or fail to reject the null hypothesis. In the case that the p-value is equal to the significance level (which is highly unlikely), an empty <code>String</code> is returned. 
+	 * @param observedArray , an array containing the observed counts of the data. 
+	 * @param expectedArray , an array containing the expected counts of the data. 
+	 * @param alpha , the significance level (α) of the test. 
+	 * @return the result of the GOF test. 
+	 */
+	public static String computeChiSquareGOFTest(double[] observedArray, double[] expectedArray, double alpha) {
+		double chiStat = 0.0; 
+		for (int i = 0; i < expectedArray.length; i++) {
+			chiStat += ((Math.pow((observedArray[i]-expectedArray[i]), 2.0))/expectedArray[i]); 
+		}
+		double pValue = computeChiSquareCDF(0.0, chiStat, expectedArray.length-1); 
+		if (pValue < alpha) {
+			return "reject the null hypothesis | p-value = " + pValue; 
+		} else if (pValue > alpha) {
+			return "fail to reject the null hypothesis | p-value = " + pValue; 
+		} else {
+			return ""; 
+		}
+	}
+
 }

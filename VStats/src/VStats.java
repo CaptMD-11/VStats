@@ -1331,7 +1331,7 @@ public final class VStats {
 	 */
 	public static double computeGammaFunction(double inputZ) {
 		double res = 1; 
-		for (int i = 1; i <= 1000000; i++) {
+		for (int i = 1; i <= 10000000; i++) {
 			double numerator = Math.pow(1 + (1.0/i*1.0), inputZ); 
 			double denominator = 1.0 + (inputZ/i*1.0); 
 			res *= numerator/denominator; 
@@ -1389,9 +1389,9 @@ public final class VStats {
 	public static String computeChiSquareGOFTest(double[] observedArray, double[] expectedArray, double alpha) {
 		double chiStat = 0.0; 
 		for (int i = 0; i < expectedArray.length; i++) {
-			chiStat += ((Math.pow((observedArray[i]-expectedArray[i]), 2.0))/expectedArray[i]); 
+			chiStat += Math.pow((observedArray[i]-expectedArray[i]), 2) / expectedArray[i]; 
 		}
-		double pValue = computeChiSquareCDF(0.0, chiStat, expectedArray.length-1); 
+		double pValue = computeChiSquareCDF(chiStat, 100000, expectedArray.length-1); 
 		if (pValue < alpha) {
 			return "reject the null hypothesis | p-value = " + pValue; 
 		} else if (pValue > alpha) {

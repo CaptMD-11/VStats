@@ -3,6 +3,11 @@ public class Runner {
 
     public static void main(String[] args) {
 
+        double[] exp = {5,5,5,5,5};
+        double[] obs = {6,3,6,4,5};
+
+        System.out.println(VStats.computeChiSquareGOFTest(obs, exp, 0.05)); 
+
        // System.out.println(VStats.computeChiSquareCDF(4, 7, 5)); 
 
         // System.out.println(VStats.computeChiSquarePDF(4.25, 5)); 

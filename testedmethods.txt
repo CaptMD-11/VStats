@@ -63,6 +63,3 @@ ALL METHODS TESTED
 - computeTwoPropZTestP1LessThanP2
 - computeTwoPropZTestP1GreaterThanP2
 - computeTwoPropZTestP1NotEqualToP2
-- computeGammaFunction
-- computeChiSquarePDF
-- computeChiSquareCDF

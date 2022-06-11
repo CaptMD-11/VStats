@@ -25,7 +25,7 @@ public final class VStats {
 	/**
 	 * Returns the mean absolute deviation (MAD) of a <code>double</code> array, in a <code>double</code> format. 
 	 * <p>
-	 * The MAD of an array the absolute value of the average distance from each inputData value to the mean. 
+	 * The MAD of an array is the average distance (absolute value) from each value in the array to the mean. 
 	 * 
 	 * @param inputData , a <code>double</code> array. 
 	 * @return the mean absolute deviation of <strong>inputData</strong>. 
@@ -86,9 +86,9 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the minimum value in a <code>double</code> array, in a <code>double</code> format. 
+	 * Returns the minimum value of a <code>double</code> array, in a <code>double</code> format. 
 	 * @param inputData , a <code>double</code> array. 
-	 * @return the minimum value in <strong>inputData</strong>. 
+	 * @return the minimum value of <strong>inputData</strong>. 
 	 */
 	public static double computeMinimum(double[] inputData) {
 		double minTemp = inputData[0];
@@ -104,9 +104,9 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the maximum value in a <code>double</code> array, in a <code>double</code> format. 
+	 * Returns the maximum value of a <code>double</code> array, in a <code>double</code> format. 
 	 * @param inputData , a <code>double</code> array. 
-	 * @return the maximum value in <strong>inputData</strong>. 
+	 * @return the maximum value of <strong>inputData</strong>. 
 	 */
 	public static double computeMaximum(double[] inputData) {
 		double maxTemp = inputData[0];
@@ -192,7 +192,7 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the first quartile of a <code>double</code> array, in a <code>double</code> format. 
+	 * Returns the third quartile of a <code>double</code> array, in a <code>double</code> format. 
 	 * @param inputData , a <code>double</code> array. 
 	 * @return the third quartile of <strong>inputData</strong>. 
 	 */
@@ -279,7 +279,7 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the sum of the values of a <code>double</code> array, in an <code>double</code> format. 
+	 * Returns the sum of the values of a <code>double</code> array, in a <code>double</code> format. 
 	 * @param inputData , a <code>double</code> array. 
 	 * @return the sum of the values in <strong>inputData</strong>. 
 	 */
@@ -294,7 +294,7 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the interquartile range (IQR) of a <code>double</code> array, in an <code>double</code> format. 
+	 * Returns the interquartile range (IQR) of a <code>double</code> array, in a <code>double</code> format. 
 	 * @param inputData , a <code>double</code> array. 
 	 * @return the IQR of <strong>inputData</strong>. 
 	 */
@@ -343,7 +343,7 @@ public final class VStats {
 	 * Returns the number of combinations (in <code>int</code> format) possible when given the n-value and r-value (with respect to the format: nCr). 
 	 * @param n , the n-value in the format "nCr." 
 	 * @param r , the r-value in the format "nCr." 
-	 * @return the number of combinations of "nCr." 
+	 * @return the number of combinations possible, with respect to <strong>n</strong> and <strong>r</strong>. 
 	 */
 	public static int computeCombinations(int n, int r) {
 
@@ -408,7 +408,7 @@ public final class VStats {
 	 * Returns the output (in a <code>double</code> format) of the probability density function (for normal distributions). 
 	 * <p>
 	 * This method assumes that µ=0 and σ=1. 
-	 * @param inputZ , the input value
+	 * @param inputZ , the input value. 
 	 * @return the normal probability density function's output when <strong>inputZ</strong> is the input. 
 	 */
 	public static double computeNormalPDF(double inputZ) {
@@ -421,7 +421,7 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the probability between two z-scores for the probability density function (for normal distributions) using a left Riemann sum. 
+	 * Returns the (highly accurate) probability approximation between two z-scores for the probability density function (for normal distributions) using a left-endpoint Riemann sum. 
 	 * <p>
 	 * This method assumes that µ=0 and σ=1. 
 	 * <p>
@@ -445,7 +445,7 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the probability between two z-scores for the probability density function (for normal distributions) using a right Riemann sum. 
+	 * Returns the (highly accurate) probability approximation between two z-scores for the probability density function (for normal distributions) using a right-endpoint Riemann sum. 
 	 * <p>
 	 * This method assumes that µ=0 and σ=1. 
 	 * <p>
@@ -470,7 +470,7 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the probability between two z-scores for the probability density function (for normal distributions) using the average of a left & right Riemann sum. 
+	 * Returns the (highly accurate) probability approximation between two z-scores for the probability density function (for normal distributions) using the average of a left-endpoint & right-endpoint Riemann sum. 
 	 * <p>
 	 * This method assumes that µ=0 and σ=1. 
 	 * <p>
@@ -485,7 +485,7 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the probability between two z-scores for the probability density function (for normal distributions) using a midpoint Riemann sum (accurate to about 6 decimal places). 
+	 * Returns the probability approximation between two z-scores for the probability density function (for normal distributions) using a midpoint Riemann sum (accurate to about 6 decimal places). 
 	 * <p>
 	 * This method assumes that µ=0 and σ=1. 
 	 * <p>

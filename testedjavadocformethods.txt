@@ -1,0 +1,27 @@
+This is a txt file that lists all the methods in the VStats class for which the documentation (JavaDoc) is completed: 
+
+- computeMean
+- computeMAD
+- computeMedian
+- computeMinimum
+- computeMaximum
+- computeRange
+- computeVariance
+- computeStandardDeviation
+- computeQuartile1
+- computeQuartile3
+- computeMode
+- computeSumValues
+- computeIQR
+- computeOutliers
+- computeFactorial
+- computeCombinations
+- computeBinomialPdfProb
+- computeBinomialCdfProb
+- computeGeometricPdfProb
+- computeGeometricCdfProb
+- computeNormalPDF
+- computeZProbLeftRiemann
+- computeZProbRightRiemann
+- computeZProbAvgLeftRightRiemann
+- computeZProbMidpointRiemann

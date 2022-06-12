@@ -6,7 +6,7 @@ public class Runner {
         double[] exp = {6,6,6,6,6};
         double[] obs = {7,5,5,6,7};
 
-        // VStats.computezprobmid
+         VStats.computerowpr
 
        // System.out.println(VStats.computeChiSquareCDF(0.666666, 70, 5-1)); 
 

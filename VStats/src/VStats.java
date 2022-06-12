@@ -510,7 +510,7 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the probability between two z-scores for the probability density function (for normal distributions) using a trapezoidal Riemann sum. 
+	 * Returns the probability approximation between two z-scores for the probability density function (for normal distributions) using a trapezoidal Riemann sum. 
 	 * <p>
 	 * This method assumes that µ=0 and σ=1. 
 	 * <p>
@@ -540,7 +540,7 @@ public final class VStats {
 	 * This method assumes that µ=0 and σ=1. 
 	 * <p>
 	 * Method is only an approximation, and does not return an exact value. 
-	 * @param input , the area under the probability density function (to the left). 
+	 * @param input , the area under the probability density function (to the left of the desired z-score). 
 	 * @return the corresponding z-score to the <strong>input</strong> area. 
 	 */ 
 	public static double computeInverseNormalApprox(double input) { // works, but highly inefficient
@@ -602,7 +602,7 @@ public final class VStats {
 	 * Returns the variance of a discrete random variable, in a <code>double</code> format. 
 	 * @param inputDataArray , an array containing the possible outcomes of the random variable. 
 	 * @param probabilitiesArray , an array containing the probabilities of the respective possible outcomes of the random variable. 
-	 * @return the variance (σ2X) of the random variable. 
+	 * @return the variance (the square of σX) of the random variable. 
 	 */
 	public static double computeDiscreteVariance(double[] inputDataArray, double[] probabilitiesArray) {
 
@@ -664,7 +664,7 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the product of a row in a 2D array (0-based index), in a <code>double</code> format. 
+	 * Returns the product of the elements of a row in a 2D array (0-based index), as a <code>double</code> format. 
 	 * @param inputData , a 2D array. 
 	 * @param row , the row of interest. 
 	 * @return the product of the elements in <strong>row</strong>. 

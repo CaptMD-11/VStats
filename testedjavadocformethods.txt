@@ -25,3 +25,13 @@ This is a txt file that lists all the methods in the VStats class for which the 
 - computeZProbRightRiemann
 - computeZProbAvgLeftRightRiemann
 - computeZProbMidpointRiemann
+- computeZProbTrapezoidRiemann
+- computeInverseNormalApprox
+- computePermutations
+- computeDiscreteExpectedValue
+- computeDiscreteVariance
+- computeDiscreteStandardDeviation
+- computeRowSum
+- computeColumnSum
+- computeRowProduct
+- 

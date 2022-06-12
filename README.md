@@ -2,7 +2,7 @@
   <img src="VStats/images/vstatslogo.png" width="570">
 </p>
 
-This is a repository where I push my code for various statistical calculations. This library contains computations for one-variable statistics, the standard normal distribution, confidence intervals, significance tests, linear regression, binomial & geometric distributions, and more. I am currently working on finalizing documentation for all the current methods in the library, in order to release version 1.0. 
+This is the VStats Java library that computes statistics. The functionalities available include one-variable statistics, binomial & geometric distributions, matrix operations, linear regression computations, confidence intervals, significance tests, etc. 
 
 ### How does the user input data? ###
 

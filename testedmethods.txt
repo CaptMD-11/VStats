@@ -53,9 +53,9 @@ ALL METHODS TESTED
 - computeRSquared
 - computeZStar
 - computeOneMeanZConfInt
-- computeZMeansTestHaGreaterThanValue
-- computeZMeansTestHaLessThanValue
-- computeZMeansTestHaNotEqualToValue
+- computeOneMeanZTestHaGreaterThanValue
+- computeOneMeanZTestHaLessThanValue
+- computeOneMeanZTestHaNotEqualToValue
 - computeOnePropZConfInt
 - computeOnePropZTestP0LessThanValue
 - computeOnePropZTestP0GreaterThanValue

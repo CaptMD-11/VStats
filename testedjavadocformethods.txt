@@ -1,5 +1,7 @@
 This is a txt file that lists all the methods in the VStats class for which the documentation (JavaDoc) is completed: 
 
+ALL METHODS CHECKED 
+
 - computeMean
 - computeMAD
 - computeMedian
@@ -34,4 +36,29 @@ This is a txt file that lists all the methods in the VStats class for which the 
 - computeRowSum
 - computeColumnSum
 - computeRowProduct
-- 
+- computeColumnProduct
+- computeMatrixAddition
+- computeMatrixSubtraction
+- computeMatrixMultiplicationByScalar
+- computeSe
+- computeSumOfResidualsSquared
+- computeResidualValues
+- computeYPredictedValues
+- computeLSRLOutput
+- displayLSRLEquation
+- computeA
+- computeB
+- computeR
+- computeRSquared
+- computeZStar
+- computeOneMeanZConfInt
+- computeOneMeanZTestHaGreaterThanValue
+- computeOneMeanZTestHaLessThanValue
+- computeOneMeanZTestHaNotEqualToValue
+- computeOnePropZConfInt
+- computeOnePropZTestP0LessThanValue
+- computeOnePropZTestP0GreaterThanValue
+- computeOnePropZTestP0NotEqualToValue
+- computeTwoPropZTestP1LessThanP2
+- computeTwoPropZTestP1GreaterThanP2
+- computeTwoPropZTestP1NotEqualToP2

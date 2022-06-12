@@ -628,7 +628,7 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the sum of a row in a 2D array (0-based index), in a <code>double</code> format. 
+	 * Returns the sum of the elements of a row in a 2D array (0-based index), as a <code>double</code> format. 
 	 * @param inputData , a 2D array. 
 	 * @param row , the row of interest. 
 	 * @return the sum of the elements in <strong>row</strong>. 
@@ -646,7 +646,7 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the sum of a column in a 2D array (0-based index), in a <code>double</code> format. 
+	 * Returns the sum of the elements of a column in a 2D array (0-based index), as a <code>double</code> format. 
 	 * @param inputData , a 2D array. 
 	 * @param col , the column of interest. 
 	 * @return the sum of the elements in <strong>col</strong>. 
@@ -681,7 +681,7 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the product of a column in a 2D array (0-based index), in a <code>double</code> format. 
+	 * Returns the product of the elements of a column in a 2D array (0-based index), as a <code>double</code> format. 
 	 * @param inputData , a 2D array. 
 	 * @param col , the column of interest. 
 	 * @return the product of the elements in <strong>col</strong>. 
@@ -743,7 +743,7 @@ public final class VStats {
 
 	/**
 	 * Returns a <code>double</code> 2D array containing the product of a matrix and a scalar. 
-	 * @param arr1 , a 2D array. 
+	 * @param arr , a 2D array. 
 	 * @param scalar , the scalar. 
 	 * @return the product of <strong>arr</strong> and <strong>scalar</strong>. 
 	 */
@@ -843,8 +843,8 @@ public final class VStats {
 	 * This method uses linear regression to model the relationship between the 2 variables (least-squares regression line format: ŷ = a + bx). 
 	 * @param indVar , a <code>double</code> array containing the independent variable values. 
 	 * @param depVar , a <code>double</code> array containing the dependent variable values. 
-	 * @param input , a <code>double</code> which is the value to be inputted into the LSRL. 
-	 * @return the predicted y-value with respect to <strong>indVar</strong> and <strong>depVar</strong>. 
+	 * @param input , a <code>double</code> which is the value to be inputted into the LSRL function. 
+	 * @return the predicted y-value when <strong>input</strong> is the input x-value to the LSRL function (with respect to <strong>indVar</strong> and <strong>depVar</strong>). 
 	 */
 	public static double computeLSRLOutput(double[] indVar, double[] depVar, double input) {
 
@@ -882,7 +882,7 @@ public final class VStats {
 	 * This method uses linear regression to model the relationship between the 2 variables (least-squares regression line format: ŷ = a + bx). 
 	 * @param indVar , a <code>double</code> array containing the independent variable values. 
 	 * @param depVar , a <code>double</code> array containing the dependent variable values. 
-	 * @return the y-intercept of the LSRL equation with respect to <strong>indVar</strong> and <strong>depVar</strong>. 
+	 * @return the y-intercept of the LSRL equation, with respect to <strong>indVar</strong> and <strong>depVar</strong>. 
 	 */
 	public static double computeA(double[] indVar, double[] depVar) {
 
@@ -896,7 +896,7 @@ public final class VStats {
 	 * This method uses linear regression to model the relationship between the 2 variables (least-squares regression line format: ŷ = a + bx). 
 	 * @param indVar , a <code>double</code> array containing the independent variable values. 
 	 * @param depVar , a <code>double</code> array containing the dependent variable values. 
-	 * @return the slope of the LSRL equation with respect to <strong>indVar</strong> and <strong>depVar</strong>. 
+	 * @return the slope of the LSRL equation, with respect to <strong>indVar</strong> and <strong>depVar</strong>. 
 	 */
 	public static double computeB(double[] indVar, double[] depVar) {
 
@@ -914,7 +914,7 @@ public final class VStats {
 	 * This method uses linear regression to model the relationship between the 2 variables (least-squares regression line format: ŷ = a + bx). 
 	 * @param indVar , a <code>double</code> array containing the independent variable values. 
 	 * @param depVar , a <code>double</code> array containing the dependent variable values. 
-	 * @return the r-value of the LSRL with respect to <strong>indVar</strong> and <strong>depVar</strong>. 
+	 * @return the r-value of the LSRL, with respect to <strong>indVar</strong> and <strong>depVar</strong>. 
 	 */
 	public static double computeR(double[] indVar, double[] depVar) {
 
@@ -941,7 +941,7 @@ public final class VStats {
 	 * This method uses linear regression to model the relationship between the 2 variables (least-squares regression line format: ŷ = a + bx). 
 	 * @param indVar , a <code>double</code> array containing the independent variable values. 
 	 * @param depVar , a <code>double</code> array containing the dependent variable values. 
-	 * @return the r^2-value of the LSRL with respect to <strong>indVar</strong> and <strong>depVar</strong>. 
+	 * @return the r^2-value of the LSRL, with respect to <strong>indVar</strong> and <strong>depVar</strong>. 
 	 */
 	public static double computeRSquared(double[] indVar, double[] depVar) {
 
@@ -964,7 +964,7 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns a <code>String</code> which represents the confidence interval for the means, making use of the z-distribution. 
+	 * Returns a <code>String</code> which represents the confidence interval for a single mean, making use of the z-distribution. 
 	 * <p>
 	 * This method assumes that µ=0 and σ=1. 
 	 * <p>
@@ -973,7 +973,7 @@ public final class VStats {
 	 * @param sigma , the standard deviation of the population. 
 	 * @param sampleSize , the size of the sample. 
 	 * @param confidenceLevel , the input confidence level. 
-	 * @return the confidence interval for means. 
+	 * @return the confidence interval for a single mean. 
 	 */
 	public static String computeOneMeanZConfInt(double mu, double sigma, int sampleSize, double confidenceLevel) {
 
@@ -990,7 +990,7 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the final decision (a <code>String</code>) of the significance test for means, utilizing the z-distribution. 
+	 * Returns the final decision (a <code>String</code>) of the significance test for a single mean, utilizing the z-distribution. 
 	 * <p>
 	 * For this method: 
 	 * <p>
@@ -1006,7 +1006,7 @@ public final class VStats {
 	 * @param alpha , the significance level (α) of the test. 
 	 * @return the final decision of the significance test. 
 	 */
-	public static String computeZMeansTestHaGreaterThanValue(double mu, double sigma, double sampleMean, int sampleSize, double alpha) {
+	public static String computeOneMeanZTestHaGreaterThanValue(double mu, double sigma, double sampleMean, int sampleSize, double alpha) {
 
 		double zCritical = (sampleMean - mu) / (sigma / (Math.sqrt(sampleSize)));
 
@@ -1025,7 +1025,7 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the final decision (a <code>String</code>) of the significance test for means, utilizing the z-distribution. 
+	 * Returns the final decision (a <code>String</code>) of the significance test for a single mean, utilizing the z-distribution. 
 	 * <p>
 	 * For this method: 
 	 * <p>
@@ -1041,7 +1041,7 @@ public final class VStats {
 	 * @param alpha , the significance level (α) of the test. 
 	 * @return the final decision of the significance test. 
 	 */
-	public static String computeZMeansTestHaLessThanValue(double mu, double sigma, double sampleMean, int sampleSize, double alpha) {
+	public static String computeOneMeanZTestHaLessThanValue(double mu, double sigma, double sampleMean, int sampleSize, double alpha) {
 
 		double zCritical = (sampleMean - mu) / (sigma / (Math.sqrt(sampleSize)));
 
@@ -1060,7 +1060,7 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the final decision (a <code>String</code>) of the significance test for means, utilizing the z-distribution. 
+	 * Returns the final decision (a <code>String</code>) of the significance test for a single mean, utilizing the z-distribution. 
 	 * <p>
 	 * For this method: 
 	 * <p>
@@ -1076,7 +1076,7 @@ public final class VStats {
 	 * @param alpha , the significance level (α) of the test. 
 	 * @return the final decision of the significance test. 
 	 */
-	public static String computeZMeansTestHaNotEqualToValue(double mu, double sigma, double sampleMean, int sampleSize, double alpha) {
+	public static String computeOneMeanZTestHaNotEqualToValue(double mu, double sigma, double sampleMean, int sampleSize, double alpha) {
 
 		double zCritical = (sampleMean - mu) / (sigma / (Math.sqrt(sampleSize)));
 
@@ -1095,7 +1095,7 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns a <code>String</code> which represents the confidence interval for estimating a population proportion. 
+	 * Returns a <code>String</code> which represents the confidence interval for estimating a single population proportion. 
 	 * <p>
 	 * This method is only an approximation. 
 	 * @param pHat , the sample proportion. 
@@ -1125,9 +1125,9 @@ public final class VStats {
 	 * 		<ul>
 	 * 			<li>the alternate hypothesis should state that the population proportion is less than a certain value. </li></ul></ul>
 	 * The decision could be to either reject the null hypothesis or fail to reject the null hypothesis. 
-	 * @param pHat , the population proportion to be tested. 
-	 * @param pNought , the population standard deviation. 
-	 * @param sampleSize , the mean of the sample. 
+	 * @param pHat , the sample proportion. 
+	 * @param pNought , the population proportion to be tested. 
+	 * @param sampleSize , the size of the sample. 
 	 * @param alpha , the significance level (α) of the test. 
 	 * @return the final decision of the significance test. 
 	 */
@@ -1159,9 +1159,9 @@ public final class VStats {
 	 * 		<ul>
 	 * 			<li>the alternate hypothesis should state that the population proportion is greater than a certain value. </li></ul></ul>
 	 * The decision could be to either reject the null hypothesis or fail to reject the null hypothesis. 
-	 * @param pHat , the population proportion to be tested. 
-	 * @param pNought , the population standard deviation. 
-	 * @param sampleSize , the mean of the sample. 
+	 * @param pHat , the sample proportion. 
+	 * @param pNought , the population proportion to be tested. 
+	 * @param sampleSize , the size of the sample. 
 	 * @param alpha , the significance level (α) of the test. 
 	 * @return the final decision of the significance test. 
 	 */
@@ -1193,9 +1193,9 @@ public final class VStats {
 	 * 		<ul>
 	 * 			<li>the alternate hypothesis should state that the population proportion is not equal to a certain value. </li></ul></ul>
 	 * The decision could be to either reject the null hypothesis or fail to reject the null hypothesis. 
-	 * @param pHat , the population proportion to be tested. 
-	 * @param pNought , the population standard deviation. 
-	 * @param sampleSize , the mean of the sample. 
+	 * @param pHat , the sample proportion. 
+	 * @param pNought , the population proportion to be tested. 
+	 * @param sampleSize , the size of the sample. 
 	 * @param alpha , the significance level (α) of the test. 
 	 * @return the final decision of the significance test. 
 	 */

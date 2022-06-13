@@ -17,6 +17,7 @@ Since I use the VS Code IDE, I will provide instructions here on how to import t
 3. Open a Java project in VS Code and click on a <samp>.java</samp> file. Towards the bottom of the File Explorer window, you should see a dropdown menu called <samp>Java Projects</samp>. 
 4. Click on the <samp>Java Projects</samp> menu and locate the <samp>Referenced Libraries</samp> folder. 
 5. Click on the "+" icon and add the VStats.jar file from the file path from Step #2. 
+6. Done! 
 
 
 ## How does the user input data? 

@@ -19,12 +19,18 @@ Since I use the VS Code IDE, I will provide instructions here on how to import t
 5. Click on the "+" icon and add the VStats.jar file from the file path from Step #2. 
 
 
-### How does the user input data? 
+## How does the user input data? 
 
-It's actually quite simple. All the methods in VStats are <samp>static</samp>, so they can be called without creating objects of the VStats class. The input data to any method should be the parameter. This works similar to the Java Math library. Also, documentation is provided for all the methods in the library so that users can learn about what each invidual method actually does. The documentation was written using JavaDoc, in order for users to view the method description in a mini window, as shown in the screenshot below. 
+It's actually quite simple. All the methods in VStats are <samp>static</samp>, so they can be called without creating VStats objects. The input data to any method should be the parameter. This works similar to the Java Math library. Also, documentation is provided for all the methods in the library so that users can learn about what each invidual method actually does. The documentation was written using JavaDoc, in order for users to view the method description in a mini window, as shown in the screenshot below. 
 
 <p align="center">
   <img src="VStats/images/javadocmethodtestss.png" width="570">
 </p>
 
-### How does the user receive outputs? 
+## Version History
+
+- v1.0 - RELEASE. 
+
+## License 
+
+The VStats library is protected by the <a href="https://github.com/CaptMD-11/VStats/blob/master/LICENSE.txt" target="_blank">GNU GPL</a> license. 

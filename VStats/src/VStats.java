@@ -20,14 +20,16 @@ import java.util.ArrayList;
 
 public final class VStats {
 
-	private VStats() { 
+	private VStats() {
 
-	} 
+	}
 
 	/**
-	 * Returns the mean (average) of a <code>double</code> array, in a <code>double</code> format. 
-	 * @param inputData , a <code>double</code> array. 
-	 * @return the mean of <strong>inputData</strong>. 
+	 * Returns the mean (average) of a <code>double</code> array, in a
+	 * <code>double</code> format.
+	 * 
+	 * @param inputData , a <code>double</code> array.
+	 * @return the mean of <strong>inputData</strong>.
 	 */
 	public static double computeMean(double[] inputData) {
 		double sum = 0;
@@ -41,29 +43,31 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the mean absolute deviation (MAD) of a <code>double</code> array, in a <code>double</code> format. 
+	 * Returns the mean absolute deviation (MAD) of a <code>double</code> array, in
+	 * a <code>double</code> format.
 	 * <p>
-	 * The MAD of an array is the average distance (absolute value) from each value in the array to the mean. 
+	 * The MAD of an array is the average distance (absolute value) from each value
+	 * in the array to the mean.
 	 * 
-	 * @param inputData , a <code>double</code> array. 
-	 * @return the mean absolute deviation of <strong>inputData</strong>. 
+	 * @param inputData , a <code>double</code> array.
+	 * @return the mean absolute deviation of <strong>inputData</strong>.
 	 */
 	public static double computeMAD(double[] inputData) {
-		double inputDataMean = computeMean(inputData); 
-		ArrayList<Double> res = new ArrayList<Double>(); 
+		double inputDataMean = computeMean(inputData);
+		ArrayList<Double> res = new ArrayList<Double>();
 		for (int i = 0; i < inputData.length; i++) {
-			res.add(Math.abs(inputData[i] - inputDataMean)); 
+			res.add(Math.abs(inputData[i] - inputDataMean));
 		}
-		double sum = 0.0; 
+		double sum = 0.0;
 		for (int i = 0; i < res.size(); i++) {
-			sum += res.get(i); 
+			sum += res.get(i);
 		}
-		return sum / (inputData.length * 1.0); 
+		return sum / (inputData.length * 1.0);
 	}
 
-	private static double[] sortHELPER(double[] inputData) { // this method is only a helper method 
+	private static double[] sortHELPER(double[] inputData) { // this method is only a helper method
 
-		double[] res = new double[inputData.length]; 
+		double[] res = new double[inputData.length];
 
 		for (int j = 1; j < inputData.length; j++) {
 			double temp = inputData[j];
@@ -75,20 +79,23 @@ public final class VStats {
 			inputData[possibleIndex] = temp;
 		}
 
-		res = inputData; 
-		return res; 
+		res = inputData;
+		return res;
 
 	}
 
 	/**
-	 * Returns the median (second quartile) of a <code>double</code> array, in a <code>double</code> format. 
-	 * @param inputData , a <code>double</code> array. 
-	 * @return the median of <strong>inputData</strong>. 
+	 * Returns the median (second quartile) of a <code>double</code> array, in a
+	 * <code>double</code> format.
+	 * 
+	 * @param inputData , a <code>double</code> array.
+	 * @return the median of <strong>inputData</strong>.
 	 */
-	public static double computeMedian(double[] inputData) { // this code computes median using the insertion sortHELPER algorithm
+	public static double computeMedian(double[] inputData) { // this code computes median using the insertion sortHELPER
+																// algorithm
 
 		int middleIndex = 0;
-		inputData = VStats.sortHELPER(inputData); 
+		inputData = VStats.sortHELPER(inputData);
 
 		// sorted.
 		middleIndex = (inputData.length / 2);
@@ -104,9 +111,11 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the minimum value of a <code>double</code> array, in a <code>double</code> format. 
-	 * @param inputData , a <code>double</code> array. 
-	 * @return the minimum value of <strong>inputData</strong>. 
+	 * Returns the minimum value of a <code>double</code> array, in a
+	 * <code>double</code> format.
+	 * 
+	 * @param inputData , a <code>double</code> array.
+	 * @return the minimum value of <strong>inputData</strong>.
 	 */
 	public static double computeMinimum(double[] inputData) {
 		double minTemp = inputData[0];
@@ -122,9 +131,11 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the maximum value of a <code>double</code> array, in a <code>double</code> format. 
-	 * @param inputData , a <code>double</code> array. 
-	 * @return the maximum value of <strong>inputData</strong>. 
+	 * Returns the maximum value of a <code>double</code> array, in a
+	 * <code>double</code> format.
+	 * 
+	 * @param inputData , a <code>double</code> array.
+	 * @return the maximum value of <strong>inputData</strong>.
 	 */
 	public static double computeMaximum(double[] inputData) {
 		double maxTemp = inputData[0];
@@ -140,18 +151,22 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the range (maximum value - minimum value) of a <code>double</code> array, in a <code>double</code> format. 
-	 * @param inputData , a <code>double</code> array. 
-	 * @return the range of <strong>inputData</strong>. 
+	 * Returns the range (maximum value - minimum value) of a <code>double</code>
+	 * array, in a <code>double</code> format.
+	 * 
+	 * @param inputData , a <code>double</code> array.
+	 * @return the range of <strong>inputData</strong>.
 	 */
 	public static double computeRange(double[] inputData) {
 		return (computeMaximum(inputData) - computeMinimum(inputData)) * 1.0;
 	}
 
 	/**
-	 * Returns the variance of a <code>double</code> array, in a <code>double</code> format. 
-	 * @param inputData , a <code>double</code> array. 
-	 * @return the variance of <strong>inputData</strong>. 
+	 * Returns the variance of a <code>double</code> array, in a <code>double</code>
+	 * format.
+	 * 
+	 * @param inputData , a <code>double</code> array.
+	 * @return the variance of <strong>inputData</strong>.
 	 */
 	public static double computeVariance(double[] inputData) {
 		double sumDiff = 0.0;
@@ -165,9 +180,11 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the standard deviation of a <code>double</code> array, in a <code>double</code> format. 
-	 * @param inputData , a <code>double</code> array. 
-	 * @return the standard deviation of <strong>inputData</strong>. 
+	 * Returns the standard deviation of a <code>double</code> array, in a
+	 * <code>double</code> format.
+	 * 
+	 * @param inputData , a <code>double</code> array.
+	 * @return the standard deviation of <strong>inputData</strong>.
 	 */
 	public static double computeStandardDeviation(double[] inputData) {
 		// assert variance != 0;
@@ -175,15 +192,17 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the first quartile of a <code>double</code> array, in a <code>double</code> format. 
-	 * @param inputData , a <code>double</code> array. 
-	 * @return the first quartile of <strong>inputData</strong>. 
+	 * Returns the first quartile of a <code>double</code> array, in a
+	 * <code>double</code> format.
+	 * 
+	 * @param inputData , a <code>double</code> array.
+	 * @return the first quartile of <strong>inputData</strong>.
 	 */
 	public static double computeQuartile1(double[] inputData) {
 		int middleIndex = inputData.length / 2;
 		int count = -1;
 		double quartile1 = 0.0;
-		inputData = VStats.sortHELPER(inputData); 
+		inputData = VStats.sortHELPER(inputData);
 
 		for (int i = 0; i <= middleIndex - 1; i++) {
 			count++;
@@ -210,16 +229,18 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the third quartile of a <code>double</code> array, in a <code>double</code> format. 
-	 * @param inputData , a <code>double</code> array. 
-	 * @return the third quartile of <strong>inputData</strong>. 
+	 * Returns the third quartile of a <code>double</code> array, in a
+	 * <code>double</code> format.
+	 * 
+	 * @param inputData , a <code>double</code> array.
+	 * @return the third quartile of <strong>inputData</strong>.
 	 */
 	public static double computeQuartile3(double[] inputData) {
 		int middleIndex = inputData.length / 2;
 		int arrayEvenCounter = 0;
 		int arrayOddCounter = 0;
 		double quartile3 = 0.0;
-		inputData = VStats.sortHELPER(inputData); 
+		inputData = VStats.sortHELPER(inputData);
 
 		for (int i = middleIndex + 1; i < inputData.length; i++) {
 			arrayEvenCounter++;
@@ -230,7 +251,8 @@ public final class VStats {
 		}
 
 		if ((inputData.length % 2 != 0) && (arrayEvenCounter % 2 == 0)) {
-			quartile3 = (inputData[middleIndex + (arrayEvenCounter / 2)] + inputData[middleIndex + (arrayEvenCounter / 2) + 1])
+			quartile3 = (inputData[middleIndex + (arrayEvenCounter / 2)]
+					+ inputData[middleIndex + (arrayEvenCounter / 2) + 1])
 					/ 2.0;
 		}
 
@@ -245,7 +267,8 @@ public final class VStats {
 		if ((inputData.length % 2 == 0) && (arrayOddCounter % 2 == 0)) {
 			// quartile3 = (inputinputData[middleIndex + ((arrayOddCounter / 2) - 1)] +
 			// inputinputData[middleIndex + (arrayOddCounter / 2)] ) / 2;
-			quartile3 = (inputData[middleIndex + (arrayOddCounter / 2) - 1] + inputData[middleIndex + (arrayOddCounter / 2)])
+			quartile3 = (inputData[middleIndex + (arrayOddCounter / 2) - 1]
+					+ inputData[middleIndex + (arrayOddCounter / 2)])
 					/ 2.0;
 		}
 
@@ -254,9 +277,11 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the mode (most occurring value) of a <code>double</code> array, in a <code>double</code> format. 
-	 * @param inputData , a <code>double</code> array. 
-	 * @return the mode of <strong>inputData</strong>. 
+	 * Returns the mode (most occurring value) of a <code>double</code> array, in a
+	 * <code>double</code> format.
+	 * 
+	 * @param inputData , a <code>double</code> array.
+	 * @return the mode of <strong>inputData</strong>.
 	 */
 	public static double computeMode(double[] inputData) {
 
@@ -297,9 +322,11 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the sum of the values of a <code>double</code> array, in a <code>double</code> format. 
-	 * @param inputData , a <code>double</code> array. 
-	 * @return the sum of the values in <strong>inputData</strong>. 
+	 * Returns the sum of the values of a <code>double</code> array, in a
+	 * <code>double</code> format.
+	 * 
+	 * @param inputData , a <code>double</code> array.
+	 * @return the sum of the values in <strong>inputData</strong>.
 	 */
 	public static double computeSumValues(double[] inputData) {
 		double sumValues = 0.0;
@@ -312,9 +339,11 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the interquartile range (IQR) of a <code>double</code> array, in a <code>double</code> format. 
-	 * @param inputData , a <code>double</code> array. 
-	 * @return the IQR of <strong>inputData</strong>. 
+	 * Returns the interquartile range (IQR) of a <code>double</code> array, in a
+	 * <code>double</code> format.
+	 * 
+	 * @param inputData , a <code>double</code> array.
+	 * @return the IQR of <strong>inputData</strong>.
 	 */
 	public static double computeIQR(double[] inputData) {
 
@@ -323,9 +352,12 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns a <code>double</code> <code>ArrayList</code> containing any possible outliers in a <code>double</code> array. 
-	 * @param inputData , a <code>double</code> array. 
-	 * @return an <code>ArrayList</code> which contains any possible outliers in <strong>inputData</strong>. 
+	 * Returns a <code>double</code> <code>ArrayList</code> containing any possible
+	 * outliers in a <code>double</code> array.
+	 * 
+	 * @param inputData , a <code>double</code> array.
+	 * @return an <code>ArrayList</code> which contains any possible outliers in
+	 *         <strong>inputData</strong>.
 	 */
 	public static ArrayList<Double> computeOutliers(double[] inputData) {
 
@@ -343,9 +375,10 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the factorial (in <code>int</code> format) of an <code>int</code>. 
-	 * @param inputVal , an <code>int</code>. 
-	 * @return the factorial of <strong>inputVal</strong>. 
+	 * Returns the factorial (in <code>int</code> format) of an <code>int</code>.
+	 * 
+	 * @param inputVal , an <code>int</code>.
+	 * @return the factorial of <strong>inputVal</strong>.
 	 */
 	public static int computeFactorial(int inputVal) {
 
@@ -358,23 +391,28 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the number of combinations (in <code>int</code> format) possible when given the n-value and r-value (with respect to the format: nCr). 
-	 * @param n , the n-value in the format "nCr." 
-	 * @param r , the r-value in the format "nCr." 
-	 * @return the number of combinations possible, with respect to <strong>n</strong> and <strong>r</strong>. 
+	 * Returns the number of combinations (in <code>int</code> format) possible when
+	 * given the n-value and r-value (with respect to the format: nCr).
+	 * 
+	 * @param n , the n-value in the format "nCr."
+	 * @param r , the r-value in the format "nCr."
+	 * @return the number of combinations possible, with respect to
+	 *         <strong>n</strong> and <strong>r</strong>.
 	 */
 	public static int computeCombinations(int n, int r) {
 
-		return (int)((computeFactorial(n)) / ((computeFactorial(r)) * (computeFactorial(n - r)))
+		return (int) ((computeFactorial(n)) / ((computeFactorial(r)) * (computeFactorial(n - r)))
 				* 1.0);
 	}
 
 	/**
-	 * Returns the binomial probability of a single x-value, in a <code>double</code> format. 
-	 * @param numTrials , the number of trials. 
-	 * @param xVal , the x-value of interest. 
-	 * @param pSuccess , the probability of success. 
-	 * @return the probability of <strong>xVal</strong> occurring. 
+	 * Returns the binomial probability of a single x-value, in a
+	 * <code>double</code> format.
+	 * 
+	 * @param numTrials , the number of trials.
+	 * @param xVal      , the x-value of interest.
+	 * @param pSuccess  , the probability of success.
+	 * @return the probability of <strong>xVal</strong> occurring.
 	 */
 	public static double computeBinomialPdfProb(int numTrials, int xVal, double pSuccess) {
 		return ((computeCombinations(numTrials, xVal)) * (Math.pow(pSuccess, xVal))
@@ -382,52 +420,66 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the binomial probability of an interval of x-values, in a <code>double</code> format. 
-	 * @param numTrials , the number of trials. 
-	 * @param inputLBound , the low bound x-value. 
-	 * @param inputHBound , the high bound x-value. 
-	 * @param pSuccess , the probability of success. 
-	 * @return the probability of obtaining an x-value between <strong>inputLBound</strong> and <strong>inputHBound</strong>, inclusive. 
+	 * Returns the binomial probability of an interval of x-values, in a
+	 * <code>double</code> format.
+	 * 
+	 * @param numTrials   , the number of trials.
+	 * @param inputLBound , the low bound x-value.
+	 * @param inputHBound , the high bound x-value.
+	 * @param pSuccess    , the probability of success.
+	 * @return the probability of obtaining an x-value between
+	 *         <strong>inputLBound</strong> and <strong>inputHBound</strong>,
+	 *         inclusive.
 	 */
 	public static double computeBinomialCdfProb(int numTrials, int inputLBound, int inputHBound, double pSuccess) {
-		double sum = 0.0; 
+		double sum = 0.0;
 		for (int i = inputLBound; i <= inputHBound; i++) {
-			sum += computeBinomialPdfProb(numTrials, i, pSuccess); 
+			sum += computeBinomialPdfProb(numTrials, i, pSuccess);
 		}
-		return sum; 
+		return sum;
 	}
 
 	/**
-	 * Returns the geometric probability of a single x-value, in a <code>double</code> format. 
-	 * @param xVal , the x-value of interest. 
-	 * @param pSuccess , the probability of success. 
-	 * @return the probability of the event occurring on the <strong>xVal</strong>th try. 
+	 * Returns the geometric probability of a single x-value, in a
+	 * <code>double</code> format.
+	 * 
+	 * @param xVal     , the x-value of interest.
+	 * @param pSuccess , the probability of success.
+	 * @return the probability of the event occurring on the <strong>xVal</strong>th
+	 *         try.
 	 */
 	public static double computeGeometricPdfProb(int xVal, double pSuccess) {
 		return (pSuccess) * (Math.pow((1 - pSuccess), (xVal - 1)));
 	}
 
 	/**
-	 * Returns the geometric probability of an interval of x-values, in a <code>double</code> format. 
-	 * @param pSuccess , the probability of success. 
-	 * @param inputLowBound , the low bound x-value. 
-	 * @param inputHighBound , the high bound x-value. 
-	 * @return the probability of the event occurring on between the <strong>inputLowBound</strong>th and <strong>inputHighBound</strong>th try, inclusive. 
+	 * Returns the geometric probability of an interval of x-values, in a
+	 * <code>double</code> format.
+	 * 
+	 * @param pSuccess       , the probability of success.
+	 * @param inputLowBound  , the low bound x-value.
+	 * @param inputHighBound , the high bound x-value.
+	 * @return the probability of the event occurring on between the
+	 *         <strong>inputLowBound</strong>th and
+	 *         <strong>inputHighBound</strong>th try, inclusive.
 	 */
 	public static double computeGeometricCdfProb(double pSuccess, int inputLowBound, int inputHighBound) {
-		double sum = 0.0; 
+		double sum = 0.0;
 		for (int i = inputLowBound; i <= inputHighBound; i++) {
-			sum += computeGeometricPdfProb(i, pSuccess); 
+			sum += computeGeometricPdfProb(i, pSuccess);
 		}
-		return sum; 
+		return sum;
 	}
 
 	/**
-	 * Returns the output (in a <code>double</code> format) of the probability density function (for normal distributions). 
+	 * Returns the output (in a <code>double</code> format) of the probability
+	 * density function (for normal distributions).
 	 * <p>
-	 * This method assumes that µ=0 and σ=1. 
-	 * @param inputZ , the input value. 
-	 * @return the normal probability density function's output when <strong>inputZ</strong> is the input. 
+	 * This method assumes that µ=0 and σ=1.
+	 * 
+	 * @param inputZ , the input value.
+	 * @return the normal probability density function's output when
+	 *         <strong>inputZ</strong> is the input.
 	 */
 	public static double computeNormalPDF(double inputZ) {
 
@@ -439,14 +491,19 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the (highly accurate) probability approximation between two z-scores for the probability density function (for normal distributions) using a left-endpoint Riemann sum. 
+	 * Returns the (highly accurate) probability approximation between two z-scores
+	 * for the probability density function (for normal distributions) using a
+	 * left-endpoint Riemann sum.
 	 * <p>
-	 * This method assumes that µ=0 and σ=1. 
+	 * This method assumes that µ=0 and σ=1.
 	 * <p>
-	 * Enter large absolute value z-scores for the bounds, for improper integral approximation. 
-	 * @param inputZLow , the low bound z-score. 
-	 * @param inputZHigh , the high bound z-score. 
-	 * @return the probability between <strong>inputZLow</strong> and <strong>inputZHigh</strong>. 
+	 * Enter large absolute value z-scores for the bounds, for improper integral
+	 * approximation.
+	 * 
+	 * @param inputZLow  , the low bound z-score.
+	 * @param inputZHigh , the high bound z-score.
+	 * @return the probability between <strong>inputZLow</strong> and
+	 *         <strong>inputZHigh</strong>.
 	 */
 	public static double computeZProbLeftRiemann(double inputZLow, double inputZHigh) {
 
@@ -463,14 +520,19 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the (highly accurate) probability approximation between two z-scores for the probability density function (for normal distributions) using a right-endpoint Riemann sum. 
+	 * Returns the (highly accurate) probability approximation between two z-scores
+	 * for the probability density function (for normal distributions) using a
+	 * right-endpoint Riemann sum.
 	 * <p>
-	 * This method assumes that µ=0 and σ=1. 
+	 * This method assumes that µ=0 and σ=1.
 	 * <p>
-	 * Enter large absolute value z-scores for the bounds, for improper integral approximation. 
-	 * @param inputZLow , the low bound z-score. 
-	 * @param inputZHigh , the high bound z-score. 
-	 * @return the probability between <strong>inputZLow</strong> and <strong>inputZHigh</strong>. 
+	 * Enter large absolute value z-scores for the bounds, for improper integral
+	 * approximation.
+	 * 
+	 * @param inputZLow  , the low bound z-score.
+	 * @param inputZHigh , the high bound z-score.
+	 * @return the probability between <strong>inputZLow</strong> and
+	 *         <strong>inputZHigh</strong>.
 	 */
 	public static double computeZProbRightRiemann(double inputZLow, double inputZHigh) {
 
@@ -488,14 +550,19 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the (highly accurate) probability approximation between two z-scores for the probability density function (for normal distributions) using the average of a left-endpoint & right-endpoint Riemann sum. 
+	 * Returns the (highly accurate) probability approximation between two z-scores
+	 * for the probability density function (for normal distributions) using the
+	 * average of a left-endpoint & right-endpoint Riemann sum.
 	 * <p>
-	 * This method assumes that µ=0 and σ=1. 
+	 * This method assumes that µ=0 and σ=1.
 	 * <p>
-	 * Enter large absolute value z-scores for the bounds, for improper integral approximation. 
-	 * @param inputZLow , the low bound z-score. 
-	 * @param inputZHigh , the high bound z-score. 
-	 * @return the probability between <strong>inputZLow</strong> and <strong>inputZHigh</strong>. 
+	 * Enter large absolute value z-scores for the bounds, for improper integral
+	 * approximation.
+	 * 
+	 * @param inputZLow  , the low bound z-score.
+	 * @param inputZHigh , the high bound z-score.
+	 * @return the probability between <strong>inputZLow</strong> and
+	 *         <strong>inputZHigh</strong>.
 	 */
 	public static double computeZProbAvgLeftRightRiemann(double inputZLow, double inputZHigh) {
 		return ((computeZProbRightRiemann(inputZLow, inputZHigh))
@@ -503,21 +570,26 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the probability approximation between two z-scores for the probability density function (for normal distributions) using a midpoint Riemann sum (accurate to about 6 decimal places). 
+	 * Returns the probability approximation between two z-scores for the
+	 * probability density function (for normal distributions) using a midpoint
+	 * Riemann sum (accurate to about 6 decimal places).
 	 * <p>
-	 * This method assumes that µ=0 and σ=1. 
+	 * This method assumes that µ=0 and σ=1.
 	 * <p>
-	 * Enter large absolute value z-scores for the bounds, for improper integral approximation. 
-	 * @param inputZLow , the low bound z-score. 
-	 * @param inputZHigh , the high bound z-score. 
-	 * @return the probability between <strong>inputZLow</strong> and <strong>inputZHigh</strong>. 
+	 * Enter large absolute value z-scores for the bounds, for improper integral
+	 * approximation.
+	 * 
+	 * @param inputZLow  , the low bound z-score.
+	 * @param inputZHigh , the high bound z-score.
+	 * @return the probability between <strong>inputZLow</strong> and
+	 *         <strong>inputZHigh</strong>.
 	 */
 	public static double computeZProbMidpointRiemann(double inputZLow, double inputZHigh) {
 
 		double sum = 0.0;
 
-		 double increment = (inputZHigh - inputZLow)/(Math.pow(10, 7));
-		//double increment = 1.0 / (Math.pow(10, 6));
+		double increment = (inputZHigh - inputZLow) / (Math.pow(10, 7));
+		// double increment = 1.0 / (Math.pow(10, 6));
 
 		for (double i = (inputZLow + (increment / 2)); i < inputZHigh; i += increment) {
 			sum += (computeNormalPDF(i) * increment);
@@ -528,14 +600,19 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the probability approximation between two z-scores for the probability density function (for normal distributions) using a trapezoidal Riemann sum. 
+	 * Returns the probability approximation between two z-scores for the
+	 * probability density function (for normal distributions) using a trapezoidal
+	 * Riemann sum.
 	 * <p>
-	 * This method assumes that µ=0 and σ=1. 
+	 * This method assumes that µ=0 and σ=1.
 	 * <p>
-	 * Enter large absolute value z-scores for the bounds, for improper integral approximation. 
-	 * @param inputZLow , the low bound z-score. 
-	 * @param inputZHigh , the high bound z-score. 
-	 * @return the probability between <strong>inputZLow</strong> and <strong>inputZHigh</strong>. 
+	 * Enter large absolute value z-scores for the bounds, for improper integral
+	 * approximation.
+	 * 
+	 * @param inputZLow  , the low bound z-score.
+	 * @param inputZHigh , the high bound z-score.
+	 * @return the probability between <strong>inputZLow</strong> and
+	 *         <strong>inputZHigh</strong>.
 	 */
 	public static double computeZProbTrapezoidRiemann(double inputZLow, double inputZHigh) {
 
@@ -553,14 +630,17 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the corresponding z-score with respect to the left area under the probability density function (for normal distributions). 
+	 * Returns the corresponding z-score with respect to the left area under the
+	 * probability density function (for normal distributions).
 	 * <p>
-	 * This method assumes that µ=0 and σ=1. 
+	 * This method assumes that µ=0 and σ=1.
 	 * <p>
-	 * Method is only an approximation, and does not return an exact value. 
-	 * @param input , the area under the probability density function (to the left of the desired z-score). 
-	 * @return the corresponding z-score to the <strong>input</strong> area. 
-	 */ 
+	 * Method is only an approximation, and does not return an exact value.
+	 * 
+	 * @param input , the area under the probability density function (to the left
+	 *              of the desired z-score).
+	 * @return the corresponding z-score to the <strong>input</strong> area.
+	 */
 	public static double computeInverseNormalApprox(double input) { // works, but highly inefficient
 		// with respect to probability to the left of input value
 
@@ -572,44 +652,52 @@ public final class VStats {
 
 			res = Math.tan((Math.PI / 0.1) * (input - 0.95));
 
-			return res; 
+			return res;
 
 		} else if ((input >= 0.01) && (input <= 0.99)) { // good
 
 			res = Math.tan((Math.PI / 1.34) * (input - 0.5));
 
-			return res; 
+			return res;
 
 		} else if ((input < 0) || (input > 1)) { // good
 			return (Double) null;
 		}
 
-		return (Double) null; 
+		return (Double) null;
 
 	}
 
 	/**
-	 * Returns an <code>int</code> which represents the number of possible permutations, when the inputs are the n-value and the r-value. 
-	 * @param n , the n-value in the form "nPr." 
-	 * @param r , the r-value in the form "nPr." 
-	 * @return the number of permutations possible, with respect to <strong>n</strong> and <strong>r</strong>. 
+	 * Returns an <code>int</code> which represents the number of possible
+	 * permutations, when the inputs are the n-value and the r-value.
+	 * 
+	 * @param n , the n-value in the form "nPr."
+	 * @param r , the r-value in the form "nPr."
+	 * @return the number of permutations possible, with respect to
+	 *         <strong>n</strong> and <strong>r</strong>.
 	 */
 	public static int computePermutations(int n, int r) {
 		return (computeFactorial(n)) / (computeFactorial(n - r));
 	}
 
 	/**
-	 * Returns the expected value of a discrete random variable, in a <code>double</code> format. 
-	 * @param inputDataArray , an array containing the possible outcomes of the random variable. 
-	 * @param probabilitiesArray , an array containing the probabilities of the respective possible outcomes of the random variable. 
-	 * @return the expected value (µX) of the random variable. 
+	 * Returns the expected value of a discrete random variable, in a
+	 * <code>double</code> format.
+	 * 
+	 * @param inputDataArray     , an array containing the possible outcomes of the
+	 *                           random variable.
+	 * @param probabilitiesArray , an array containing the probabilities of the
+	 *                           respective possible outcomes of the random
+	 *                           variable.
+	 * @return the expected value (µX) of the random variable.
 	 */
 	public static double computeDiscreteExpectedValue(double[] inputDataArray, double[] probabilitiesArray) {
 
 		double sum = 0.0;
 
 		for (int i = 0; i < inputDataArray.length; i++) {
-			sum += (inputDataArray[i] * probabilitiesArray[i]); 
+			sum += (inputDataArray[i] * probabilitiesArray[i]);
 		}
 
 		return sum;
@@ -617,10 +705,15 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the variance of a discrete random variable, in a <code>double</code> format. 
-	 * @param inputDataArray , an array containing the possible outcomes of the random variable. 
-	 * @param probabilitiesArray , an array containing the probabilities of the respective possible outcomes of the random variable. 
-	 * @return the variance (the square of σX) of the random variable. 
+	 * Returns the variance of a discrete random variable, in a <code>double</code>
+	 * format.
+	 * 
+	 * @param inputDataArray     , an array containing the possible outcomes of the
+	 *                           random variable.
+	 * @param probabilitiesArray , an array containing the probabilities of the
+	 *                           respective possible outcomes of the random
+	 *                           variable.
+	 * @return the variance (the square of σX) of the random variable.
 	 */
 	public static double computeDiscreteVariance(double[] inputDataArray, double[] probabilitiesArray) {
 
@@ -628,7 +721,7 @@ public final class VStats {
 		double meanOfX = computeDiscreteExpectedValue(inputDataArray, probabilitiesArray);
 
 		for (int i = 0; i < inputDataArray.length; i++) {
-			sum += (Math.pow(inputDataArray[i]-meanOfX, 2) * probabilitiesArray[i]); 
+			sum += (Math.pow(inputDataArray[i] - meanOfX, 2) * probabilitiesArray[i]);
 		}
 
 		return sum;
@@ -636,20 +729,27 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the standard deviation of a discrete random variable, in a <code>double</code> format. 
-	 * @param inputDataArray , an array containing the possible outcomes of the random variable. 
-	 * @param probabilitiesArray , an array containing the probabilities of the respective possible outcomes of the random variable. 
-	 * @return the standard deviation (σX) of the random variable. 
+	 * Returns the standard deviation of a discrete random variable, in a
+	 * <code>double</code> format.
+	 * 
+	 * @param inputDataArray     , an array containing the possible outcomes of the
+	 *                           random variable.
+	 * @param probabilitiesArray , an array containing the probabilities of the
+	 *                           respective possible outcomes of the random
+	 *                           variable.
+	 * @return the standard deviation (σX) of the random variable.
 	 */
 	public static double computeDiscreteStandardDeviation(double[] inputDataArray, double[] probabilitiesArray) {
 		return Math.sqrt(computeDiscreteVariance(inputDataArray, probabilitiesArray));
 	}
 
 	/**
-	 * Returns the sum of the elements of a row in a 2D array (0-based index), as a <code>double</code> format. 
-	 * @param inputData , a 2D array. 
-	 * @param row , the row of interest. 
-	 * @return the sum of the elements in <strong>row</strong>. 
+	 * Returns the sum of the elements of a row in a 2D array (0-based index), as a
+	 * <code>double</code> format.
+	 * 
+	 * @param inputData , a 2D array.
+	 * @param row       , the row of interest.
+	 * @return the sum of the elements in <strong>row</strong>.
 	 */
 	public static double computeRowSum(double[][] inputData, int row) {
 
@@ -664,10 +764,12 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the sum of the elements of a column in a 2D array (0-based index), as a <code>double</code> format. 
-	 * @param inputData , a 2D array. 
-	 * @param col , the column of interest. 
-	 * @return the sum of the elements in <strong>col</strong>. 
+	 * Returns the sum of the elements of a column in a 2D array (0-based index), as
+	 * a <code>double</code> format.
+	 * 
+	 * @param inputData , a 2D array.
+	 * @param col       , the column of interest.
+	 * @return the sum of the elements in <strong>col</strong>.
 	 */
 	public static double computeColumnSum(double[][] inputData, int col) {
 
@@ -682,10 +784,12 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the product of the elements of a row in a 2D array (0-based index), as a <code>double</code> format. 
-	 * @param inputData , a 2D array. 
-	 * @param row , the row of interest. 
-	 * @return the product of the elements in <strong>row</strong>. 
+	 * Returns the product of the elements of a row in a 2D array (0-based index),
+	 * as a <code>double</code> format.
+	 * 
+	 * @param inputData , a 2D array.
+	 * @param row       , the row of interest.
+	 * @return the product of the elements in <strong>row</strong>.
 	 */
 	public static double computeRowProduct(double[][] inputData, int row) {
 
@@ -699,10 +803,12 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the product of the elements of a column in a 2D array (0-based index), as a <code>double</code> format. 
-	 * @param inputData , a 2D array. 
-	 * @param col , the column of interest. 
-	 * @return the product of the elements in <strong>col</strong>. 
+	 * Returns the product of the elements of a column in a 2D array (0-based
+	 * index), as a <code>double</code> format.
+	 * 
+	 * @param inputData , a 2D array.
+	 * @param col       , the column of interest.
+	 * @return the product of the elements in <strong>col</strong>.
 	 */
 	public static double computeColumnProduct(double[][] inputData, int col) {
 
@@ -716,15 +822,18 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns a <code>double</code> 2D array containing the sum of the 2 parameter matrices (2D arrays). 
+	 * Returns a <code>double</code> 2D array containing the sum of the 2 parameter
+	 * matrices (2D arrays).
 	 * <p>
-	 * The matrices must have the same dimensions. 
-	 * @param arr1 , a 2D array. 
-	 * @param arr2 , another 2D array. 
-	 * @return the sum of <strong>arr1</strong> and <strong>arr2</strong>, in a 2D array. 
+	 * The matrices must have the same dimensions.
+	 * 
+	 * @param arr1 , a 2D array.
+	 * @param arr2 , another 2D array.
+	 * @return the sum of <strong>arr1</strong> and <strong>arr2</strong>, in a 2D
+	 *         array.
 	 */
-	public static double[][] computeMatrixAddition(double[][] arr1, double[][] arr2) { 
-		// matrix1 & matrix2 must have the same dimensions 
+	public static double[][] computeMatrixAddition(double[][] arr1, double[][] arr2) {
+		// matrix1 & matrix2 must have the same dimensions
 		double[][] res = new double[arr1.length][arr1[0].length];
 
 		for (int i = 0; i < res.length; i++) {
@@ -738,12 +847,15 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns a <code>double</code> 2D array containing the difference of the 2 parameter matrices (2D arrays). 
+	 * Returns a <code>double</code> 2D array containing the difference of the 2
+	 * parameter matrices (2D arrays).
 	 * <p>
-	 * The matrices must have the same dimensions. 
-	 * @param arr1 , a 2D array. 
-	 * @param arr2 , another 2D array. 
-	 * @return the difference of <strong>arr1</strong> and <strong>arr2</strong>, in a 2D array. 
+	 * The matrices must have the same dimensions.
+	 * 
+	 * @param arr1 , a 2D array.
+	 * @param arr2 , another 2D array.
+	 * @return the difference of <strong>arr1</strong> and <strong>arr2</strong>, in
+	 *         a 2D array.
 	 */
 	public static double[][] computeMatrixSubtraction(double[][] arr1, double[][] arr2) {
 
@@ -760,10 +872,12 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns a <code>double</code> 2D array containing the product of a matrix and a scalar. 
-	 * @param arr , a 2D array. 
-	 * @param scalar , the scalar. 
-	 * @return the product of <strong>arr</strong> and <strong>scalar</strong>. 
+	 * Returns a <code>double</code> 2D array containing the product of a matrix and
+	 * a scalar.
+	 * 
+	 * @param arr    , a 2D array.
+	 * @param scalar , the scalar.
+	 * @return the product of <strong>arr</strong> and <strong>scalar</strong>.
 	 */
 	public static double[][] computeMatrixMultiplicationByScalar(double[][] arr, double scalar) {
 
@@ -780,12 +894,18 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the standard error (Se) of the residuals, in a <code>double</code> format. 
+	 * Returns the standard error (Se) of the residuals, in a <code>double</code>
+	 * format.
 	 * <p>
-	 * This method uses linear regression to model the relationship between the 2 variables (least-squares regression line format: ŷ = a + bx). 
-	 * @param indVar , a <code>double</code> array containing the independent variable values. 
-	 * @param depVar , a <code>double</code> array containing the dependent variable values. 
-	 * @return Se with respect to <strong>indVar</strong> and <strong>depVar</strong>. 
+	 * This method uses linear regression to model the relationship between the 2
+	 * variables (least-squares regression line format: ŷ = a + bx).
+	 * 
+	 * @param indVar , a <code>double</code> array containing the independent
+	 *               variable values.
+	 * @param depVar , a <code>double</code> array containing the dependent variable
+	 *               values.
+	 * @return Se with respect to <strong>indVar</strong> and
+	 *         <strong>depVar</strong>.
 	 */
 	public static double computeSe(double[] indVar, double[] depVar) {
 
@@ -794,12 +914,17 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the sum of the residuals squared of the residuals, in a <code>double</code> format. 
+	 * Returns the sum of the residuals squared, in a <code>double</code> format.
 	 * <p>
-	 * This method uses linear regression to model the relationship between the 2 variables (least-squares regression line format: ŷ = a + bx). 
-	 * @param indVar , a <code>double</code> array containing the independent variable values. 
-	 * @param depVar , a <code>double</code> array containing the dependent variable values. 
-	 * @return sum of the residuals squared with respect to <strong>indVar</strong> and <strong>depVar</strong>. 
+	 * This method uses linear regression to model the relationship between the 2
+	 * variables (least-squares regression line format: ŷ = a + bx).
+	 * 
+	 * @param indVar , a <code>double</code> array containing the independent
+	 *               variable values.
+	 * @param depVar , a <code>double</code> array containing the dependent variable
+	 *               values.
+	 * @return sum of the residuals squared with respect to <strong>indVar</strong>
+	 *         and <strong>depVar</strong>.
 	 */
 	public static double computeSumOfResidualsSquared(double[] indVar, double[] depVar) {
 
@@ -816,19 +941,24 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns a <code>double</code> array containing the residual values. 
+	 * Returns a <code>double</code> array containing the residual values.
 	 * <p>
-	 * This method uses linear regression to model the relationship between the 2 variables (least-squares regression line format: ŷ = a + bx). 
-	 * @param indVar , a <code>double</code> array containing the independent variable values. 
-	 * @param depVar , a <code>double</code> array containing the dependent variable values. 
-	 * @return an array containing the residual values with respect to <strong>indVar</strong> and <strong>depVar</strong>. 
+	 * This method uses linear regression to model the relationship between the 2
+	 * variables (least-squares regression line format: ŷ = a + bx).
+	 * 
+	 * @param indVar , a <code>double</code> array containing the independent
+	 *               variable values.
+	 * @param depVar , a <code>double</code> array containing the dependent variable
+	 *               values.
+	 * @return an array containing the residual values with respect to
+	 *         <strong>indVar</strong> and <strong>depVar</strong>.
 	 */
 	public static double[] computeResidualValues(double[] indVar, double[] depVar) {
 
 		double[] res = new double[indVar.length];
 
 		for (int i = 0; i < res.length; i++) {
-			res[i] = (depVar[i] - computeLSRLOutput(indVar, depVar, indVar[i])); 
+			res[i] = (depVar[i] - computeLSRLOutput(indVar, depVar, indVar[i]));
 		}
 
 		return res;
@@ -836,19 +966,24 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns a <code>double</code> array containing the predicted y-values (ŷ). 
+	 * Returns a <code>double</code> array containing the predicted y-values (ŷ).
 	 * <p>
-	 * This method uses linear regression to model the relationship between the 2 variables (least-squares regression line format: ŷ = a + bx). 
-	 * @param indVar , a <code>double</code> array containing the independent variable values. 
-	 * @param depVar , a <code>double</code> array containing the dependent variable values. 
-	 * @return an array containing the predicted y-values with respect to <strong>indVar</strong> and <strong>depVar</strong>. 
+	 * This method uses linear regression to model the relationship between the 2
+	 * variables (least-squares regression line format: ŷ = a + bx).
+	 * 
+	 * @param indVar , a <code>double</code> array containing the independent
+	 *               variable values.
+	 * @param depVar , a <code>double</code> array containing the dependent variable
+	 *               values.
+	 * @return an array containing the predicted y-values with respect to
+	 *         <strong>indVar</strong> and <strong>depVar</strong>.
 	 */
 	public static double[] computeYPredictedValues(double[] indVar, double[] depVar) {
 
 		double[] res = new double[indVar.length];
 
 		for (int i = 0; i < res.length; i++) {
-			res[i] = computeLSRLOutput(indVar, depVar, indVar[i]); 
+			res[i] = computeLSRLOutput(indVar, depVar, indVar[i]);
 		}
 
 		return res;
@@ -856,13 +991,21 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns a <code>double</code> which represents the predicted y-value (ŷ) when an x-value is inputted into the least-squares regression line (LSRL). 
+	 * Returns a <code>double</code> which represents the predicted y-value (ŷ) when
+	 * an x-value is inputted into the least-squares regression line (LSRL).
 	 * <p>
-	 * This method uses linear regression to model the relationship between the 2 variables (least-squares regression line format: ŷ = a + bx). 
-	 * @param indVar , a <code>double</code> array containing the independent variable values. 
-	 * @param depVar , a <code>double</code> array containing the dependent variable values. 
-	 * @param input , a <code>double</code> which is the value to be inputted into the LSRL function. 
-	 * @return the predicted y-value when <strong>input</strong> is the input x-value to the LSRL function (with respect to <strong>indVar</strong> and <strong>depVar</strong>). 
+	 * This method uses linear regression to model the relationship between the 2
+	 * variables (least-squares regression line format: ŷ = a + bx).
+	 * 
+	 * @param indVar , a <code>double</code> array containing the independent
+	 *               variable values.
+	 * @param depVar , a <code>double</code> array containing the dependent variable
+	 *               values.
+	 * @param input  , a <code>double</code> which is the value to be inputted into
+	 *               the LSRL function.
+	 * @return the predicted y-value when <strong>input</strong> is the input
+	 *         x-value to the LSRL function (with respect to <strong>indVar</strong>
+	 *         and <strong>depVar</strong>).
 	 */
 	public static double computeLSRLOutput(double[] indVar, double[] depVar, double input) {
 
@@ -871,12 +1014,18 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the least-squares regression line (LSRL) equation, in a <code>String</code> format. 
+	 * Returns the least-squares regression line (LSRL) equation, in a
+	 * <code>String</code> format.
 	 * <p>
-	 * This method uses linear regression to model the relationship between the 2 variables (least-squares regression line format: ŷ = a + bx). 
-	 * @param indVar , a <code>double</code> array containing the independent variable values. 
-	 * @param depVar , a <code>double</code> array containing the dependent variable values. 
-	 * @return the LSRL equation with respect to <strong>indVar</strong> and <strong>depVar</strong>. 
+	 * This method uses linear regression to model the relationship between the 2
+	 * variables (least-squares regression line format: ŷ = a + bx).
+	 * 
+	 * @param indVar , a <code>double</code> array containing the independent
+	 *               variable values.
+	 * @param depVar , a <code>double</code> array containing the dependent variable
+	 *               values.
+	 * @return the LSRL equation with respect to <strong>indVar</strong> and
+	 *         <strong>depVar</strong>.
 	 */
 	public static String displayLSRLEquation(double[] indVar, double[] depVar) {
 
@@ -895,12 +1044,18 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the y-intercept of the least-squares regression line (LSRL) equation, in a <code>double</code> format. 
+	 * Returns the y-intercept of the least-squares regression line (LSRL) equation,
+	 * in a <code>double</code> format.
 	 * <p>
-	 * This method uses linear regression to model the relationship between the 2 variables (least-squares regression line format: ŷ = a + bx). 
-	 * @param indVar , a <code>double</code> array containing the independent variable values. 
-	 * @param depVar , a <code>double</code> array containing the dependent variable values. 
-	 * @return the y-intercept of the LSRL equation, with respect to <strong>indVar</strong> and <strong>depVar</strong>. 
+	 * This method uses linear regression to model the relationship between the 2
+	 * variables (least-squares regression line format: ŷ = a + bx).
+	 * 
+	 * @param indVar , a <code>double</code> array containing the independent
+	 *               variable values.
+	 * @param depVar , a <code>double</code> array containing the dependent variable
+	 *               values.
+	 * @return the y-intercept of the LSRL equation, with respect to
+	 *         <strong>indVar</strong> and <strong>depVar</strong>.
 	 */
 	public static double computeA(double[] indVar, double[] depVar) {
 
@@ -909,12 +1064,18 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the slope of the least-squares regression line (LSRL) equation, in a <code>double</code> format. 
+	 * Returns the slope of the least-squares regression line (LSRL) equation, in a
+	 * <code>double</code> format.
 	 * <p>
-	 * This method uses linear regression to model the relationship between the 2 variables (least-squares regression line format: ŷ = a + bx). 
-	 * @param indVar , a <code>double</code> array containing the independent variable values. 
-	 * @param depVar , a <code>double</code> array containing the dependent variable values. 
-	 * @return the slope of the LSRL equation, with respect to <strong>indVar</strong> and <strong>depVar</strong>. 
+	 * This method uses linear regression to model the relationship between the 2
+	 * variables (least-squares regression line format: ŷ = a + bx).
+	 * 
+	 * @param indVar , a <code>double</code> array containing the independent
+	 *               variable values.
+	 * @param depVar , a <code>double</code> array containing the dependent variable
+	 *               values.
+	 * @return the slope of the LSRL equation, with respect to
+	 *         <strong>indVar</strong> and <strong>depVar</strong>.
 	 */
 	public static double computeB(double[] indVar, double[] depVar) {
 
@@ -927,12 +1088,18 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the correlation coefficient (r-value) of the relationship between the independent and dependent variables, in a <code>double</code> format. 
+	 * Returns the correlation coefficient (r-value) of the relationship between the
+	 * independent and dependent variables, in a <code>double</code> format.
 	 * <p>
-	 * This method uses linear regression to model the relationship between the 2 variables (least-squares regression line format: ŷ = a + bx). 
-	 * @param indVar , a <code>double</code> array containing the independent variable values. 
-	 * @param depVar , a <code>double</code> array containing the dependent variable values. 
-	 * @return the r-value of the LSRL, with respect to <strong>indVar</strong> and <strong>depVar</strong>. 
+	 * This method uses linear regression to model the relationship between the 2
+	 * variables (least-squares regression line format: ŷ = a + bx).
+	 * 
+	 * @param indVar , a <code>double</code> array containing the independent
+	 *               variable values.
+	 * @param depVar , a <code>double</code> array containing the dependent variable
+	 *               values.
+	 * @return the r-value of the LSRL, with respect to <strong>indVar</strong> and
+	 *         <strong>depVar</strong>.
 	 */
 	public static double computeR(double[] indVar, double[] depVar) {
 
@@ -954,12 +1121,18 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the r^2-value of the relationship between the independent and dependent variables, in a <code>double</code> format. 
+	 * Returns the r^2-value of the relationship between the independent and
+	 * dependent variables, in a <code>double</code> format.
 	 * <p>
-	 * This method uses linear regression to model the relationship between the 2 variables (least-squares regression line format: ŷ = a + bx). 
-	 * @param indVar , a <code>double</code> array containing the independent variable values. 
-	 * @param depVar , a <code>double</code> array containing the dependent variable values. 
-	 * @return the r^2-value of the LSRL, with respect to <strong>indVar</strong> and <strong>depVar</strong>. 
+	 * This method uses linear regression to model the relationship between the 2
+	 * variables (least-squares regression line format: ŷ = a + bx).
+	 * 
+	 * @param indVar , a <code>double</code> array containing the independent
+	 *               variable values.
+	 * @param depVar , a <code>double</code> array containing the dependent variable
+	 *               values.
+	 * @return the r^2-value of the LSRL, with respect to <strong>indVar</strong>
+	 *         and <strong>depVar</strong>.
 	 */
 	public static double computeRSquared(double[] indVar, double[] depVar) {
 
@@ -968,11 +1141,15 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns a <code>double</code> which represents the z-star (z-critical) value when a confidence level is inputted. 
+	 * Returns a <code>double</code> which represents the z-star (z-critical) value
+	 * when a confidence level is inputted.
 	 * <p>
-	 * This method is only an approximation. 
-	 * @param inputConfidenceLevel , a <code>double</code> representing the input confidence level. 
-	 * @return the z-star value with respect to <strong>inputConfidenceLevel</strong>. 
+	 * This method is only an approximation.
+	 * 
+	 * @param inputConfidenceLevel , a <code>double</code> representing the input
+	 *                             confidence level.
+	 * @return the z-star value with respect to
+	 *         <strong>inputConfidenceLevel</strong>.
 	 */
 	public static double computeZStar(double inputConfidenceLevel) {
 
@@ -982,16 +1159,18 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns a <code>String</code> which represents the confidence interval for a single mean, making use of the z-distribution. 
+	 * Returns a <code>String</code> which represents the confidence interval for a
+	 * single mean, making use of the z-distribution.
 	 * <p>
-	 * This method assumes that µ=0 and σ=1. 
+	 * This method assumes that µ=0 and σ=1.
 	 * <p>
-	 * This method is only an approximation. 
-	 * @param mu , the mean of the sample. 
-	 * @param sigma , the standard deviation of the population. 
-	 * @param sampleSize , the size of the sample. 
-	 * @param confidenceLevel , the input confidence level. 
-	 * @return the confidence interval for a single mean. 
+	 * This method is only an approximation.
+	 * 
+	 * @param mu              , the mean of the sample.
+	 * @param sigma           , the standard deviation of the population.
+	 * @param sampleSize      , the size of the sample.
+	 * @param confidenceLevel , the input confidence level.
+	 * @return the confidence interval for a single mean.
 	 */
 	public static String computeOneMeanZConfInt(double mu, double sigma, int sampleSize, double confidenceLevel) {
 
@@ -1008,23 +1187,31 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the final decision (a <code>String</code>) of the significance test for a single mean, utilizing the z-distribution. 
+	 * Returns the final decision (a <code>String</code>) of the significance test
+	 * for a single mean, utilizing the z-distribution.
 	 * <p>
-	 * For this method: 
+	 * For this method:
 	 * <p>
 	 * <ul>
-	 * 	<li>the null hypothesis should state that the population mean is equal to a certain value. </li>
-	 * 		<ul>
-	 * 			<li>the alternate hypothesis should state that the population mean is greater than a certain value. </li></ul></ul>
-	 * The decision could be to either reject the null hypothesis or fail to reject the null hypothesis. 
-	 * @param mu , the population mean to be tested. 
-	 * @param sigma , the population standard deviation. 
-	 * @param sampleMean , the mean of the sample. 
-	 * @param sampleSize , the size of the sample. 
-	 * @param alpha , the significance level (α) of the test. 
-	 * @return the final decision of the significance test. 
+	 * <li>the null hypothesis should state that the population mean is equal to a
+	 * certain value.</li>
+	 * <ul>
+	 * <li>the alternate hypothesis should state that the population mean is greater
+	 * than a certain value.</li>
+	 * </ul>
+	 * </ul>
+	 * The decision could be to either reject the null hypothesis or fail to reject
+	 * the null hypothesis.
+	 * 
+	 * @param mu         , the population mean to be tested.
+	 * @param sigma      , the population standard deviation.
+	 * @param sampleMean , the mean of the sample.
+	 * @param sampleSize , the size of the sample.
+	 * @param alpha      , the significance level (α) of the test.
+	 * @return the final decision of the significance test.
 	 */
-	public static String computeOneMeanZTestHaGreaterThanValue(double mu, double sigma, double sampleMean, int sampleSize, double alpha) {
+	public static String computeOneMeanZTestHaGreaterThanValue(double mu, double sigma, double sampleMean,
+			int sampleSize, double alpha) {
 
 		double zCritical = (sampleMean - mu) / (sigma / (Math.sqrt(sampleSize)));
 
@@ -1033,7 +1220,8 @@ public final class VStats {
 		if (pValue < alpha) {
 			return "There is statistically significant evidence that Ha > H0... reject H0\np-value: " + pValue;
 		} else if (pValue > alpha) {
-			return "There is no statistically significant evidence that Ha > H0... fail to reject H0\np-value: " + pValue;
+			return "There is no statistically significant evidence that Ha > H0... fail to reject H0\np-value: "
+					+ pValue;
 		} else if (pValue == alpha) {
 			return "";
 		}
@@ -1043,23 +1231,31 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the final decision (a <code>String</code>) of the significance test for a single mean, utilizing the z-distribution. 
+	 * Returns the final decision (a <code>String</code>) of the significance test
+	 * for a single mean, utilizing the z-distribution.
 	 * <p>
-	 * For this method: 
+	 * For this method:
 	 * <p>
 	 * <ul>
-	 * 	<li>the null hypothesis should state that the population mean is equal to a certain value. </li>
-	 * 		<ul>
-	 * 			<li>the alternate hypothesis should state that the population mean is less than a certain value. </li></ul></ul>
-	 * The decision could be to either reject the null hypothesis or fail to reject the null hypothesis. 
-	 * @param mu , the population mean to be tested. 
-	 * @param sigma , the population standard deviation. 
-	 * @param sampleMean , the mean of the sample. 
-	 * @param sampleSize , the size of the sample. 
-	 * @param alpha , the significance level (α) of the test. 
-	 * @return the final decision of the significance test. 
+	 * <li>the null hypothesis should state that the population mean is equal to a
+	 * certain value.</li>
+	 * <ul>
+	 * <li>the alternate hypothesis should state that the population mean is less
+	 * than a certain value.</li>
+	 * </ul>
+	 * </ul>
+	 * The decision could be to either reject the null hypothesis or fail to reject
+	 * the null hypothesis.
+	 * 
+	 * @param mu         , the population mean to be tested.
+	 * @param sigma      , the population standard deviation.
+	 * @param sampleMean , the mean of the sample.
+	 * @param sampleSize , the size of the sample.
+	 * @param alpha      , the significance level (α) of the test.
+	 * @return the final decision of the significance test.
 	 */
-	public static String computeOneMeanZTestHaLessThanValue(double mu, double sigma, double sampleMean, int sampleSize, double alpha) {
+	public static String computeOneMeanZTestHaLessThanValue(double mu, double sigma, double sampleMean, int sampleSize,
+			double alpha) {
 
 		double zCritical = (sampleMean - mu) / (sigma / (Math.sqrt(sampleSize)));
 
@@ -1068,7 +1264,8 @@ public final class VStats {
 		if (pValue < alpha) {
 			return "There is statistically significant evidence that Ha < H0... reject H0\np-value: " + pValue;
 		} else if (pValue > alpha) {
-			return "There is no statistically significant evidence that Ha < H0... fail to reject H0\np-value: " + pValue;
+			return "There is no statistically significant evidence that Ha < H0... fail to reject H0\np-value: "
+					+ pValue;
 		} else if (pValue == alpha) {
 			return "";
 		}
@@ -1078,23 +1275,31 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the final decision (a <code>String</code>) of the significance test for a single mean, utilizing the z-distribution. 
+	 * Returns the final decision (a <code>String</code>) of the significance test
+	 * for a single mean, utilizing the z-distribution.
 	 * <p>
-	 * For this method: 
+	 * For this method:
 	 * <p>
 	 * <ul>
-	 * 	<li>the null hypothesis should state that the population mean is equal to a certain value. </li>
-	 * 		<ul>
-	 * 			<li>the alternate hypothesis should state that the population mean is not equal to a certain value. </li></ul></ul>
-	 * The decision could be to either reject the null hypothesis or fail to reject the null hypothesis. 
-	 * @param mu , the population mean to be tested. 
-	 * @param sigma , the population standard deviation. 
-	 * @param sampleMean , the mean of the sample. 
-	 * @param sampleSize , the size of the sample. 
-	 * @param alpha , the significance level (α) of the test. 
-	 * @return the final decision of the significance test. 
+	 * <li>the null hypothesis should state that the population mean is equal to a
+	 * certain value.</li>
+	 * <ul>
+	 * <li>the alternate hypothesis should state that the population mean is not
+	 * equal to a certain value.</li>
+	 * </ul>
+	 * </ul>
+	 * The decision could be to either reject the null hypothesis or fail to reject
+	 * the null hypothesis.
+	 * 
+	 * @param mu         , the population mean to be tested.
+	 * @param sigma      , the population standard deviation.
+	 * @param sampleMean , the mean of the sample.
+	 * @param sampleSize , the size of the sample.
+	 * @param alpha      , the significance level (α) of the test.
+	 * @return the final decision of the significance test.
 	 */
-	public static String computeOneMeanZTestHaNotEqualToValue(double mu, double sigma, double sampleMean, int sampleSize, double alpha) {
+	public static String computeOneMeanZTestHaNotEqualToValue(double mu, double sigma, double sampleMean,
+			int sampleSize, double alpha) {
 
 		double zCritical = (sampleMean - mu) / (sigma / (Math.sqrt(sampleSize)));
 
@@ -1103,7 +1308,8 @@ public final class VStats {
 		if (pValue < alpha) {
 			return "There is statistically significant evidence that Ha ≠ H0... reject H0\np-value: " + pValue;
 		} else if (pValue > alpha) {
-			return "There is no statistically significant evidence that Ha ≠ H0... fail to reject H0\np-value: " + pValue;
+			return "There is no statistically significant evidence that Ha ≠ H0... fail to reject H0\np-value: "
+					+ pValue;
 		} else if (pValue == alpha) {
 			return "";
 		}
@@ -1113,17 +1319,20 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns a <code>String</code> which represents the confidence interval for estimating a single population proportion. 
+	 * Returns a <code>String</code> which represents the confidence interval for
+	 * estimating a single population proportion.
 	 * <p>
-	 * This method is only an approximation. 
-	 * @param pHat , the sample proportion. 
-	 * @param sampleSize , the size of the sample. 
-	 * @param confidenceLevel , the confidence level needed. 
-	 * @return the confidence interval, where <strong>pHat</strong> is the center of the interval. 
+	 * This method is only an approximation.
+	 * 
+	 * @param pHat            , the sample proportion.
+	 * @param sampleSize      , the size of the sample.
+	 * @param confidenceLevel , the confidence level needed.
+	 * @return the confidence interval, where <strong>pHat</strong> is the center of
+	 *         the interval.
 	 */
 	public static String computeOnePropZConfInt(double pHat, int sampleSize, double confidenceLevel) {
 
-		double qHat = 1-pHat;
+		double qHat = 1 - pHat;
 		double zStar = computeZStar(confidenceLevel);
 		double standardError = Math.sqrt((pHat * qHat) / (sampleSize));
 		double low = pHat - (zStar * standardError);
@@ -1134,22 +1343,30 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the final decision (a <code>String</code>) of the significance test for a single proportion, utilizing the z-distribution. 
+	 * Returns the final decision (a <code>String</code>) of the significance test
+	 * for a single proportion, utilizing the z-distribution.
 	 * <p>
-	 * For this method: 
+	 * For this method:
 	 * <p>
 	 * <ul>
-	 * 	<li>the null hypothesis should state that the population proportion is equal to a certain value. </li>
-	 * 		<ul>
-	 * 			<li>the alternate hypothesis should state that the population proportion is less than a certain value. </li></ul></ul>
-	 * The decision could be to either reject the null hypothesis or fail to reject the null hypothesis. 
-	 * @param pHat , the sample proportion. 
-	 * @param pNought , the population proportion to be tested. 
-	 * @param sampleSize , the size of the sample. 
-	 * @param alpha , the significance level (α) of the test. 
-	 * @return the final decision of the significance test. 
+	 * <li>the null hypothesis should state that the population proportion is equal
+	 * to a certain value.</li>
+	 * <ul>
+	 * <li>the alternate hypothesis should state that the population proportion is
+	 * less than a certain value.</li>
+	 * </ul>
+	 * </ul>
+	 * The decision could be to either reject the null hypothesis or fail to reject
+	 * the null hypothesis.
+	 * 
+	 * @param pHat       , the sample proportion.
+	 * @param pNought    , the population proportion to be tested.
+	 * @param sampleSize , the size of the sample.
+	 * @param alpha      , the significance level (α) of the test.
+	 * @return the final decision of the significance test.
 	 */
-	public static String computeOnePropZTestP0LessThanValue(double pHat, double pNought, double sampleSize, double alpha) {
+	public static String computeOnePropZTestP0LessThanValue(double pHat, double pNought, double sampleSize,
+			double alpha) {
 
 		double qNought = 1 - pNought;
 
@@ -1158,9 +1375,11 @@ public final class VStats {
 		double pValue = computeZProbMidpointRiemann(-1000.0, zCritical);
 
 		if (pValue < alpha) {
-			return "There is statistically significant evidence that the true P0 < given P0 - reject H0\np-value: " + pValue;
+			return "There is statistically significant evidence that the true P0 < given P0 - reject H0\np-value: "
+					+ pValue;
 		} else if (pValue > alpha) {
-			return "There is no statistically significant evidence that the true P0 < given P0 - fail to reject H0\np-value: " + pValue;
+			return "There is no statistically significant evidence that the true P0 < given P0 - fail to reject H0\np-value: "
+					+ pValue;
 		} else { // pValue equals alpha
 			return "";
 		}
@@ -1168,22 +1387,30 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the final decision (a <code>String</code>) of the significance test for a single proportion, utilizing the z-distribution. 
+	 * Returns the final decision (a <code>String</code>) of the significance test
+	 * for a single proportion, utilizing the z-distribution.
 	 * <p>
-	 * For this method: 
+	 * For this method:
 	 * <p>
 	 * <ul>
-	 * 	<li>the null hypothesis should state that the population proportion is equal to a certain value. </li>
-	 * 		<ul>
-	 * 			<li>the alternate hypothesis should state that the population proportion is greater than a certain value. </li></ul></ul>
-	 * The decision could be to either reject the null hypothesis or fail to reject the null hypothesis. 
-	 * @param pHat , the sample proportion. 
-	 * @param pNought , the population proportion to be tested. 
-	 * @param sampleSize , the size of the sample. 
-	 * @param alpha , the significance level (α) of the test. 
-	 * @return the final decision of the significance test. 
+	 * <li>the null hypothesis should state that the population proportion is equal
+	 * to a certain value.</li>
+	 * <ul>
+	 * <li>the alternate hypothesis should state that the population proportion is
+	 * greater than a certain value.</li>
+	 * </ul>
+	 * </ul>
+	 * The decision could be to either reject the null hypothesis or fail to reject
+	 * the null hypothesis.
+	 * 
+	 * @param pHat       , the sample proportion.
+	 * @param pNought    , the population proportion to be tested.
+	 * @param sampleSize , the size of the sample.
+	 * @param alpha      , the significance level (α) of the test.
+	 * @return the final decision of the significance test.
 	 */
-	public static String computeOnePropZTestP0GreaterThanValue(double pHat, double pNought, double sampleSize, double alpha) {
+	public static String computeOnePropZTestP0GreaterThanValue(double pHat, double pNought, double sampleSize,
+			double alpha) {
 
 		double qNought = 1 - pNought;
 
@@ -1192,9 +1419,11 @@ public final class VStats {
 		double pValue = computeZProbMidpointRiemann(zCritical, 1000.0);
 
 		if (pValue < alpha) {
-			return "There is statistically significant evidence that the true P0 > given P0 - reject H0\np-value: " + pValue;
+			return "There is statistically significant evidence that the true P0 > given P0 - reject H0\np-value: "
+					+ pValue;
 		} else if (pValue > alpha) {
-			return "There is no statistically significant evidence that the true P0 > given P0 - fail to reject H0\np-value: " + pValue;
+			return "There is no statistically significant evidence that the true P0 > given P0 - fail to reject H0\np-value: "
+					+ pValue;
 		} else { // pValue equals alpha
 			return "";
 		}
@@ -1202,22 +1431,30 @@ public final class VStats {
 	}
 
 	/**
-	 * Returns the final decision (a <code>String</code>) of the significance test for a single proportion, utilizing the z-distribution. 
+	 * Returns the final decision (a <code>String</code>) of the significance test
+	 * for a single proportion, utilizing the z-distribution.
 	 * <p>
-	 * For this method: 
+	 * For this method:
 	 * <p>
 	 * <ul>
-	 * 	<li>the null hypothesis should state that the population proportion is equal to a certain value. </li>
-	 * 		<ul>
-	 * 			<li>the alternate hypothesis should state that the population proportion is not equal to a certain value. </li></ul></ul>
-	 * The decision could be to either reject the null hypothesis or fail to reject the null hypothesis. 
-	 * @param pHat , the sample proportion. 
-	 * @param pNought , the population proportion to be tested. 
-	 * @param sampleSize , the size of the sample. 
-	 * @param alpha , the significance level (α) of the test. 
-	 * @return the final decision of the significance test. 
+	 * <li>the null hypothesis should state that the population proportion is equal
+	 * to a certain value.</li>
+	 * <ul>
+	 * <li>the alternate hypothesis should state that the population proportion is
+	 * not equal to a certain value.</li>
+	 * </ul>
+	 * </ul>
+	 * The decision could be to either reject the null hypothesis or fail to reject
+	 * the null hypothesis.
+	 * 
+	 * @param pHat       , the sample proportion.
+	 * @param pNought    , the population proportion to be tested.
+	 * @param sampleSize , the size of the sample.
+	 * @param alpha      , the significance level (α) of the test.
+	 * @return the final decision of the significance test.
 	 */
-	public static String computeOnePropZTestP0NotEqualToValue(double pHat, double pNought, double sampleSize, double alpha) {
+	public static String computeOnePropZTestP0NotEqualToValue(double pHat, double pNought, double sampleSize,
+			double alpha) {
 
 		double qNought = 1 - pNought;
 
@@ -1226,120 +1463,161 @@ public final class VStats {
 		double pValue = computeZProbMidpointRiemann((Math.abs(zCritical)), 1000.0) * 2.0;
 
 		if (pValue < alpha) {
-			return "There is statistically significant evidence that the true P0 ≠ the given P0 - reject H0\np-value: " + pValue;
+			return "There is statistically significant evidence that the true P0 ≠ the given P0 - reject H0\np-value: "
+					+ pValue;
 		} else if (pValue > alpha) {
-			return "There is no statistically significant evidence that the true P0 ≠ the given P0 - fail to reject H0\np-value: " + pValue;
+			return "There is no statistically significant evidence that the true P0 ≠ the given P0 - fail to reject H0\np-value: "
+					+ pValue;
 		} else { // pValue equals alpha
 			return "";
 		}
 	}
 
 	/**
-	 * Returns the final decision (a <code>String</code>) of the significance test for 2 proportions, utilizing the z-distribution. 
+	 * Returns the final decision (a <code>String</code>) of the significance test
+	 * for 2 proportions, utilizing the z-distribution.
 	 * <p>
-	 * For this method: 
+	 * For this method:
 	 * <p>
 	 * <ul>
-	 * 	<li>the null hypothesis should state that the population proportions are equal to each other. </li>
-	 * 		<ul>
-	 * 			<li>the alternate hypothesis should state that one population proportion (p1) is less than the other population proportion (p2). </li></ul></ul>
-	 * The decision could be to either reject the null hypothesis or fail to reject the null hypothesis. 
-	 * @param successes1 , the number of successes in the sample, with respect to p1. 
-	 * @param sampleSize1 , the size of the sample, with respect to p1. 
-	 * @param successes2 , the number of successes in the sample, with respect to p2. 
-	 * @param sampleSize2 , the size of the sample, with respect to p2. 
-	 * @param alpha , the significance level (α) of the test. 
-	 * @return the final decision of the significance test. 
+	 * <li>the null hypothesis should state that the population proportions are
+	 * equal to each other.</li>
+	 * <ul>
+	 * <li>the alternate hypothesis should state that one population proportion (p1)
+	 * is less than the other population proportion (p2).</li>
+	 * </ul>
+	 * </ul>
+	 * The decision could be to either reject the null hypothesis or fail to reject
+	 * the null hypothesis.
+	 * 
+	 * @param successes1  , the number of successes in the sample, with respect to
+	 *                    p1.
+	 * @param sampleSize1 , the size of the sample, with respect to p1.
+	 * @param successes2  , the number of successes in the sample, with respect to
+	 *                    p2.
+	 * @param sampleSize2 , the size of the sample, with respect to p2.
+	 * @param alpha       , the significance level (α) of the test.
+	 * @return the final decision of the significance test.
 	 */
-	public static String computeTwoPropZTestP1LessThanP2(int successes1, int sampleSize1, int successes2, int sampleSize2, double alpha) {
-		double pHat1 = (successes1 * 1.0 / sampleSize1 * 1.0); 
-		double pHat2 = (successes2 * 1.0 / sampleSize2 * 1.0); 
-		double pHatPooled = ((successes1*1.0+successes2*1.0) / (sampleSize1*1.0+sampleSize2*1.0)) * 1.0; 
-		double qHatPooled = 1-pHatPooled; 
+	public static String computeTwoPropZTestP1LessThanP2(int successes1, int sampleSize1, int successes2,
+			int sampleSize2, double alpha) {
+		double pHat1 = (successes1 * 1.0 / sampleSize1 * 1.0);
+		double pHat2 = (successes2 * 1.0 / sampleSize2 * 1.0);
+		double pHatPooled = ((successes1 * 1.0 + successes2 * 1.0) / (sampleSize1 * 1.0 + sampleSize2 * 1.0)) * 1.0;
+		double qHatPooled = 1 - pHatPooled;
 
-		double z = (pHat1-pHat2) / (Math.sqrt(((pHatPooled * qHatPooled) / sampleSize1 * 1.0) + ((pHatPooled * qHatPooled) / sampleSize2 * 1.0))); 
+		double z = (pHat1 - pHat2) / (Math.sqrt(
+				((pHatPooled * qHatPooled) / sampleSize1 * 1.0) + ((pHatPooled * qHatPooled) / sampleSize2 * 1.0)));
 
-		double methodPValue = computeZProbMidpointRiemann(Math.abs(z), 1000.0); 
+		double methodPValue = computeZProbMidpointRiemann(Math.abs(z), 1000.0);
 
 		if (methodPValue < alpha) {
-			return "There is statistically significant evidence that the true P1 < P2 - reject H0\np-value: " + methodPValue;
+			return "There is statistically significant evidence that the true P1 < P2 - reject H0\np-value: "
+					+ methodPValue;
 		} else if (methodPValue > alpha) {
-			return "There is no statistically significant evidence that the true P1 < P2 - fail to reject H0\np-value: " + methodPValue;
+			return "There is no statistically significant evidence that the true P1 < P2 - fail to reject H0\np-value: "
+					+ methodPValue;
 		} else { // pvalue equals alpha
-			return ""; 
-		}	
+			return "";
+		}
 	}
 
 	/**
-	 * Returns the final decision (a <code>String</code>) of the significance test for 2 proportions, utilizing the z-distribution. 
+	 * Returns the final decision (a <code>String</code>) of the significance test
+	 * for 2 proportions, utilizing the z-distribution.
 	 * <p>
-	 * For this method: 
+	 * For this method:
 	 * <p>
 	 * <ul>
-	 * 	<li>the null hypothesis should state that the population proportions are equal to each other. </li>
-	 * 		<ul>
-	 * 			<li>the alternate hypothesis should state that one population proportion (p1) is greater than the other population proportion (p2). </li></ul></ul>
-	 * The decision could be to either reject the null hypothesis or fail to reject the null hypothesis. 
-	 * @param successes1 , the number of successes in the sample, with respect to p1. 
-	 * @param sampleSize1 , the size of the sample, with respect to p1. 
-	 * @param successes2 , the number of successes in the sample, with respect to p2. 
-	 * @param sampleSize2 , the size of the sample, with respect to p2. 
-	 * @param alpha , the significance level (α) of the test. 
-	 * @return the final decision of the significance test. 
-	 */ 
-	public static String computeTwoPropZTestP1GreaterThanP2(int successes1, int sampleSize1, int successes2, int sampleSize2, double alpha) {
-		double pHat1 = (successes1*1.0 / sampleSize1 * 1.0); 
-		double pHat2 = (successes2*1.0 / sampleSize2 * 1.0); 
-		double pHatPooled = ((successes1*1.0+successes2*1.0) / (sampleSize1*1.0+sampleSize2*1.0)); 
-		double qHatPooled = 1-pHatPooled; 
+	 * <li>the null hypothesis should state that the population proportions are
+	 * equal to each other.</li>
+	 * <ul>
+	 * <li>the alternate hypothesis should state that one population proportion (p1)
+	 * is greater than the other population proportion (p2).</li>
+	 * </ul>
+	 * </ul>
+	 * The decision could be to either reject the null hypothesis or fail to reject
+	 * the null hypothesis.
+	 * 
+	 * @param successes1  , the number of successes in the sample, with respect to
+	 *                    p1.
+	 * @param sampleSize1 , the size of the sample, with respect to p1.
+	 * @param successes2  , the number of successes in the sample, with respect to
+	 *                    p2.
+	 * @param sampleSize2 , the size of the sample, with respect to p2.
+	 * @param alpha       , the significance level (α) of the test.
+	 * @return the final decision of the significance test.
+	 */
+	public static String computeTwoPropZTestP1GreaterThanP2(int successes1, int sampleSize1, int successes2,
+			int sampleSize2, double alpha) {
+		double pHat1 = (successes1 * 1.0 / sampleSize1 * 1.0);
+		double pHat2 = (successes2 * 1.0 / sampleSize2 * 1.0);
+		double pHatPooled = ((successes1 * 1.0 + successes2 * 1.0) / (sampleSize1 * 1.0 + sampleSize2 * 1.0));
+		double qHatPooled = 1 - pHatPooled;
 
-		double z = (pHat1-pHat2) / (Math.sqrt(((pHatPooled * qHatPooled) / sampleSize1 * 1.0) + ((pHatPooled * qHatPooled) / sampleSize2 * 1.0))); 
+		double z = (pHat1 - pHat2) / (Math.sqrt(
+				((pHatPooled * qHatPooled) / sampleSize1 * 1.0) + ((pHatPooled * qHatPooled) / sampleSize2 * 1.0)));
 
-		double methodPValue = computeZProbMidpointRiemann(-1000.0, Math.abs(z)); 
+		double methodPValue = computeZProbMidpointRiemann(-1000.0, Math.abs(z));
 
 		if (methodPValue < alpha) {
-			return "There is statistically significant evidence that the true P1 > P2 - reject H0\np-value: " + methodPValue;
+			return "There is statistically significant evidence that the true P1 > P2 - reject H0\np-value: "
+					+ methodPValue;
 		} else if (methodPValue > alpha) {
-			return "There is no statistically significant evidence that the true P1 > P2 - fail to reject H0\np-value: " + methodPValue;
+			return "There is no statistically significant evidence that the true P1 > P2 - fail to reject H0\np-value: "
+					+ methodPValue;
 		} else { // pvalue equals alpha
-			return ""; 
-		}	
+			return "";
+		}
 	}
 
 	/**
-	 * Returns the final decision (a <code>String</code>) of the significance test for 2 proportions, utilizing the z-distribution. 
+	 * Returns the final decision (a <code>String</code>) of the significance test
+	 * for 2 proportions, utilizing the z-distribution.
 	 * <p>
-	 * For this method: 
+	 * For this method:
 	 * <p>
 	 * <ul>
-	 * 	<li>the null hypothesis should state that the population proportions are equal to each other. </li>
-	 * 		<ul>
-	 * 			<li>the alternate hypothesis should state that one population proportion (p1) is not equal to the other population proportion (p2). </li></ul></ul>
-	 * The decision could be to either reject the null hypothesis or fail to reject the null hypothesis. 
-	 * @param successes1 , the number of successes in the sample, with respect to p1. 
-	 * @param sampleSize1 , the size of the sample, with respect to p1. 
-	 * @param successes2 , the number of successes in the sample, with respect to p2. 
-	 * @param sampleSize2 , the size of the sample, with respect to p2. 
-	 * @param alpha , the significance level (α) of the test. 
-	 * @return the final decision of the significance test. 
-	 */ 
-	public static String computeTwoPropZTestP1NotEqualToP2(int successes1, int sampleSize1, int successes2, int sampleSize2, double alpha) {
-		double pHat1 = (successes1*1.0 / sampleSize1 * 1.0); 
-		double pHat2 = (successes2*1.0 / sampleSize2 * 1.0); 
-		double pHatPooled = ((successes1*1.0+successes2*1.0) / (sampleSize1*1.0+sampleSize2*1.0)); 
-		double qHatPooled = 1-pHatPooled; 
+	 * <li>the null hypothesis should state that the population proportions are
+	 * equal to each other.</li>
+	 * <ul>
+	 * <li>the alternate hypothesis should state that one population proportion (p1)
+	 * is not equal to the other population proportion (p2).</li>
+	 * </ul>
+	 * </ul>
+	 * The decision could be to either reject the null hypothesis or fail to reject
+	 * the null hypothesis.
+	 * 
+	 * @param successes1  , the number of successes in the sample, with respect to
+	 *                    p1.
+	 * @param sampleSize1 , the size of the sample, with respect to p1.
+	 * @param successes2  , the number of successes in the sample, with respect to
+	 *                    p2.
+	 * @param sampleSize2 , the size of the sample, with respect to p2.
+	 * @param alpha       , the significance level (α) of the test.
+	 * @return the final decision of the significance test.
+	 */
+	public static String computeTwoPropZTestP1NotEqualToP2(int successes1, int sampleSize1, int successes2,
+			int sampleSize2, double alpha) {
+		double pHat1 = (successes1 * 1.0 / sampleSize1 * 1.0);
+		double pHat2 = (successes2 * 1.0 / sampleSize2 * 1.0);
+		double pHatPooled = ((successes1 * 1.0 + successes2 * 1.0) / (sampleSize1 * 1.0 + sampleSize2 * 1.0));
+		double qHatPooled = 1 - pHatPooled;
 
-		double z = (pHat1-pHat2) / (Math.sqrt(((pHatPooled * qHatPooled) / sampleSize1 * 1.0) + ((pHatPooled * qHatPooled) / sampleSize2 * 1.0))); 
+		double z = (pHat1 - pHat2) / (Math.sqrt(
+				((pHatPooled * qHatPooled) / sampleSize1 * 1.0) + ((pHatPooled * qHatPooled) / sampleSize2 * 1.0)));
 
-		double methodPValue = 2.0 * computeZProbMidpointRiemann(Math.abs(z), 1000.0); 
+		double methodPValue = 2.0 * computeZProbMidpointRiemann(Math.abs(z), 1000.0);
 
 		if (methodPValue < alpha) {
-			return "There is statistically significant evidence that the true P1 ≠ P2 - reject H0\np-value: " + methodPValue;
+			return "There is statistically significant evidence that the true P1 ≠ P2 - reject H0\np-value: "
+					+ methodPValue;
 		} else if (methodPValue > alpha) {
-			return "There is no statistically significant evidence that the true P1 ≠ P2 - fail to reject H0\np-value: " + methodPValue;
+			return "There is no statistically significant evidence that the true P1 ≠ P2 - fail to reject H0\np-value: "
+					+ methodPValue;
 		} else { // pvalue equals alpha
-			return ""; 
-		}	
+			return "";
+		}
 	}
 
 }

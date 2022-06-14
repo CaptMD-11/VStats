@@ -13,7 +13,7 @@ The VStats library is condensed into a JAR file, which can be located in this pr
 Since I use the VS Code IDE, I will provide instructions here on how to import the JAR file into a Java project opened in VS Code. 
 
 1. Download the ZIP of the entire project or clone the repository onto your computer. 
-2. Locate the JAR file in the project (VStats/VStats-master/src/build/VStats.jar if you downloaded or VStats/VStats/src/build/VStats.jar if you cloned the repository). 
+2. Locate the JAR file in the project (<samp>VStats/VStats-master/src/build/VStats.jar</samp> if you downloaded or <samp>VStats/VStats/src/build/VStats.jar</samp> if you cloned the repository). 
 3. Open a Java project in VS Code and click on a <samp>.java</samp> file. Towards the bottom of the File Explorer window, you should see a dropdown menu called <samp>Java Projects</samp>. 
 4. Click on the <samp>Java Projects</samp> menu and locate the <samp>Referenced Libraries</samp> folder. 
 5. Click on the "+" icon and add the VStats.jar file from the file path from Step #2. 
@@ -22,7 +22,7 @@ Since I use the VS Code IDE, I will provide instructions here on how to import t
 
 ## How does the user input data? 
 
-It's actually quite simple. All the methods in VStats are <samp>static</samp>, so they can be called without creating VStats objects. The input data to any method should be the parameter. This works similar to the Java Math library. Also, documentation is provided for all the methods in the library so that users can learn about what each invidual method actually does. The documentation was written using JavaDoc, in order for users to view the method description in a mini window, as shown in the screenshot below. 
+It's actually quite simple. All the methods in VStats are <samp>static</samp>, so they can be called without creating VStats objects. The input data to any method should be the parameter. This works similar to the Java Math library. Also, documentation is provided for all the methods in the library so that users can learn about what each invidual method actually does. The documentation was written using JavaDoc, in order for users to view the method description in a mini window, as shown in the screenshot below. This type of documentation is only visible when the <samp>VStats.java</samp> file is in the same folder as your source code. A documentation web page is currently being created. 
 
 <p align="center">
   <img src="VStats/images/javadocmethodtestss.png" width="570">

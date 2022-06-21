@@ -19,6 +19,8 @@ Since I use the VS Code IDE, I will provide instructions here on how to import t
 5. Click on the "+" icon and add the VStats.jar file from the file path from Step #2. 
 6. Done! 
 
+Instructions on how to install & import VStats into Java projects are available <a target="_blank" href="https://captmd-11.github.io/blog/statscalculator/importingvstatsintoprojects.html">here</a>. 
+
 
 ## How does the user input data? 
 

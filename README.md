@@ -10,15 +10,6 @@ The VStats library is condensed into a JAR file, which can be located in this pr
 
 ## Importing into Projects 
 
-Since I use the VS Code IDE, I will provide instructions here on how to import the JAR file into a Java project opened in VS Code. 
-
-1. Download the ZIP of the entire project or clone the repository onto your computer. 
-2. Locate the JAR file in the project (<samp>VStats/VStats-master/src/build/VStats.jar</samp> if you downloaded or <samp>VStats/VStats/src/build/VStats.jar</samp> if you cloned the repository). 
-3. Open a Java project in VS Code and click on a <samp>.java</samp> file. Towards the bottom of the File Explorer window, you should see a dropdown menu called <samp>Java Projects</samp>. 
-4. Click on the <samp>Java Projects</samp> menu and locate the <samp>Referenced Libraries</samp> folder. 
-5. Click on the "+" icon and add the VStats.jar file from the file path from Step #2. 
-6. Done! 
-
 Instructions on how to install & import VStats into Java projects are available <a target="_blank" href="https://captmd-11.github.io/blog/statscalculator/importingvstatsintoprojects.html">here</a>. 
 
 
@@ -29,6 +20,10 @@ It's actually quite simple. All the methods in VStats are <samp>static</samp>, s
 <p align="center">
   <img src="VStats/images/javadocmethodtestss.png" width="570">
 </p>
+
+## Documentation 
+
+Documentation for VStats is available <a target="_blank" href="https://captmd-11.github.io/blog/statscalculator/documentation.html">here</a>. 
 
 ## Version History
 

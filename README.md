@@ -1,7 +1,7 @@
 # VStats
 
 <p align="center">
-  <img src="VStats/images/vstatslogo.png" width="570">
+  <img src="VStatsJava/images/vstatslogo.png" width="570">
 </p>
 
 This is the VStats Java library that computes statistics. The functionalities available include one-variable statistics, binomial & geometric distributions, matrix operations, linear regression computations, confidence intervals, significance tests, etc. 
@@ -26,7 +26,7 @@ It's actually quite simple. All the methods in VStats are <samp>static</samp>, s
 <b><i>If you choose to clone VStats to your computer</i></b>, documentation is provided for all the methods in the library so that users can learn about what each invidual method actually does. This type of  documentation was written using JavaDoc, in order for users to view the method description in a mini window, as shown in the screenshot below. This is only visible when the <samp>VStats.java</samp> file is in the same folder as your source code. 
 
 <p align="center">
-  <img src="VStats/images/javadocmethodtestss.png" width="570">
+  <img src="VStatsJava/images/javadocmethodtestss.png" width="570">
 </p>
 
 <b><i>If not</i></b>, documentation for VStats is available <a target="_blank" href="https://captmd-11.github.io/blog/statscalculator/documentation.html">here</a>. 

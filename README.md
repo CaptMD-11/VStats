@@ -8,7 +8,7 @@ This is the VStats Java library that computes statistics. The functionalities av
 
 The VStats library is condensed into a JAR file, which can be located in this project. That way, users can import VStats into their Java projects. 
 
-<center><a href="https://captmd-11.github.io/blog/statscalculator/" target="_blank">Download VStats here</a></center>
+<center><a href="https://captmd-11.github.io/blog/statscalculator/" target="_blank">Download VStats JAR</a></center>
 
 ## Importing into Projects 
 

@@ -1,19 +1,7 @@
 This is a txt file that lists the completed tested methods in the VStats class (still need to check documentation): 
 
 ALL METHODS TESTED 
-
-- computeMode
-- computeSumValues
-- computeIQR
-- computeOutliers
-- computeFactorial 
-- computeCombination 
-- computeBinomialPdfProb
-- computeBinomialCdfProb
-- computeGeometricPdfProb
-- computeGeometricCdfProb
-- computeNormalPDF
-- computeZProbLeftRiemann
+ 
 - computeZProbRightRiemann
 - computeZProbAvgLeftRightRiemann
 - computeZProbMidpointRiemann

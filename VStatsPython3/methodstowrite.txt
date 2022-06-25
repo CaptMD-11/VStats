@@ -1,17 +1,5 @@
-This is a txt file that lists the completed tested methods in the VStats class (still need to check documentation): 
+These are the methods left to write in Python3:  
 
-ALL METHODS TESTED 
- 
-- computeZProbRightRiemann
-- computeZProbAvgLeftRightRiemann
-- computeZProbMidpointRiemann
-- computeZProbTrapezoidRiemann
-- computeInverseNormalApprox
-- computePermutations
-- computeDiscreteExpectedValue
-- computeDiscreteVariance
-- computeDiscreteStandardDeviation
-- computeRowSum
 - computeColumnSum
 - computeRowProduct
 - computeColumnProduct

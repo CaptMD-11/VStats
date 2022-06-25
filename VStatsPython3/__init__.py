@@ -314,3 +314,156 @@ def compute_row_sum(input_data, row):
     for i in range(len(input_data[0])):
         sum += input_data[row][i]
     return sum
+
+
+def compute_column_sum(input_data, col):
+    sum = 0
+    for i in range(len(input_data)):
+        sum += input_data[i][col]
+    return sum
+
+
+def compute_row_product(input_data, row):
+    product = 1
+    for i in range(len(input_data[0])):
+        product *= input_data[row][i]
+    return product
+
+
+def compute_column_product(input_data, col):
+    product = 1
+    for i in range(len(input_data)):
+        product *= input_data[i][col]
+    return product
+
+
+def compute_matrix_addition(arr1, arr2):
+    res = [len(arr1)][len(arr1[0])]
+    for i in range(len(arr1)):
+        for j in range(len(arr1[i])):
+            res[i][j] = arr1[i][j] + arr2[i][j]
+    return res
+
+
+def compute_matrix_subtraction(arr1, arr2):
+    res = [len(arr1)][len(arr1[0])]
+    for i in range(len(arr1)):
+        for j in range(len(arr1[i])):
+            res[i][j] = arr1[i][j] - arr2[i][j]
+    return res
+
+
+def compute_matrix_multiplication_by_scalar(arr, scalar):
+    res = [len(arr)][len(arr[0])]
+    for i in range(len(arr)):
+        for j in range(len(arr[i])):
+            res[i][j] = scalar * arr[i][j]
+    return res
+
+
+def compute_Se(ind_var, dep_var):
+    return sqrt(compute_sum_of_residuals_squared(ind_var, dep_var) / (len(dep_var)-2))
+
+
+def compute_sum_of_residuals_squared(ind_var, dep_var):
+    sum = 0
+    temp = compute_residual_values(ind_var, dep_var)
+
+    for i in range(len(temp)):
+        sum += (temp[i] ** 2)
+
+    return sum
+
+
+def compute_residual_values(ind_var, dep_var):
+    res = [len(ind_var)]
+    for i in range(len(res)):
+        res[i] = (dep_var[i] - compute_LSRL_output(ind_var, dep_var, ind_var[i]))
+    return res
+
+
+def compute_Y_predicted_values(ind_var, dep_var):
+    res = [len(ind_var)]
+    for i in range(len(res)):
+        res[i] = compute_LSRL_output(ind_var, dep_var, ind_var[i])
+    return res
+
+
+def compute_LSRL_output(ind_var, dep_var, input):
+    return compute_A(ind_var, dep_var) + (compute_B(ind_var, dep_var) * input)
+
+
+def display_LSRL_equation(ind_var, dep_var):
+    res = "ŷ = " + compute_A(ind_var, dep_var) + " + " + \
+        compute_B(ind_var, dep_var) + "x"
+
+    if compute_B(ind_var, dep_var) < 0:
+        res = "ŷ = " + compute_A(ind_var, dep_var) + \
+            " - " + (-1 * compute_B(ind_var, dep_var)) + "x"
+    elif compute_B(ind_var, dep_var) >= 0:
+        res = "ŷ = " + compute_A(ind_var, dep_var) + \
+            " + " + compute_B(ind_var, dep_var) + "x"
+
+    return res
+
+
+def compute_A(ind_var, dep_var):
+    return (compute_mean(dep_var) - compute_B(ind_var, dep_var) * compute_mean(ind_var))
+
+
+def compute_B(ind_var, dep_var):
+    r = compute_R(ind_var, dep_var)
+    b = r * (compute_standard_deviation(dep_var) /
+             compute_standard_deviation(ind_var))
+    return b
+
+
+def compute_R(ind_var, dep_var):
+    sum_of_products = 0
+
+    arr1_bar = compute_mean(ind_var)
+    arr1_sigma = compute_standard_deviation(ind_var)
+
+    arr2_bar = compute_mean(dep_var)
+    arr2_sigma = compute_standard_deviation(dep_var)
+
+    for i in range(len(ind_var)):
+        sum_of_products += ((ind_var[i] - arr1_bar) / arr1_sigma) * \
+            ((dep_var[i] - arr2_bar) / arr2_sigma)
+
+    return sum_of_products / (len(ind_var)-1)
+
+
+def compute_R_squared(ind_var, dep_var):
+    return (compute_R(ind_var, dep_var) ** 2)
+
+
+def compute_z_star(input_confidence_level):
+    inv_norm_input = input_confidence_level + \
+        ((1-input_confidence_level) / (2))
+    return compute_inverse_normal_approx(inv_norm_input)
+
+
+def compute_one_mean_z_conf_int(mu, sigma, sample_size, confidence_level):
+
+    low_bound = mu - (compute_z_star(confidence_level)
+                      * (sigma / sqrt(sample_size)))
+
+    high_bound = mu + (compute_z_star(confidence_level)
+                       * (sigma / sqrt(sample_size)))
+
+    return "(" + low_bound + ", " + high_bound + ")"
+
+
+def compute_one_mean_z_test_Ha_greater_than_value(mu, sigma, sample_mean, sample_size, alpha):
+
+    z_critical = (sample_mean - mu) / (sigma / sqrt(sample_size))
+
+    p_value = compute_z_prob_midpoint_riemann(z_critical, 1000.0)
+
+    if p_value < alpha:
+        return "There is statistically significant evidence that Ha > H0... reject H0 - p-value: " + p_value
+    elif p_value > alpha:
+        return "There is no statistically significant evidence that Ha > H0... fail to reject H0 - p-value: " + p_value
+    else:
+        return ""

@@ -467,3 +467,141 @@ def compute_one_mean_z_test_Ha_greater_than_value(mu, sigma, sample_mean, sample
         return "There is no statistically significant evidence that Ha > H0... fail to reject H0 - p-value: " + p_value
     else:
         return ""
+
+
+def compute_one_mean_z_test_Ha_less_than_value(mu, sigma, sample_mean, sample_size, alpha):
+
+    z_critical = (sample_mean - mu) / (sigma / sqrt(sample_size))
+
+    p_value = compute_z_prob_midpoint_riemann(-1000.0, z_critical)
+
+    if p_value < alpha:
+        return "There is statistically significant evidence that Ha < H0... reject H0 - p-value: " + p_value
+    elif p_value > alpha:
+        return "There is no statistically significant evidence that Ha < H0... fail to reject H0 - p-value: " + p_value
+    else:
+        return ""
+
+
+def compute_one_mean_z_test_Ha_not_equal_to_value(mu, sigma, sample_mean, sample_size, alpha):
+
+    z_critical = (sample_mean - mu) / (sigma / sqrt(sample_size))
+
+    p_value = 2.0 * compute_z_prob_midpoint_riemann(abs(z_critical), 1000.0)
+
+    if p_value < alpha:
+        return "There is statistically significant evidence that Ha ≠ H0... reject H0 - p-value: " + p_value
+    elif p_value > alpha:
+        return "There is no statistically significant evidence that Ha ≠ H0... fail to reject H0 - p-value: " + p_value
+    else:
+        return ""
+
+
+def compute_one_prop_z_conf_int(p_hat, sample_size, confidence_level):
+    q_hat = 1-p_hat
+    z_star = compute_z_star(confidence_level)
+    standard_error = sqrt((p_hat * q_hat) / sample_size)
+
+    low = p_hat - (z_star * standard_error)
+    high = p_hat + (z_star * standard_error)
+
+    return "(" + low + ", " + high + ")"
+
+
+def compute_one_prop_z_test_P0_less_than_value(p_hat, p_nought, sample_size, alpha):
+    q_nought = 1-p_nought
+    z_critical = (p_hat-p_nought) / (sqrt((p_nought*q_nought) / sample_size))
+    p_value = compute_z_prob_midpoint_riemann(-1000.0, z_critical)
+
+    if p_value < alpha:
+        return "There is statistically significant evidence that the true P0 < given P0... reject H0 - p-value: " + p_value
+    elif p_value > alpha:
+        return "There is no statistically significant evidence that the true P0 < given P0... fail to reject H0 - p-value: " + p_value
+    else:
+        return ""
+
+
+def compute_one_prop_z_test_P0_greater_than_value(p_hat, p_nought, sample_size, alpha):
+    q_nought = 1-p_nought
+    z_critical = (p_hat-p_nought) / (sqrt((p_nought * q_nought) / sample_size))
+    p_value = compute_z_prob_midpoint_riemann(z_critical, 1000.0)
+
+    if p_value < alpha:
+        return "There is statistically significant evidence that the true P0 > given P0... reject H0 - p-value: " + p_value
+    elif p_value > alpha:
+        return "There is no statistically significant evidence that the true P0 > given P0... fail to reject H0 - p-value: " + p_value
+    else:
+        return ""
+
+
+def compute_one_prop_z_test_P0_not_equal_to_value(p_hat, p_nought, sample_size, alpha):
+    q_nought = 1-p_nought
+    z_critical = (p_hat-p_nought) / (sqrt((p_nought * q_nought) / sample_size))
+    p_value = compute_z_prob_midpoint_riemann(z_critical, 1000.0) * 2.0
+
+    if p_value < alpha:
+        return "There is statistically significant evidence that the true P0 ≠ given P0... reject H0 - p-value: " + p_value
+    elif p_value > alpha:
+        return "There is no statistically significant evidence that the true P0 ≠ given P0... fail to reject H0 - p-value: " + p_value
+    else:
+        return ""
+
+
+def compute_two_prop_z_test_P1_less_than_P2(successes1, sample_size1, successes2, sample_size2, alpha):
+    p_hat1 = successes1 / sample_size1
+    p_hat2 = successes2 / sample_size2
+
+    p_hat_pooled = (successes1+successes2) / (sample_size1+sample_size2)
+    q_hat_pooled = 1-p_hat_pooled
+
+    z = (p_hat1-p_hat2) / sqrt(((p_hat_pooled*q_hat_pooled) /
+                                sample_size1) + ((p_hat_pooled*q_hat_pooled) / sample_size2))
+
+    method_p_value = compute_z_prob_midpoint_riemann(abs(z), 1000.0)
+
+    if method_p_value < alpha:
+        return "There is statistically significant evidence that the true P1 < P2... reject H0 - p-value: " + method_p_value
+    elif method_p_value > alpha:
+        return "There is no statistically significant evidence that the true P1 < P2... fail to reject H0 - p-value: " + method_p_value
+    else:
+        return ""
+
+
+def compute_two_prop_z_test_P1_greater_than_P2(successes1, sample_size1, successes2, sample_size2, alpha):
+    p_hat1 = successes1 / sample_size1
+    p_hat2 = successes2 / sample_size2
+
+    p_hat_pooled = (successes1+successes2) / (sample_size1+sample_size2)
+    q_hat_pooled = 1-p_hat_pooled
+
+    z = (p_hat1-p_hat2) / sqrt(((p_hat_pooled*q_hat_pooled) /
+                                sample_size1) + ((p_hat_pooled*q_hat_pooled) / sample_size2))
+
+    method_p_value = compute_z_prob_midpoint_riemann(-1000.0, abs(z))
+
+    if method_p_value < alpha:
+        return "There is statistically significant evidence that the true P1 > P2... reject H0 - p-value: " + method_p_value
+    elif method_p_value > alpha:
+        return "There is no statistically significant evidence that the true P1 > P2... fail to reject H0 - p-value: " + method_p_value
+    else:
+        return ""
+
+
+def compute_two_prop_z_test_P1_not_equal_to_P2(successes1, sample_size1, successes2, sample_size2, alpha):
+    p_hat1 = successes1 / sample_size1
+    p_hat2 = successes2 / sample_size2
+
+    p_hat_pooled = (successes1+successes2) / (sample_size1+sample_size2)
+    q_hat_pooled = 1-p_hat_pooled
+
+    z = (p_hat1-p_hat2) / sqrt(((p_hat_pooled*q_hat_pooled) /
+                                sample_size1) + ((p_hat_pooled*q_hat_pooled) / sample_size2))
+
+    method_p_value = compute_z_prob_midpoint_riemann(abs(z), 1000.0) * 2.0
+
+    if method_p_value < alpha:
+        return "There is statistically significant evidence that the true P1 ≠ P2... reject H0 - p-value: " + method_p_value
+    elif method_p_value > alpha:
+        return "There is no statistically significant evidence that the true P1 ≠ P2... fail to reject H0 - p-value: " + method_p_value
+    else:
+        return ""

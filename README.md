@@ -39,7 +39,12 @@ It's actually quite simple. All the methods in VStats are <samp>static</samp>, s
 
 ## Version History
 
-- v1.0 - RELEASE. 
+### V1.1
+- fixed code for computing the test statistic value & p-value for the significance tests. 
+- replaced multi-line <samp>String</samp> output with a single line <samp>String</samp> output for the significance tests (with respect to the p-values on the second line). 
+
+### V1.0
+- RELEASE
 
 ## License 
 

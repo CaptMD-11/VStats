@@ -72,7 +72,7 @@ def compute_variance(input_data):
 
 
 def compute_standard_deviation(input_data):
-    return sqrt(compute_variance(input_data))
+    return math.sqrt(compute_variance(input_data))
 
 
 def compute_quartile1(input_data):
@@ -216,7 +216,7 @@ def compute_geometric_cdf_prob(p_success, input_low_bound, input_high_bound):
 
 
 def compute_normal_PDF(input_z):
-    constant = 1 / sqrt(2 * math.pi)
+    constant = 1 / math.sqrt(2 * math.pi)
     exponent = (input_z ** 2) / -2
     return constant * (math.e ** exponent)
 
@@ -306,7 +306,7 @@ def compute_discrete_variance(input_data_array, probabilities_array):
 
 
 def compute_discrete_standard_deviation(input_data_array, probabilities_array):
-    return sqrt(compute_discrete_variance(input_data_array, probabilities_array))
+    return math.sqrt(compute_discrete_variance(input_data_array, probabilities_array))
 
 
 def compute_row_sum(input_data, row):
@@ -362,7 +362,7 @@ def compute_matrix_multiplication_by_scalar(arr, scalar):
 
 
 def compute_Se(ind_var, dep_var):
-    return sqrt(compute_sum_of_residuals_squared(ind_var, dep_var) / (len(dep_var)-2))
+    return math.sqrt(compute_sum_of_residuals_squared(ind_var, dep_var) / (len(dep_var)-2))
 
 
 def compute_sum_of_residuals_squared(ind_var, dep_var):
@@ -447,17 +447,17 @@ def compute_z_star(input_confidence_level):
 def compute_one_mean_z_conf_int(mu, sigma, sample_size, confidence_level):
 
     low_bound = mu - (compute_z_star(confidence_level)
-                      * (sigma / sqrt(sample_size)))
+                      * (sigma / math.sqrt(sample_size)))
 
     high_bound = mu + (compute_z_star(confidence_level)
-                       * (sigma / sqrt(sample_size)))
+                       * (sigma / math.sqrt(sample_size)))
 
     return "(" + low_bound + ", " + high_bound + ")"
 
 
 def compute_one_mean_z_test_Ha_greater_than_value(mu, sigma, sample_mean, sample_size, alpha):
 
-    z_critical = (sample_mean - mu) / (sigma / sqrt(sample_size))
+    z_critical = (sample_mean - mu) / (sigma / math.sqrt(sample_size))
 
     p_value = compute_z_prob_midpoint_riemann(z_critical, 1000.0)
 
@@ -471,7 +471,7 @@ def compute_one_mean_z_test_Ha_greater_than_value(mu, sigma, sample_mean, sample
 
 def compute_one_mean_z_test_Ha_less_than_value(mu, sigma, sample_mean, sample_size, alpha):
 
-    z_critical = (sample_mean - mu) / (sigma / sqrt(sample_size))
+    z_critical = (sample_mean - mu) / (sigma / math.sqrt(sample_size))
 
     p_value = compute_z_prob_midpoint_riemann(-1000.0, z_critical)
 
@@ -485,7 +485,7 @@ def compute_one_mean_z_test_Ha_less_than_value(mu, sigma, sample_mean, sample_si
 
 def compute_one_mean_z_test_Ha_not_equal_to_value(mu, sigma, sample_mean, sample_size, alpha):
 
-    z_critical = (sample_mean - mu) / (sigma / sqrt(sample_size))
+    z_critical = (sample_mean - mu) / (sigma / math.sqrt(sample_size))
 
     p_value = 2.0 * compute_z_prob_midpoint_riemann(abs(z_critical), 1000.0)
 
@@ -500,7 +500,7 @@ def compute_one_mean_z_test_Ha_not_equal_to_value(mu, sigma, sample_mean, sample
 def compute_one_prop_z_conf_int(p_hat, sample_size, confidence_level):
     q_hat = 1-p_hat
     z_star = compute_z_star(confidence_level)
-    standard_error = sqrt((p_hat * q_hat) / sample_size)
+    standard_error = math.sqrt((p_hat * q_hat) / sample_size)
 
     low = p_hat - (z_star * standard_error)
     high = p_hat + (z_star * standard_error)
@@ -510,7 +510,8 @@ def compute_one_prop_z_conf_int(p_hat, sample_size, confidence_level):
 
 def compute_one_prop_z_test_P0_less_than_value(p_hat, p_nought, sample_size, alpha):
     q_nought = 1-p_nought
-    z_critical = (p_hat-p_nought) / (sqrt((p_nought*q_nought) / sample_size))
+    z_critical = (p_hat-p_nought) / \
+        (math.sqrt((p_nought*q_nought) / sample_size))
     p_value = compute_z_prob_midpoint_riemann(-1000.0, z_critical)
 
     if p_value < alpha:
@@ -523,7 +524,8 @@ def compute_one_prop_z_test_P0_less_than_value(p_hat, p_nought, sample_size, alp
 
 def compute_one_prop_z_test_P0_greater_than_value(p_hat, p_nought, sample_size, alpha):
     q_nought = 1-p_nought
-    z_critical = (p_hat-p_nought) / (sqrt((p_nought * q_nought) / sample_size))
+    z_critical = (p_hat-p_nought) / \
+        (math.sqrt((p_nought * q_nought) / sample_size))
     p_value = compute_z_prob_midpoint_riemann(z_critical, 1000.0)
 
     if p_value < alpha:
@@ -536,8 +538,9 @@ def compute_one_prop_z_test_P0_greater_than_value(p_hat, p_nought, sample_size, 
 
 def compute_one_prop_z_test_P0_not_equal_to_value(p_hat, p_nought, sample_size, alpha):
     q_nought = 1-p_nought
-    z_critical = (p_hat-p_nought) / (sqrt((p_nought * q_nought) / sample_size))
-    p_value = compute_z_prob_midpoint_riemann(z_critical, 1000.0) * 2.0
+    z_critical = (p_hat-p_nought) / \
+        (math.sqrt((p_nought * q_nought) / sample_size))
+    p_value = compute_z_prob_midpoint_riemann(abs(z_critical), 1000.0) * 2.0
 
     if p_value < alpha:
         return "There is statistically significant evidence that the true P0 ≠ given P0... reject H0 - p-value: " + p_value
@@ -554,10 +557,10 @@ def compute_two_prop_z_test_P1_less_than_P2(successes1, sample_size1, successes2
     p_hat_pooled = (successes1+successes2) / (sample_size1+sample_size2)
     q_hat_pooled = 1-p_hat_pooled
 
-    z = (p_hat1-p_hat2) / sqrt(((p_hat_pooled*q_hat_pooled) /
-                                sample_size1) + ((p_hat_pooled*q_hat_pooled) / sample_size2))
+    z = (p_hat1-p_hat2) / math.sqrt(((p_hat_pooled*q_hat_pooled) /
+                                     sample_size1) + ((p_hat_pooled*q_hat_pooled) / sample_size2))
 
-    method_p_value = compute_z_prob_midpoint_riemann(abs(z), 1000.0)
+    method_p_value = compute_z_prob_midpoint_riemann(-1000.0, z)
 
     if method_p_value < alpha:
         return "There is statistically significant evidence that the true P1 < P2... reject H0 - p-value: " + method_p_value
@@ -574,10 +577,10 @@ def compute_two_prop_z_test_P1_greater_than_P2(successes1, sample_size1, success
     p_hat_pooled = (successes1+successes2) / (sample_size1+sample_size2)
     q_hat_pooled = 1-p_hat_pooled
 
-    z = (p_hat1-p_hat2) / sqrt(((p_hat_pooled*q_hat_pooled) /
-                                sample_size1) + ((p_hat_pooled*q_hat_pooled) / sample_size2))
+    z = (p_hat1-p_hat2) / math.sqrt(((p_hat_pooled*q_hat_pooled) /
+                                     sample_size1) + ((p_hat_pooled*q_hat_pooled) / sample_size2))
 
-    method_p_value = compute_z_prob_midpoint_riemann(-1000.0, abs(z))
+    method_p_value = compute_z_prob_midpoint_riemann(abs(z), 1000.0)
 
     if method_p_value < alpha:
         return "There is statistically significant evidence that the true P1 > P2... reject H0 - p-value: " + method_p_value
@@ -594,8 +597,8 @@ def compute_two_prop_z_test_P1_not_equal_to_P2(successes1, sample_size1, success
     p_hat_pooled = (successes1+successes2) / (sample_size1+sample_size2)
     q_hat_pooled = 1-p_hat_pooled
 
-    z = (p_hat1-p_hat2) / sqrt(((p_hat_pooled*q_hat_pooled) /
-                                sample_size1) + ((p_hat_pooled*q_hat_pooled) / sample_size2))
+    z = (p_hat1-p_hat2) / math.sqrt(((p_hat_pooled*q_hat_pooled) /
+                                     sample_size1) + ((p_hat_pooled*q_hat_pooled) / sample_size2))
 
     method_p_value = compute_z_prob_midpoint_riemann(abs(z), 1000.0) * 2.0
 

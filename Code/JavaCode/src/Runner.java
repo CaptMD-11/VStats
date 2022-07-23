@@ -4,14 +4,13 @@ import java.util.ArrayList;
 public class Runner {
     public static void main(String[] args) {
 
-        File file = new File("collegeadmissions.csv");
+        // File file = new File("menu.csv");
 
         CSVParser obj = new CSVParser();
-        ArrayList<String> res = obj.changeLastToNull();
 
-        for (int i = 0; i < res.size(); i++) {
-            System.out.println(res.get(i));
-        }
+        // System.out.println(obj.getNumRows());
+
+        System.out.println(obj.getColumnOfStrings(3));
 
     }
 }

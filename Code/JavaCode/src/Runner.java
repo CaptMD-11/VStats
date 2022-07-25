@@ -10,7 +10,9 @@ public class Runner {
 
         // System.out.println(obj.getNumRows());
 
-        System.out.println(obj.getColumnOfStrings(3));
+        // System.out.println(obj.getNumCols());
+
+        System.out.println(obj.getColumn(23));
 
     }
 }

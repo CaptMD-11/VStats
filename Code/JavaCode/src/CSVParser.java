@@ -49,7 +49,7 @@ public class CSVParser {
     }
 
     // 0-based index logic
-    public ArrayList<String> getColumnOfStrings(int col) {
+    private ArrayList<String> getColumnOfStrings(int col) {
 
         ArrayList<String> res = new ArrayList<String>();
 
@@ -77,7 +77,7 @@ public class CSVParser {
     }
 
     // 0-based index logic
-    public ArrayList<Double> getColumnOfNumbers(int col) {
+    private ArrayList<Double> getColumnOfNumbers(int col) {
 
         ArrayList<Double> res = new ArrayList<Double>();
 
@@ -102,6 +102,43 @@ public class CSVParser {
         }
 
         return res;
+
+    }
+
+    // 0-based index
+    public ArrayList getColumn(int col) {
+
+        ArrayList res;
+
+        try {
+            Scanner scanner = new Scanner(file);
+            String line = scanner.nextLine();
+            line = scanner.nextLine();
+
+            String temp = "";
+            String numChars = "+-.1234567890";
+
+            if (col == 0)
+                temp = line.substring(0, line.indexOf(","));
+            else if (col == getNumCols() - 1)
+                temp = line.substring(line.lastIndexOf(",") + 1);
+            else
+                temp = line.substring(getNthIndexOf(line, col, ",") + 1, getNthIndexOf(line, col + 1, ","));
+
+            for (int i = 0; i < temp.length(); i++) {
+                if (numChars.indexOf(temp.substring(i, i + 1)) == -1) {
+                    res = new ArrayList<String>();
+                    return getColumnOfStrings(col);
+                }
+            }
+
+            return getColumnOfNumbers(col);
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        return getColumnOfNumbers(col);
 
     }
 

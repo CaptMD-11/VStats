@@ -6,7 +6,7 @@ public class Runner {
 
         // System.out.println(CSVParser.getNumCols("music_genre.csv"));
 
-        System.out.println(CSVParser.getColumn("menu.csv", 16));
+        System.out.println(VCSV.getColumn("menu.csv", 16));
 
     }
 }

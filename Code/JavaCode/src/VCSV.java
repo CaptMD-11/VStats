@@ -2,9 +2,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class CSVParser {
+public class VCSV {
 
-    private CSVParser() {
+    private VCSV() {
 
     }
 

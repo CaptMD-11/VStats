@@ -110,7 +110,7 @@ public class VCSV {
     }
 
     // 0-based index
-    public static ArrayList getColumn(String fileName, int col) {
+    public static Object[] getColumn(String fileName, int col) {
 
         File file = new File(fileName);
         ArrayList res;
@@ -134,17 +134,31 @@ public class VCSV {
             for (int i = 0; i < temp.length(); i++) {
                 if (numChars.indexOf(temp.substring(i, i + 1)) == -1) {
                     res = new ArrayList<String>();
-                    return getColumnOfStrings(fileName, col);
+                    ArrayList<String> tempStrArr = getColumnOfStrings(fileName, col);
+                    String[] strOutput = new String[tempStrArr.size()];
+                    for (int j = 0; j < strOutput.length; j++) {
+                        strOutput[j] = tempStrArr.get(j);
+                    }
+                    return strOutput;
                 }
             }
-
-            return getColumnOfNumbers(fileName, col);
+            ArrayList<Double> tempDoubleArr1 = getColumnOfNumbers(fileName, col);
+            Double[] numberOutput1 = new Double[tempDoubleArr1.size()];
+            for (int i = 0; i < numberOutput1.length; i++) {
+                numberOutput1[i] = tempDoubleArr1.get(i);
+            }
+            return numberOutput1;
 
         } catch (Exception e) {
             System.out.println(e);
         }
 
-        return getColumnOfNumbers(fileName, col);
+        ArrayList<Double> tempDoubleArr2 = getColumnOfNumbers(fileName, col);
+        Double[] numberOutput2 = new Double[tempDoubleArr2.size()];
+        for (int i = 0; i < numberOutput2.length; i++) {
+            numberOutput2[i] = tempDoubleArr2.get(i);
+        }
+        return numberOutput2;
 
     }
 

@@ -10,6 +10,8 @@ public class Runner {
 
         // System.out.println(VStats.computeMean(VCSV.getColumn("menu.csv", 16)));
 
-        System.out.println(VStats.computeMean(VCSV.getColumn("menu.csv", 16)));
+        // System.out.println(VStats.computeMean(VCSV.getColumn("menu.csv", 16)));
+
+        System.out.println(VStats.computeMean(VCSV.getColumnOfNumbers("menu.csv", 16)));
     }
 }

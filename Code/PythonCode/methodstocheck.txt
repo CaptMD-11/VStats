@@ -1,0 +1,39 @@
+This is a txt file that lists the completed tested methods in the VStats class (still need to check documentation): 
+
+- computeQuartile1
+- computeQuartile3
+
+- computeInverseNormalApprox
+- computePermutations
+- computeDiscreteExpectedValue
+- computeDiscreteVariance
+- computeDiscreteStandardDeviation
+- computeRowSum
+- computeColumnSum
+- computeRowProduct
+- computeColumnProduct
+- computeMatrixAddition
+- computeMatrixSubtraction
+- computeMatrixMultiplicationByScalar
+- computeSe
+- computeSumOfResidualsSquared 
+- computeResidualValues
+- computeYPredictedValues
+- computeLSRLOutput
+- displayLSRLEquation
+- computeA
+- computeB
+- computeR
+- computeRSquared
+- computeZStar
+- computeOneMeanZConfInt
+- computeZMeansTestHaGreaterThanValue
+- computeZMeansTestHaLessThanValue
+- computeZMeansTestHaNotEqualToValue
+- computeOnePropZConfInt
+- computeOnePropZTestP0LessThanValue
+- computeOnePropZTestP0GreaterThanValue
+- computeOnePropZTestP0NotEqualToValue
+- computeTwoPropZTestP1LessThanP2
+- computeTwoPropZTestP1GreaterThanP2
+- computeTwoPropZTestP1NotEqualToP2

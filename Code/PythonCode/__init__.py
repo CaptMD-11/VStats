@@ -1,5 +1,6 @@
 from contextlib import nullcontext
 import math
+import numpy as np
 
 
 def compute_mean(input_data):
@@ -35,7 +36,7 @@ def compute_median(input_data):
     input_data = sort_HELPER(input_data)
     temp = 0
 
-    if input_data % 2 != 0:
+    if len(input_data) % 2 != 0:
         temp = input_data[middleIndex]
     else:
         temp = (input_data[middleIndex-1] + input_data[middleIndex]) / 2.0
@@ -66,7 +67,7 @@ def compute_range(input_data):
 def compute_variance(input_data):
     sum_diff = 0
     mean = compute_mean(input_data)
-    for x in range(input_data):
+    for x in input_data:
         sum_diff += ((x - mean) ** 2)
     return sum_diff / (len(input_data)-1)
 
@@ -94,13 +95,14 @@ def compute_quartile1(input_data):
         quartile1 = input_data[count/2]
 
     if (len(input_data) % 2 != 0) and (count % 2 != 0):
-        quartile1 = (input_data[count/2] + input_data[(count/2) + 1]) / 2
+        quartile1 = (input_data[(count/2)] +
+                     input_data[((count/2)) + 1]) / 2
 
     return quartile1
 
 
 def compute_quartile3(input_data):
-    middle_index = len(input_data) / 2
+    middle_index = (int)(len(input_data) / 2)
     array_even_counter = 0
     array_odd_counter = 0
     quartile3 = 0
@@ -113,8 +115,8 @@ def compute_quartile3(input_data):
         quartile3 = input_data[middle_index + ((array_even_counter / 2) + 1)]
 
     if (len(input_data) % 2 != 0) and (array_even_counter % 2 == 0):
-        quartile3 = (input_data[middle_index + (array_even_counter/2)] +
-                     input_data[middle_index + (array_even_counter/2) + 1]) / 2
+        quartile3 = (input_data[middle_index + (int)(array_even_counter/2)] +
+                     input_data[middle_index + (int)(array_even_counter/2) + 1]) / 2
 
     for x in range(middle_index, len(input_data)):
         array_odd_counter = array_odd_counter + 1
@@ -134,12 +136,12 @@ def compute_mode(input_data):
     mode = 0
 
     for x in range(len(input_data)):
-        mode_finder[x] = 1
+        mode_finder.append(1)
 
     for i in range(len(input_data)):
-        for j in range(input_data):
+        for j in range(len(input_data)):
             if input_data[i] == input_data[j]:
-                mode_finder = mode_finder + 1
+                mode_finder[i] = mode_finder[i] + 1
 
     c_max_temp = mode_finder[0]
 
@@ -183,7 +185,7 @@ def compute_outliers(input_data):
 
 
 def compute_factorial(input_val):
-    if input_val > 2:
+    if input_val < 2:
         return 1
     else:
         return input_val * compute_factorial(input_val - 1)
@@ -225,7 +227,7 @@ def compute_z_prob_left_riemann(input_z_low, input_z_high):
     sum = 0
     increment = 1 / (10 ** 7)
 
-    for i in range(input_z_low, input_z_high, increment):
+    for i in np.arange(input_z_low, input_z_high, increment):
         sum += compute_normal_PDF(i) * increment
 
     return sum
@@ -235,7 +237,7 @@ def compute_z_prob_right_riemann(input_z_low, input_z_high):
     sum = 0
     increment = 1 / (10 ** 7)
 
-    for i in range(input_z_low+increment, input_z_high, increment):
+    for i in np.arange(input_z_low+increment, input_z_high, increment):
         sum += compute_normal_PDF(i) * increment
 
     return sum
@@ -249,7 +251,7 @@ def compute_z_prob_midpoint_riemann(input_z_low, input_z_high):
     sum = 0
     increment = (input_z_high - input_z_low) / (10 ** 7)
 
-    for i in range(input_z_low + (increment/2), input_z_high, increment):
+    for i in np.arange(input_z_low + (increment/2), input_z_high, increment):
         sum += compute_normal_PDF(i) * increment
 
     return sum
@@ -259,7 +261,7 @@ def compute_z_prob_trapezoid_riemann(input_z_low, input_z_high):
     sum = 0
     increment = 1 / (10 ** 7)
 
-    for i in range(input_z_low, input_z_high, increment):
+    for i in np.arange(input_z_low, input_z_high, increment):
         sum += 0.5 * (compute_normal_PDF(i) +
                       compute_normal_PDF(i + increment)) * increment
 

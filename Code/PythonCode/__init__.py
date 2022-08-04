@@ -5,8 +5,8 @@ import numpy as np
 
 def compute_mean(input_data):
     sum = 0
-    for x in input_data:
-        sum += x
+    for x in range(len(input_data)):
+        sum = (sum + input_data[x])
     return sum / len(input_data)
 
 
@@ -302,7 +302,8 @@ def compute_discrete_variance(input_data_array, probabilities_array):
         input_data_array, probabilities_array)
 
     for i in range(len(input_data_array)):
-        sum += (input_data_array[i] ** 2) * probabilities_array[i]
+        sum += ((input_data_array[i] - mean_of_x)
+                ** 2) * probabilities_array[i]
 
     return sum
 
@@ -340,7 +341,7 @@ def compute_column_product(input_data, col):
 
 
 def compute_matrix_addition(arr1, arr2):
-    res = [len(arr1)][len(arr1[0])]
+    res = [[0 for x in range(len(arr1))] for i in range(len(arr1[0]))]
     for i in range(len(arr1)):
         for j in range(len(arr1[i])):
             res[i][j] = arr1[i][j] + arr2[i][j]
@@ -348,7 +349,7 @@ def compute_matrix_addition(arr1, arr2):
 
 
 def compute_matrix_subtraction(arr1, arr2):
-    res = [len(arr1)][len(arr1[0])]
+    res = [[0 for x in range(len(arr1))] for i in range(len(arr1[0]))]
     for i in range(len(arr1)):
         for j in range(len(arr1[i])):
             res[i][j] = arr1[i][j] - arr2[i][j]
@@ -356,11 +357,13 @@ def compute_matrix_subtraction(arr1, arr2):
 
 
 def compute_matrix_multiplication_by_scalar(arr, scalar):
-    res = [len(arr)][len(arr[0])]
+    res = [[0 for x in range(len(arr))] for i in range(len(arr[0]))]
     for i in range(len(arr)):
         for j in range(len(arr[i])):
             res[i][j] = scalar * arr[i][j]
     return res
+
+########################################
 
 
 def compute_Se(ind_var, dep_var):
@@ -430,8 +433,8 @@ def compute_R(ind_var, dep_var):
     arr2_sigma = compute_standard_deviation(dep_var)
 
     for i in range(len(ind_var)):
-        sum_of_products += ((ind_var[i] - arr1_bar) / arr1_sigma) * \
-            ((dep_var[i] - arr2_bar) / arr2_sigma)
+        sum_of_products += (((ind_var[i] - arr1_bar) / arr1_sigma) *
+                            ((dep_var[i] - arr2_bar) / arr2_sigma))
 
     return sum_of_products / (len(ind_var)-1)
 
@@ -441,8 +444,8 @@ def compute_R_squared(ind_var, dep_var):
 
 
 def compute_z_star(input_confidence_level):
-    inv_norm_input = input_confidence_level + \
-        ((1-input_confidence_level) / (2))
+    inv_norm_input = (input_confidence_level +
+                      ((1-input_confidence_level) / (2)))
     return compute_inverse_normal_approx(inv_norm_input)
 
 
@@ -512,8 +515,8 @@ def compute_one_prop_z_conf_int(p_hat, sample_size, confidence_level):
 
 def compute_one_prop_z_test_P0_less_than_value(p_hat, p_nought, sample_size, alpha):
     q_nought = 1-p_nought
-    z_critical = (p_hat-p_nought) / \
-        (math.sqrt((p_nought*q_nought) / sample_size))
+    z_critical = ((p_hat-p_nought) /
+                  (math.sqrt((p_nought*q_nought) / sample_size)))
     p_value = compute_z_prob_midpoint_riemann(-1000.0, z_critical)
 
     if p_value < alpha:
@@ -526,8 +529,8 @@ def compute_one_prop_z_test_P0_less_than_value(p_hat, p_nought, sample_size, alp
 
 def compute_one_prop_z_test_P0_greater_than_value(p_hat, p_nought, sample_size, alpha):
     q_nought = 1-p_nought
-    z_critical = (p_hat-p_nought) / \
-        (math.sqrt((p_nought * q_nought) / sample_size))
+    z_critical = ((p_hat-p_nought) /
+                  (math.sqrt((p_nought * q_nought) / sample_size)))
     p_value = compute_z_prob_midpoint_riemann(z_critical, 1000.0)
 
     if p_value < alpha:
@@ -540,8 +543,8 @@ def compute_one_prop_z_test_P0_greater_than_value(p_hat, p_nought, sample_size, 
 
 def compute_one_prop_z_test_P0_not_equal_to_value(p_hat, p_nought, sample_size, alpha):
     q_nought = 1-p_nought
-    z_critical = (p_hat-p_nought) / \
-        (math.sqrt((p_nought * q_nought) / sample_size))
+    z_critical = ((p_hat-p_nought) /
+                  (math.sqrt((p_nought * q_nought) / sample_size)))
     p_value = compute_z_prob_midpoint_riemann(abs(z_critical), 1000.0) * 2.0
 
     if p_value < alpha:
@@ -610,3 +613,8 @@ def compute_two_prop_z_test_P1_not_equal_to_P2(successes1, sample_size1, success
         return "There is no statistically significant evidence that the true P1 ≠ P2... fail to reject H0 - p-value: " + method_p_value
     else:
         return ""
+
+
+ind = [2, 4, 2]
+dep = [5, 2, 2]
+print(compute_Se(ind, dep))

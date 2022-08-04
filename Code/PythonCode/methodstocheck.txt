@@ -2,19 +2,8 @@ This is a txt file that lists the completed tested methods in the VStats class (
 
 - computeQuartile1
 - computeQuartile3
-
 - computeInverseNormalApprox
-- computePermutations
-- computeDiscreteExpectedValue
-- computeDiscreteVariance
-- computeDiscreteStandardDeviation
-- computeRowSum
-- computeColumnSum
-- computeRowProduct
-- computeColumnProduct
-- computeMatrixAddition
-- computeMatrixSubtraction
-- computeMatrixMultiplicationByScalar
+
 - computeSe
 - computeSumOfResidualsSquared 
 - computeResidualValues

@@ -14,9 +14,8 @@ public class Runner {
 
         // System.out.println(VStats.computeMean(VCSV.getColumnOfNumbers("menu.csv",
         // 16)));
-        double[] ind = { 2, 4, 2 };
-        double[] dep = { 5, 2, 2 };
-        System.out.println("asdfasd " + VStats.computeSe(ind, dep));
-        System.out.println(VStats.computeSumOfResidualsSquared(ind, dep));
+
+        System.out.println(VStats.computeZStar(0.95));
+
     }
 }

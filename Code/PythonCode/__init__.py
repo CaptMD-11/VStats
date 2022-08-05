@@ -381,16 +381,17 @@ def compute_sum_of_residuals_squared(ind_var, dep_var):
 
 
 def compute_residual_values(ind_var, dep_var):
-    res = [len(ind_var)]
-    for i in range(len(res)):
-        res[i] = (dep_var[i] - compute_LSRL_output(ind_var, dep_var, ind_var[i]))
+    res = []
+    for i in range(len(ind_var)):
+        res.append(
+            dep_var[i] - compute_LSRL_output(ind_var, dep_var, ind_var[i]))
     return res
 
 
 def compute_Y_predicted_values(ind_var, dep_var):
-    res = [len(ind_var)]
-    for i in range(len(res)):
-        res[i] = compute_LSRL_output(ind_var, dep_var, ind_var[i])
+    res = []
+    for i in range(len(ind_var)):
+        res.append(compute_LSRL_output(ind_var, dep_var, ind_var[i]))
     return res
 
 
@@ -615,6 +616,4 @@ def compute_two_prop_z_test_P1_not_equal_to_P2(successes1, sample_size1, success
         return ""
 
 
-ind = [2, 4, 2]
-dep = [5, 2, 2]
-print(compute_Se(ind, dep))
+print(compute_z_star(0.95))

@@ -15,7 +15,9 @@ public class Runner {
         // System.out.println(VStats.computeMean(VCSV.getColumnOfNumbers("menu.csv",
         // 16)));
 
-        System.out.println(VStats.computeZStar(0.95));
+        // System.out.println(VStats.computeZStar(0.95));
+
+        System.out.println(VStats.computeTwoPropZTestP1GreaterThanP2(10, 100, 9, 100, 0.05));
 
     }
 }

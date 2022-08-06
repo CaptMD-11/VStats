@@ -586,12 +586,12 @@ def compute_two_prop_z_test_P1_greater_than_P2(successes1, sample_size1, success
     z = (p_hat1-p_hat2) / math.sqrt(((p_hat_pooled*q_hat_pooled) /
                                      sample_size1) + ((p_hat_pooled*q_hat_pooled) / sample_size2))
 
-    method_p_value = compute_z_prob_midpoint_riemann(abs(z), 1000.0)
+    method_p_value = compute_z_prob_midpoint_riemann(z, 1000.0)
 
     if method_p_value < alpha:
-        return "There is statistically significant evidence that the true P1 > P2... reject H0 - p-value: " + method_p_value
+        return "There is statistically significant evidence that the true P1 > P2... reject H0 - p-value: " + str(method_p_value)
     elif method_p_value > alpha:
-        return "There is no statistically significant evidence that the true P1 > P2... fail to reject H0 - p-value: " + method_p_value
+        return "There is no statistically significant evidence that the true P1 > P2... fail to reject H0 - p-value: " + str(method_p_value)
     else:
         return ""
 
@@ -616,4 +616,4 @@ def compute_two_prop_z_test_P1_not_equal_to_P2(successes1, sample_size1, success
         return ""
 
 
-print(compute_z_star(0.95))
+print(compute_two_prop_z_test_P1_greater_than_P2(10, 100, 9, 100, 0.05))

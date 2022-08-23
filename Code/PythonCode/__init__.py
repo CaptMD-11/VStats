@@ -609,11 +609,11 @@ def compute_two_prop_z_test_P1_not_equal_to_P2(successes1, sample_size1, success
     method_p_value = compute_z_prob_midpoint_riemann(abs(z), 1000.0) * 2.0
 
     if method_p_value < alpha:
-        return "There is statistically significant evidence that the true P1 ≠ P2... reject H0 - p-value: " + method_p_value
+        return "There is statistically significant evidence that the true P1 ≠ P2... reject H0 - p-value: " + str(method_p_value)
     elif method_p_value > alpha:
-        return "There is no statistically significant evidence that the true P1 ≠ P2... fail to reject H0 - p-value: " + method_p_value
+        return "There is no statistically significant evidence that the true P1 ≠ P2... fail to reject H0 - p-value: " + str(method_p_value)
     else:
         return ""
 
 
-print(compute_two_prop_z_test_P1_greater_than_P2(10, 100, 9, 100, 0.05))
+print(compute_two_prop_z_test_P1_greater_than_P2(50, 100, 40, 100, 0.05))

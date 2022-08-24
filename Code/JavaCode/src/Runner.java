@@ -22,7 +22,7 @@ public class Runner {
 
         // System.out.println(VStats.computeInverseNormalApprox(0.5));
 
-        System.out.println(VStats.computeTwoPropZTestP1NotEqualToP2(10, 100, 20, 100, 0.05));
+        System.out.println(VStats.computeTwoPropZTestP1LessThanP2(10, 100, 10, 100, 0.05));
 
     }
 }

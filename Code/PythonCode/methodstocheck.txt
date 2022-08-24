@@ -7,11 +7,4 @@ This is a txt file that lists the completed tested methods in the VStats class (
 - computeZStar
 
 - computeOneMeanZConfInt
-- computeZMeansTestHaGreaterThanValue
-- computeZMeansTestHaLessThanValue
-- computeZMeansTestHaNotEqualToValue
 - computeOnePropZConfInt
-- computeOnePropZTestP0LessThanValue
-- computeOnePropZTestP0GreaterThanValue
-- computeOnePropZTestP0NotEqualToValue
-- computeTwoPropZTestP1LessThanP2

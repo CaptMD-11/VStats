@@ -468,9 +468,9 @@ def compute_one_mean_z_test_Ha_greater_than_value(mu, sigma, sample_mean, sample
     p_value = compute_z_prob_midpoint_riemann(z_critical, 1000.0)
 
     if p_value < alpha:
-        return "There is statistically significant evidence that Ha > H0... reject H0 - p-value: " + p_value
+        return "There is statistically significant evidence that Ha > H0... reject H0 - p-value: " + str(p_value)
     elif p_value > alpha:
-        return "There is no statistically significant evidence that Ha > H0... fail to reject H0 - p-value: " + p_value
+        return "There is no statistically significant evidence that Ha > H0... fail to reject H0 - p-value: " + str(p_value)
     else:
         return ""
 
@@ -482,9 +482,9 @@ def compute_one_mean_z_test_Ha_less_than_value(mu, sigma, sample_mean, sample_si
     p_value = compute_z_prob_midpoint_riemann(-1000.0, z_critical)
 
     if p_value < alpha:
-        return "There is statistically significant evidence that Ha < H0... reject H0 - p-value: " + p_value
+        return "There is statistically significant evidence that Ha < H0... reject H0 - p-value: " + str(p_value)
     elif p_value > alpha:
-        return "There is no statistically significant evidence that Ha < H0... fail to reject H0 - p-value: " + p_value
+        return "There is no statistically significant evidence that Ha < H0... fail to reject H0 - p-value: " + str(p_value)
     else:
         return ""
 
@@ -496,9 +496,9 @@ def compute_one_mean_z_test_Ha_not_equal_to_value(mu, sigma, sample_mean, sample
     p_value = 2.0 * compute_z_prob_midpoint_riemann(abs(z_critical), 1000.0)
 
     if p_value < alpha:
-        return "There is statistically significant evidence that Ha ≠ H0... reject H0 - p-value: " + p_value
+        return "There is statistically significant evidence that Ha ≠ H0... reject H0 - p-value: " + str(p_value)
     elif p_value > alpha:
-        return "There is no statistically significant evidence that Ha ≠ H0... fail to reject H0 - p-value: " + p_value
+        return "There is no statistically significant evidence that Ha ≠ H0... fail to reject H0 - p-value: " + str(p_value)
     else:
         return ""
 
@@ -521,9 +521,9 @@ def compute_one_prop_z_test_P0_less_than_value(p_hat, p_nought, sample_size, alp
     p_value = compute_z_prob_midpoint_riemann(-1000.0, z_critical)
 
     if p_value < alpha:
-        return "There is statistically significant evidence that the true P0 < given P0... reject H0 - p-value: " + p_value
+        return "There is statistically significant evidence that the true P0 < given P0... reject H0 - p-value: " + str(p_value)
     elif p_value > alpha:
-        return "There is no statistically significant evidence that the true P0 < given P0... fail to reject H0 - p-value: " + p_value
+        return "There is no statistically significant evidence that the true P0 < given P0... fail to reject H0 - p-value: " + str(p_value)
     else:
         return ""
 
@@ -535,9 +535,9 @@ def compute_one_prop_z_test_P0_greater_than_value(p_hat, p_nought, sample_size, 
     p_value = compute_z_prob_midpoint_riemann(z_critical, 1000.0)
 
     if p_value < alpha:
-        return "There is statistically significant evidence that the true P0 > given P0... reject H0 - p-value: " + p_value
+        return "There is statistically significant evidence that the true P0 > given P0... reject H0 - p-value: " + str(p_value)
     elif p_value > alpha:
-        return "There is no statistically significant evidence that the true P0 > given P0... fail to reject H0 - p-value: " + p_value
+        return "There is no statistically significant evidence that the true P0 > given P0... fail to reject H0 - p-value: " + str(p_value)
     else:
         return ""
 
@@ -549,9 +549,9 @@ def compute_one_prop_z_test_P0_not_equal_to_value(p_hat, p_nought, sample_size, 
     p_value = compute_z_prob_midpoint_riemann(abs(z_critical), 1000.0) * 2.0
 
     if p_value < alpha:
-        return "There is statistically significant evidence that the true P0 ≠ given P0... reject H0 - p-value: " + p_value
+        return "There is statistically significant evidence that the true P0 ≠ given P0... reject H0 - p-value: " + str(p_value)
     elif p_value > alpha:
-        return "There is no statistically significant evidence that the true P0 ≠ given P0... fail to reject H0 - p-value: " + p_value
+        return "There is no statistically significant evidence that the true P0 ≠ given P0... fail to reject H0 - p-value: " + str(p_value)
     else:
         return ""
 
@@ -569,9 +569,9 @@ def compute_two_prop_z_test_P1_less_than_P2(successes1, sample_size1, successes2
     method_p_value = compute_z_prob_midpoint_riemann(-1000.0, z)
 
     if method_p_value < alpha:
-        return "There is statistically significant evidence that the true P1 < P2... reject H0 - p-value: " + method_p_value
+        return "There is statistically significant evidence that the true P1 < P2... reject H0 - p-value: " + str(method_p_value)
     elif method_p_value > alpha:
-        return "There is no statistically significant evidence that the true P1 < P2... fail to reject H0 - p-value: " + method_p_value
+        return "There is no statistically significant evidence that the true P1 < P2... fail to reject H0 - p-value: " + str(method_p_value)
     else:
         return ""
 
@@ -616,4 +616,5 @@ def compute_two_prop_z_test_P1_not_equal_to_P2(successes1, sample_size1, success
         return ""
 
 
-print(compute_two_prop_z_test_P1_greater_than_P2(50, 100, 40, 100, 0.05))
+print(compute_one_mean_z_test_Ha_greater_than_value(
+    55, 2, 70, 100, 0.05))

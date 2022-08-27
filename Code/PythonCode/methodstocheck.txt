@@ -1,9 +1,5 @@
 This is a txt file that lists the completed tested methods in the VStats class (still need to check documentation): 
 
-- computeQuartile1
-- computeQuartile3
-- computeInverseNormalApprox
-- displayLSRLEquation
 - computeZStar
 
 - computeOneMeanZConfInt

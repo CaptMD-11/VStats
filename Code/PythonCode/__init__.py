@@ -77,32 +77,33 @@ def compute_standard_deviation(input_data):
 
 
 def compute_quartile1(input_data):
-    middle_index = len(input_data) / 2
+    middle_index = math.trunc(len(input_data) / 2)
     count = -1
     quartile1 = 0
     input_data = sort_HELPER(input_data)
 
-    for x in range(0, len(input_data)-1):
-        count = count + 1
+    for i in range(middle_index):
+        count += 1
 
     if (len(input_data) % 2 == 0) and (count % 2 != 0):
-        quartile1 = (input_data[count/2] + input_data[(count/2) + 1]) / 2
+        quartile1 = (input_data[(math.trunc(count/2))] +
+                     input_data[(math.trunc(count/2)) + 1]) / 2.0
 
     if (len(input_data) % 2 == 0) and (count % 2 == 0):
-        quartile1 = input_data[count/2]
+        quartile1 = input_data[math.trunc(count/2)]
 
     if (len(input_data) % 2 != 0) and (count % 2 == 0):
-        quartile1 = input_data[count/2]
+        quartile1 = input_data[math.trunc(count/2)]
 
     if (len(input_data) % 2 != 0) and (count % 2 != 0):
-        quartile1 = (input_data[(count/2)] +
-                     input_data[((count/2)) + 1]) / 2
+        quartile1 = (input_data[math.trunc(count/2)] +
+                     input_data[math.trunc(count/2) + 1]) / 2.0
 
     return quartile1
 
 
 def compute_quartile3(input_data):
-    middle_index = (int)(len(input_data) / 2)
+    middle_index = math.trunc(len(input_data) / 2)
     array_even_counter = 0
     array_odd_counter = 0
     quartile3 = 0
@@ -112,21 +113,22 @@ def compute_quartile3(input_data):
         array_even_counter = array_even_counter+1
 
     if (len(input_data) % 2 != 0) and (array_even_counter % 2 != 0):
-        quartile3 = input_data[middle_index + ((array_even_counter / 2) + 1)]
+        quartile3 = input_data[middle_index +
+                               math.trunc((array_even_counter / 2) + 1)]
 
     if (len(input_data) % 2 != 0) and (array_even_counter % 2 == 0):
-        quartile3 = (input_data[middle_index + (int)(array_even_counter/2)] +
-                     input_data[middle_index + (int)(array_even_counter/2) + 1]) / 2
+        quartile3 = (input_data[middle_index + math.trunc(array_even_counter/2)] +
+                     input_data[middle_index + math.trunc(array_even_counter/2) + 1]) / 2
 
     for x in range(middle_index, len(input_data)):
         array_odd_counter = array_odd_counter + 1
 
     if (len(input_data) % 2 == 0) and (array_odd_counter % 2 != 0):
-        quartile3 = input_data[middle_index + (array_odd_counter/2)]
+        quartile3 = input_data[middle_index + math.trunc(array_odd_counter/2)]
 
     if (len(input_data) % 2 == 0) and (array_odd_counter % 2 == 0):
-        quartile3 = (input_data[middle_index + (array_odd_counter/2)-1] +
-                     input_data[middle_index + (array_odd_counter/2)]) / 2
+        quartile3 = (input_data[middle_index + math.trunc(array_odd_counter/2)-1] +
+                     input_data[middle_index + math.trunc(array_odd_counter/2)]) / 2
 
     return quartile3
 
@@ -274,12 +276,12 @@ def compute_inverse_normal_approx(input):
     if input == 0 or input == 1:
         return None
     elif (input > 0 and input < 0.01) or (input > 0.99 and input < 1):
-        res = math.tan(math.pi/0.1) * (input-0.95)
+        res = math.tan((math.pi/0.1) * (input-0.95))
         return res
     elif input >= 0.01 and input <= 0.99:
-        res = math.tan(math.pi/1.34) * (input - 0.5)
+        res = math.tan((math.pi/1.34) * (input - 0.5))
         return res
-    elif input < 0 or input > 0:
+    elif input <= 0 or input >= 1:
         return None
 
     return None
@@ -400,15 +402,25 @@ def compute_LSRL_output(ind_var, dep_var, input):
 
 
 def display_LSRL_equation(ind_var, dep_var):
-    res = "ŷ = " + compute_A(ind_var, dep_var) + " + " + \
-        compute_B(ind_var, dep_var) + "x"
+    count_ind = 0
+    count_dep = 0
+    for i in ind_var:
+        if i != 0:
+            count_ind += 1
+    for j in dep_var:
+        if j != 0:
+            count_dep += 1
+    if count_ind == 0 or count_dep == 0:
+        return "Error - one or more variables contains all zeros"
+    res = "ŷ = " + str(compute_A(ind_var, dep_var)) + " + " + \
+        str(compute_B(ind_var, dep_var)) + "x"
 
     if compute_B(ind_var, dep_var) < 0:
-        res = "ŷ = " + compute_A(ind_var, dep_var) + \
-            " - " + (-1 * compute_B(ind_var, dep_var)) + "x"
+        res = "ŷ = " + str(compute_A(ind_var, dep_var)) + \
+            " - " + (str(-1 * compute_B(ind_var, dep_var))) + "x"
     elif compute_B(ind_var, dep_var) >= 0:
-        res = "ŷ = " + compute_A(ind_var, dep_var) + \
-            " + " + compute_B(ind_var, dep_var) + "x"
+        res = "ŷ = " + str(compute_A(ind_var, dep_var)) + \
+            " + " + str(compute_B(ind_var, dep_var)) + "x"
 
     return res
 
@@ -616,5 +628,4 @@ def compute_two_prop_z_test_P1_not_equal_to_P2(successes1, sample_size1, success
         return ""
 
 
-print(compute_one_mean_z_test_Ha_greater_than_value(
-    55, 2, 70, 100, 0.05))
+print(compute_inverse_normal_approx(0.1))

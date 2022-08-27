@@ -660,7 +660,7 @@ public final class VStats {
 
 			return res;
 
-		} else if ((input < 0) || (input > 1)) { // good
+		} else if ((input <= 0) || (input >= 1)) { // good
 			return (Double) null;
 		}
 

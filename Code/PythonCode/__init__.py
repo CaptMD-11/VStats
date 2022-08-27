@@ -470,7 +470,7 @@ def compute_one_mean_z_conf_int(mu, sigma, sample_size, confidence_level):
     high_bound = mu + (compute_z_star(confidence_level)
                        * (sigma / math.sqrt(sample_size)))
 
-    return "(" + low_bound + ", " + high_bound + ")"
+    return "(" + str(low_bound) + ", " + str(high_bound) + ")"
 
 
 def compute_one_mean_z_test_Ha_greater_than_value(mu, sigma, sample_mean, sample_size, alpha):
@@ -523,7 +523,7 @@ def compute_one_prop_z_conf_int(p_hat, sample_size, confidence_level):
     low = p_hat - (z_star * standard_error)
     high = p_hat + (z_star * standard_error)
 
-    return "(" + low + ", " + high + ")"
+    return "(" + str(low) + ", " + str(high) + ")"
 
 
 def compute_one_prop_z_test_P0_less_than_value(p_hat, p_nought, sample_size, alpha):
@@ -628,4 +628,4 @@ def compute_two_prop_z_test_P1_not_equal_to_P2(successes1, sample_size1, success
         return ""
 
 
-print(compute_inverse_normal_approx(0.1))
+print(compute_one_prop_z_conf_int(0.7, 100, 0.95))

@@ -1152,9 +1152,13 @@ public final class VStats {
 	 *         <strong>inputConfidenceLevel</strong>.
 	 */
 	public static double computeZStar(double inputConfidenceLevel) {
-
 		double invNormInput = inputConfidenceLevel + ((1 - inputConfidenceLevel) / (2));
-		return computeInverseNormalApprox(invNormInput);
+		try {
+			return computeInverseNormalApprox(invNormInput);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return invNormInput;
 
 	}
 

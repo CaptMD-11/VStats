@@ -8,9 +8,13 @@ This is the VStats Java library that computes statistics. The functionalities av
 
 The VStats library is condensed into a JAR file, which can be located in this project. That way, users can import VStats into their Java projects. 
 
-<i>A Python version of this project is currently being developed</i>
+<br>
 
+<center><b><i>***A Python version of this project is currently being developed***</i></b></center>
+<br>
 <center><a href="https://captmd-11.github.io/blog/statscalculator/" target="_blank">Download VStats JAR</a></center>
+
+<br>
 
 ## Java
 
@@ -31,7 +35,7 @@ It's actually quite simple. All the methods in VStats are <samp>static</samp>, s
   <img src="images_README/javadocmethodtestss.png" width="570">
 </p>
 
-<b><i>If not</i></b>, documentation for VStats is available <a target="_blank" href="https://captmd-11.github.io/blog/statscalculator/documentation.html">here</a>. 
+<b><i>If not</i></b>, documentation for VStats is available <a target="_blank" href="https://captmd-11.github.io/blog/statscalculator/javadocumentation.html">here</a>. 
 
 ## Python
 

@@ -39,6 +39,9 @@ It's actually quite simple. All the methods in VStats are <samp>static</samp>, s
 
 ## Version History
 
+### v1.2
+- fixed code for 0 and 1 boundary error for the inverse normal distribution approximation method. 
+
 ### v1.1
 - fixed code for computing the test statistic value & p-value for the significance tests. 
 - replaced multi-line <samp>String</samp> output with a single line <samp>String</samp> output for the significance tests (with respect to the p-values on the second line). 

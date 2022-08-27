@@ -626,6 +626,3 @@ def compute_two_prop_z_test_P1_not_equal_to_P2(successes1, sample_size1, success
         return "There is no statistically significant evidence that the true P1 ≠ P2... fail to reject H0 - p-value: " + str(method_p_value)
     else:
         return ""
-
-
-print(compute_one_prop_z_conf_int(0.7, 100, 0.95))

@@ -12,6 +12,7 @@ The VStats library is condensed into a JAR file, which can be located in this pr
 
 <center><b><i>***A Python version of this project is currently being developed***</i></b></center>
 <br>
+<br>
 <center><a href="https://captmd-11.github.io/blog/statscalculator/" target="_blank">Download VStats JAR</a></center>
 
 <br>

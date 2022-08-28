@@ -29,13 +29,7 @@ It's actually quite simple. All the methods in VStats are <samp>static</samp>, s
 
 ### Documentation 
 
-<b><i>If you choose to clone VStats to your computer</i></b>, documentation is provided for all the methods in the library so that users can learn about what each invidual method actually does. This type of  documentation was written using JavaDoc, in order for users to view the method description in a mini window, as shown in the screenshot below. This is only visible when the <samp>VStats.java</samp> file is in the same folder as your source code. 
-
-<p align="center">
-  <img src="images_README/javadocmethodtestss.png" width="570">
-</p>
-
-<b><i>If not</i></b>, documentation for VStats is available <a target="_blank" href="https://captmd-11.github.io/blog/statscalculator/VStats.html">here</a>. 
+Java documentation for VStats is available <a target="_blank" href="https://captmd-11.github.io/blog/statscalculator/VStats.html">here</a>. 
 
 ## Python
 

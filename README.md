@@ -39,7 +39,7 @@ Java documentation for VStats is available <a target="_blank" href="https://capt
 ## Version History
 
 ### v1.3
-- added methods for computing the gamma function, $\chi^2$ PDF, and $\chi$ CDF. 
+- added methods for computing the gamma function, $\chi^2$ PDF, and $\chi^2$ CDF. 
 
 ### v1.2
 - fixed code for 0 and 1 boundary error for the inverse normal distribution approximation method. 

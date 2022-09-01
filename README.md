@@ -38,6 +38,9 @@ Java documentation for VStats is available <a target="_blank" href="https://capt
 
 ## Version History
 
+### v1.4 
+- added $\chi^2$ tests and bug fixes for gamma function method. 
+
 ### v1.3
 - added methods for computing the gamma function, $\chi^2$ PDF, and $\chi^2$ CDF. 
 

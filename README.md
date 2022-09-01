@@ -38,6 +38,9 @@ Java documentation for VStats is available <a target="_blank" href="https://capt
 
 ## Version History
 
+### v1.5
+- added methods for computing the PDF and CDF of Student's $t$-distribution. 
+
 ### v1.4 
 - added $\chi^2$ tests and bug fixes for gamma function method. 
 

@@ -4,7 +4,7 @@
   <img src="images_README/vstatslogo.png" width="570">
 </p>
 
-This is the VStats Java library that computes statistics. The functionalities available include one-variable statistics, binomial & geometric distributions, matrix operations, linear regression computations, confidence intervals, significance tests, etc. 
+VStats is a highly optimized Java library that features statistical models such as binomial & geometric distributions, linear regression, confidence intervals, significance tests, and much more. Additional methods, like matrix computations, are also included. 
 
 The VStats library is condensed into a JAR file, which can be located in this project. That way, users can import VStats into their Java projects. 
 

@@ -18,6 +18,8 @@
 
 import java.util.ArrayList;
 
+import javax.lang.model.util.ElementScanner6;
+
 public final class VStats {
 
 	private VStats() {
@@ -1716,6 +1718,12 @@ public final class VStats {
 
 	/**
 	 * Returns the final decision and p-value of a two-way chi-square test.
+	 * <p>
+	 * The decision could be to either reject the null hypothesis or fail to
+	 * reject the null hypothesis.
+	 * <p>
+	 * The degrees of freedom will automatically be registered as (# of rows - 1) *
+	 * (# of columns - 1).
 	 * 
 	 * @param observed the observed matrix (do not include cells for the row totals
 	 *                 and column
@@ -1789,6 +1797,108 @@ public final class VStats {
 			sum += (increment * computeTPDF(i, degFree));
 		}
 		return sum;
+	}
+
+	/**
+	 * Returns the final decision and p-value of a significance test, utilizing the
+	 * t-distribution.
+	 * <p>
+	 * The alternate hypothesis must state that the population mean is less than a
+	 * value.
+	 * <p>
+	 * The decision could be to either reject the null hypothesis or fail to reject
+	 * the null hypothesis.
+	 * <p>
+	 * The degrees of freedom will automatically be registered as one less than the
+	 * sample size.
+	 * 
+	 * @param mu         the population mean to be tested.
+	 * @param sampleMean the mean of the sample.
+	 * @param sampleSD   the standard deviation of the sample.
+	 * @param sampleSize the size of the sample.
+	 * @param alpha      the significance level (α) of the test.
+	 * @return the final decision and p-value of the significance test.
+	 */
+	public static String computeOneMeanTTestHaLessThanValue(double mu, double sampleMean, double sampleSD,
+			int sampleSize, double alpha) {
+		double t = (sampleMean - mu) / (sampleSD / Math.sqrt(sampleSize));
+		double pValue = computeTCDF(-100, t, sampleSize - 1);
+
+		if (pValue < alpha) {
+			return "Reject null hypothesis - p-value: " + pValue;
+		} else if (pValue > alpha) {
+			return "Fail to reject null hypothesis - p-value: " + pValue;
+		} else {
+			return "";
+		}
+	}
+
+	/**
+	 * Returns the final decision and p-value of a significance test, utilizing the
+	 * t-distribution.
+	 * <p>
+	 * The alternate hypothesis must state that the population mean is greater than
+	 * a value.
+	 * <p>
+	 * The decision could be to either reject the null hypothesis or fail to reject
+	 * the null hypothesis.
+	 * <p>
+	 * The degrees of freedom will automatically be registered as one less than the
+	 * sample size.
+	 * 
+	 * @param mu         the population mean to be tested.
+	 * @param sampleMean the mean of the sample.
+	 * @param sampleSD   the standard deviation of the sample.
+	 * @param sampleSize the size of the sample.
+	 * @param alpha      the significance level (α) of the test.
+	 * @return the final decision and p-value of the significance test.
+	 */
+	public static String computeOneMeanTTestHaGreaterThanValue(double mu, double sampleMean, double sampleSD,
+			int sampleSize, double alpha) {
+		double t = (sampleMean - mu) / (sampleSD / Math.sqrt(sampleSize));
+		double pValue = computeTCDF(t, 100, sampleSize - 1);
+
+		if (pValue < alpha) {
+			return "Reject null hypothesis - p-value: " + pValue;
+		} else if (pValue > alpha) {
+			return "Fail to reject null hypothesis - p-value: " + pValue;
+		} else {
+			return "";
+		}
+	}
+
+	/**
+	 * Returns the final decision and p-value of a significance test, utilizing the
+	 * t-distribution.
+	 * <p>
+	 * The alternate hypothesis must state that the population mean is not equal to
+	 * a value.
+	 * <p>
+	 * The decision could be to either reject the null hypothesis or fail to reject
+	 * the null hypothesis.
+	 * <p>
+	 * The degrees of freedom will automatically be registered as one less than the
+	 * sample size.
+	 * 
+	 * @param mu         the population mean to be tested.
+	 * @param sampleMean the mean of the sample.
+	 * @param sampleSD   the standard deviation of the sample.
+	 * @param sampleSize the size of the sample.
+	 * @param alpha      the significance level (α) of the test.
+	 * @return the final decision and p-value of the significance test.
+	 */
+	public static String computeOneMeanTTestHaNotEqualToValue(double mu, double sampleMean, double sampleSD,
+			int sampleSize, double alpha) {
+		double t = (sampleMean - mu) / (sampleSD / Math.sqrt(sampleSize));
+		double pValue = 2 * computeTCDF(Math.abs(t), 100, sampleSize - 1);
+
+		if (pValue < alpha) {
+			return "Reject null hypothesis - p-value: " + pValue;
+		} else if (pValue > alpha) {
+			return "Fail to reject null hypothesis - p-value: " + pValue;
+		} else {
+			return "";
+		}
 	}
 
 }

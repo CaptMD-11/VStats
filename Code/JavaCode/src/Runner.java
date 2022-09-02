@@ -31,7 +31,16 @@ public class Runner {
 
         // System.out.println(VStats.computeTPDF(0.2007, 8));
 
-        System.out.println(VStats.computeTCDF(-100, 0, 27));
+        // System.out.println(VStats.computeTCDF(-100, 0, 27));
+
+        // System.out.println(VStats.computeOneMeanTTestHaLessThanValue(50, 50.3, 2.03,
+        // 100, 0.05));
+
+        // System.out.println(VStats.computeOneMeanTTestHaGreaterThanValue(55, 56, 2.03,
+        // 100, 0.05));
+
+        // System.out.println(VStats.computeOneMeanTTestHaNotEqualToValue(55, 54.7,
+        // 1.07, 100, 0.05));
 
     }
 }

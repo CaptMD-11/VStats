@@ -38,6 +38,9 @@ Java documentation for VStats is available <a target="_blank" href="https://capt
 
 ## Version History
 
+### v1.7
+- added methods for computing standard error for slope and linear regression t-tests. 
+
 ### v1.6
 - added methods for computing one-sample significance tests using the t-distribution. 
 

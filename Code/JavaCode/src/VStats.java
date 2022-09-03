@@ -1901,4 +1901,102 @@ public final class VStats {
 		}
 	}
 
+	/**
+	 * Returns the standard error of the slope.
+	 * <p>
+	 * This method uses linear regression to model the relationship between the 2
+	 * variables (least-squares regression line format: ŷ = a + bx).
+	 * 
+	 * @param indVar the independent variable.
+	 * @param depVar the dependent variable.
+	 * @return the standard error of the slope, with respect to
+	 *         <strong>indVar</strong> and <strong>depVar</strong>.
+	 */
+	public static double computeSeb(double[] indVar, double[] depVar) {
+		double xMean = computeMean(indVar);
+		double sum = 0;
+		for (int i = 0; i < indVar.length; i++) {
+			sum += Math.pow(indVar[i] - xMean, 2);
+		}
+		return computeSe(indVar, depVar) / Math.sqrt(sum);
+	}
+
+	/**
+	 * Returns the final decision and p-value of a linear regression t-test.
+	 * <p>
+	 * This method tests whether or not the population slope is negative.
+	 * <p>
+	 * The degrees of freedom will automatically be registered as 2 less than the
+	 * number of data values.
+	 * 
+	 * @param indVar the independent variable.
+	 * @param depVar the dependent variable.
+	 * @param alpha  the significance level (α) of the test.
+	 * @return the final decision and p-value of the test.
+	 */
+	public static String computeLinRegTTestNegativeSlope(double[] indVar, double[] depVar, double alpha) {
+		double t = (computeB(indVar, depVar) - 0) / computeSeb(indVar, depVar);
+		double pValue = computeTCDF(-100, t, indVar.length - 2);
+
+		if (pValue < alpha) {
+			return "Reject null hypothesis - p-value: " + pValue;
+		} else if (pValue > alpha) {
+			return "Fail to reject null hypothesis - p-value: " + pValue;
+		} else {
+			return "";
+		}
+	}
+
+	/**
+	 * Returns the final decision and p-value of a linear regression t-test.
+	 * <p>
+	 * This method tests whether or not the population slope is positive.
+	 * <p>
+	 * The degrees of freedom will automatically be registered as 2 less than the
+	 * number of data values.
+	 * 
+	 * @param indVar the independent variable.
+	 * @param depVar the dependent variable.
+	 * @param alpha  the significance level (α) of the test.
+	 * @return the final decision and p-value of the test.
+	 */
+	public static String computeLinRegTTestPositiveSlope(double[] indVar, double[] depVar, double alpha) {
+		double t = (computeB(indVar, depVar) - 0) / computeSeb(indVar, depVar);
+		double pValue = computeTCDF(t, 100, indVar.length - 2);
+
+		if (pValue < alpha) {
+			return "Reject null hypothesis - p-value: " + pValue;
+		} else if (pValue > alpha) {
+			return "Fail to reject null hypothesis - p-value: " + pValue;
+		} else {
+			return "";
+		}
+	}
+
+	/**
+	 * Returns the final decision and p-value of a linear regression t-test.
+	 * <p>
+	 * This method tests whether or not the population slope is not equal to 0.
+	 * <p>
+	 * The degrees of freedom will automatically be registered as 2 less than the
+	 * number of data values.
+	 * 
+	 * @param indVar the independent variable.
+	 * @param depVar the dependent variable.
+	 * @param alpha  the significance level (α) of the test.
+	 * @return the final decision and p-value of the test.
+	 */
+	public static String computeLinRegTTestUnequalSlope(double[] indVar, double[] depVar, double alpha) {
+		double t = (computeB(indVar, depVar) - 0) / computeSeb(indVar, depVar);
+		double pValue = 2 * computeTCDF(Math.abs(t), 100, indVar.length - 2);
+
+		if (pValue < alpha) {
+			return "Reject null hypothesis - p-value: " + pValue;
+		} else if (pValue > alpha) {
+			return "Fail to reject null hypothesis - p-value: " + pValue;
+		} else {
+			return "";
+		}
+	}
+
 }

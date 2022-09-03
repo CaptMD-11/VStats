@@ -42,5 +42,12 @@ public class Runner {
         // System.out.println(VStats.computeOneMeanTTestHaNotEqualToValue(55, 54.7,
         // 1.07, 100, 0.05));
 
+        double[] indVar = { 4, 5, 7, 8, 55 };
+        double[] depVar = { 7, 8, 9, 11, 12 };
+
+        System.out.println(VStats.computeLinRegTTestUnequalSlope(indVar, depVar, 0.05));
+
+        // System.out.println(VStats.computeSeb(indVar, depVar));
+
     }
 }

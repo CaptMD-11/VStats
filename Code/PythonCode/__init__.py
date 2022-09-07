@@ -626,3 +626,20 @@ def compute_two_prop_z_test_P1_not_equal_to_P2(successes1, sample_size1, success
         return "There is no statistically significant evidence that the true P1 ≠ P2... fail to reject H0 - p-value: " + str(method_p_value)
     else:
         return ""
+
+
+def compute_gamma_function(input_z):
+    exponent = (input_z * (math.log(input_z) - 1)) + (0.5 * (math.log(1/input_z) +
+                                                             math.log(2 * math.pi))) + (1/(12 * input_z)) - (1/(360 * input_z**3))
+    return math.e**exponent
+
+
+def compute_chi_square_pdf(chi_sqr_value, deg_free):
+    if chi_sqr_value < 0:
+        return 0
+    else:
+        numerator = (chi_sqr_value ** ((deg_free/2)-1)) * \
+            (math.e ** (-1 * (chi_sqr_value/2)))
+        denominator = (2 ** (deg_free/2)) * \
+            (compute_gamma_function(deg_free/2))
+        return numerator / denominator

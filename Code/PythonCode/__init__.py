@@ -643,3 +643,14 @@ def compute_chi_square_pdf(chi_sqr_value, deg_free):
         denominator = (2 ** (deg_free/2)) * \
             (compute_gamma_function(deg_free/2))
         return numerator / denominator
+
+
+def compute_chi_square_cdf(lower_bound, upper_bound, deg_free):
+    sum = 0
+    increment = (upper_bound - lower_bound) / (10 ** 2)
+    for i in range(lower_bound + (increment/2), upper_bound, increment):
+        sum += increment * compute_chi_square_pdf(i, deg_free)
+    return sum
+
+
+print(compute_chi_square_cdf(1.02, 3.00, 5))

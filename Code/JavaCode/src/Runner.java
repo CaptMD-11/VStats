@@ -50,7 +50,7 @@ public class Runner {
 
         // System.out.println(VStats.computeSeb(indVar, depVar));
 
-        System.out.println(VStats.computeChiSquarePDF(2, 5));
+        System.out.println(VStats.computeChiSquareCDF(1.02, 3, 5));
 
     }
 }

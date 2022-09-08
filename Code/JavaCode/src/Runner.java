@@ -50,7 +50,12 @@ public class Runner {
 
         // System.out.println(VStats.computeSeb(indVar, depVar));
 
-        System.out.println(VStats.computeChiSquareCDF(1.02, 3, 5));
+        // System.out.println(VStats.computeChiSquareCDF(1.02, 3, 5));
+
+        double[] observed = { 2, 4, 6 };
+        double[] expected = { 4, 4, 4 };
+
+        System.out.println(VStats.computeChiSquareGOFTest(observed, expected, 0.05));
 
     }
 }

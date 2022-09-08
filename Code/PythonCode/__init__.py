@@ -648,9 +648,55 @@ def compute_chi_square_pdf(chi_sqr_value, deg_free):
 def compute_chi_square_cdf(lower_bound, upper_bound, deg_free):
     sum = 0
     increment = (upper_bound - lower_bound) / (10 ** 2)
-    for i in range(lower_bound + (increment/2), upper_bound, increment):
+    for i in np.arange(lower_bound + (increment/2), upper_bound, increment):
         sum += increment * compute_chi_square_pdf(i, deg_free)
     return sum
 
 
-print(compute_chi_square_cdf(1.02, 3.00, 5))
+def compute_chi_square_GOF_test(observed, expected, alpha):
+    sum = 0
+
+    for i in range(len(observed)):
+        sum += ((observed[i] - expected[i]) ** 2) / expected[i]
+
+    p_value = compute_chi_square_cdf(sum, 100, len(observed) - 1)
+
+    if p_value < alpha:
+        return "Reject null hypothesis - p-value: " + str(p_value)
+    elif p_value > alpha:
+        return "Fail to reject null hypothesis - p-value: " + str(p_value)
+    else:
+        return ""
+
+
+def compute_chi_square_two_way_test(observed, alpha):
+    total = 0
+    for i in range(len(observed)):
+        for j in range(len(observed[i])):
+            total += observed[i][j]
+
+    expected = [len(observed)][len(observed[0])]
+
+    for i in range(len(expected)):
+        for j in range(len(expected[i])):
+            expected[i][j] = (compute_row_sum(observed, i) *
+                              compute_column_sum(observed, j)) / total
+
+    sum = 0
+    for i in range(len(observed)):
+        for j in range(len(observed[i])):
+            sum += ((observed[i][j] - expected[i][j]) ** 2) / expected[i][j]
+
+    p_value = compute_chi_square_cdf(
+        sum, 1000, (len(observed) - len(observed[0])))
+
+    if p_value < alpha:
+        return "Reject null hypothesis - p-value: " + str(p_value)
+    elif p_value > alpha:
+        return "Fail to reject null hypothesis - p-value: " + str(p_value)
+    else:
+        return ""
+
+
+obs = [[3, 4, 5], [5, 2, 4]]
+print(compute_chi_square_two_way_test(obs, 0.05))

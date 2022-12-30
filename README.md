@@ -13,7 +13,7 @@ The VStats library is condensed into a JAR file, which can be located in this pr
 <center><b><i>***A Python version of this project is currently being developed***</i></b></center>
 <br>
 <br>
-<center><a href="https://captmd-11.github.io/blog/statscalculator/" target="_blank">Download VStats JAR</a></center>
+<center><a href="https://captmd-11.github.io/blog/vstats/" target="_blank">Download VStats JAR</a></center>
 
 <br>
 
@@ -21,7 +21,7 @@ The VStats library is condensed into a JAR file, which can be located in this pr
 
 ### Importing into Projects 
 
-Instructions on how to install & import VStats into Java projects are available <a target="_blank" href="https://captmd-11.github.io/blog/statscalculator/importingvstatsintoprojects.html">here</a>. 
+Instructions on how to install & import VStats into Java projects are available <a target="_blank" href="https://captmd-11.github.io/blog/misc_instructions/howtoimportjavalibrary.html">here</a>. 
 
 
 ### How does the user input data? 
@@ -30,7 +30,7 @@ It's actually quite simple. All the methods in VStats are <samp>static</samp>, s
 
 ### Documentation 
 
-Java documentation for VStats is available <a target="_blank" href="https://captmd-11.github.io/blog/statscalculator/VStats.html">here</a>. 
+Java documentation for VStats is available <a target="_blank" href="https://captmd-11.github.io/blog/vstats/VStats.html">here</a>. 
 
 ## Python
 

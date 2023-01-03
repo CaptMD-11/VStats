@@ -8,9 +8,17 @@ public class VCSV {
 
     }
 
-    // GOOD
-    public static int getNumCols(String fileName) {
-        File file = new File(fileName);
+    /**
+     * Returns the number of columns that exist in a CSV file.
+     * 
+     * @param filePath the path of the CSV file (with respect to the root directory
+     *                 of
+     *                 the Java project).
+     * @return the number of columns that exist in the CSV file with location
+     *         <strong>filePath</strong>.
+     */
+    public static int getNumCols(String filePath) {
+        File file = new File(filePath);
         try {
             int count = 0;
             Scanner scanner = new Scanner(file);
@@ -26,9 +34,21 @@ public class VCSV {
         return 0;
     }
 
-    // 0-based index logic
-    public static double[] getColumnOfNumbers(String fileName, int col) {
-        File file = new File(fileName);
+    /**
+     * Returns an array of numbers that exist in a certain column of a CSV file.
+     * <p>
+     * This method throws <code>java.lang.NumberFormatException</code> when the
+     * input column contains a character that cannot be converted into a
+     * <code>double</code>.
+     * 
+     * @param filePath the path of the CSV file (with respect to the root directory
+     *                 of the Java project).
+     * @param col      the input column number (0-based index logic).
+     * @return an array of numbers that exist in column <strong>col</strong> of the
+     *         CSV file located at <strong>filePath</strong>.
+     */
+    public static double[] getColumnOfNumbers(String filePath, int col) {
+        File file = new File(filePath);
         ArrayList<Double> res = new ArrayList<Double>();
         try {
             Scanner scanner = new Scanner(file);
@@ -37,7 +57,7 @@ public class VCSV {
             while (line.length() != 0) {
                 if (col == 0)
                     res.add(Double.parseDouble(line.substring(0, line.indexOf(","))));
-                else if (col == getNumCols(fileName) - 1)
+                else if (col == getNumCols(filePath) - 1)
                     res.add(Double.parseDouble(line.substring(line.lastIndexOf(",") + 1)));
                 else
                     res.add(Double.parseDouble(

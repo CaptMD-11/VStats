@@ -9,12 +9,37 @@ public class VCSV {
     }
 
     /**
-     * Returns the number of columns that exist in a CSV file.
+     * Returns the number of rows that contain data in a CSV file.
+     * 
+     * @param filePath the path of the CSV file (with respect to the root directory
+     *                 of the Java project).
+     * @return the number of rows that contain data in the CSV file with location
+     *         <strong>filePath</strong>.
+     */
+    public static int getNumRows(String filePath) {
+        File file = new File(filePath);
+        try {
+            int count = 1;
+            Scanner scanner = new Scanner(file);
+            String line = scanner.nextLine();
+            while (scanner.hasNextLine()) {
+                count++;
+                line = scanner.nextLine();
+            }
+            return count;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return 0;
+    }
+
+    /**
+     * Returns the number of columns that contain data in a CSV file.
      * 
      * @param filePath the path of the CSV file (with respect to the root directory
      *                 of
      *                 the Java project).
-     * @return the number of columns that exist in the CSV file with location
+     * @return the number of columns that contain data in the CSV file with location
      *         <strong>filePath</strong>.
      */
     public static int getNumCols(String filePath) {

@@ -6,8 +6,6 @@
 
 VStats is a highly optimized Java library that features statistical models such as binomial & geometric distributions, linear regression, confidence intervals, significance tests, and much more. Additional methods, like matrix computations, are also included. 
 
-The VStats library is condensed into a JAR file, which can be located in this project. That way, users can import VStats into their Java projects. 
-
 <br>
 
 <center><b><i>***A Python version of this project is currently being developed***</i></b></center>

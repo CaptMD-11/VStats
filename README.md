@@ -28,7 +28,7 @@ It's actually quite simple. All the methods in VStats are <samp>static</samp>, s
 
 ### Documentation 
 
-Java documentation for VStats is available <a target="_blank" href="https://captmd-11.github.io/blog/vstats/VStats.html">here</a>. 
+Java documentation for VStats is available <a target="_blank" href="https://captmd-11.github.io/blog/vstats/VStatsHTML/VStats.html">here</a>. 
 
 ## Python
 

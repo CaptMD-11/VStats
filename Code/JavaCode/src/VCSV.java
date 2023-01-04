@@ -60,6 +60,56 @@ public class VCSV {
     }
 
     /**
+     * Returns an array of numbers that exist in a certain row of a CSV file.
+     * <p>
+     * This method throws <code>java.lang.NumberFormatException</code> when the
+     * input column contains a character that cannot be converted into a
+     * <code>double</code>.
+     * 
+     * @param filePath the path of the CSV file (with respect to the root directory
+     *                 of the Java project).
+     * @param row      the input row number (0-based index logic).
+     * @return an array of numbers that exist in row <strong>row</strong> of the CSV
+     *         file located at <strong>filePath</strong>.
+     */
+    public static double[] getRowOfNumbers(String filePath, int row) {
+        File file = new File(filePath);
+        ArrayList<Double> res = new ArrayList<Double>();
+        try {
+            Scanner scanner = new Scanner(file);
+            String line = scanner.nextLine();
+            int curr = 0;
+            while (scanner.hasNextLine()) {
+                if (curr == row) {
+                    ArrayList<String> strList = new ArrayList<String>();
+                    String temp = "";
+                    for (int i = 0; i < line.length(); i++) {
+                        if (line.substring(i, i + 1).equals(",")) {
+                            strList.add(temp);
+                            temp = "";
+                        } else
+                            temp += line.substring(i, i + 1);
+                    }
+                    strList.add(line.substring(line.lastIndexOf(",") + 1));
+                    for (int i = 0; i < strList.size(); i++) {
+                        res.add(Double.parseDouble(strList.get(i)));
+                    }
+                    break;
+                } else
+                    curr++;
+                line = scanner.next();
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        double[] output = new double[res.size()];
+        for (int i = 0; i < res.size(); i++) {
+            output[i] = res.get(i);
+        }
+        return output;
+    }
+
+    /**
      * Returns an array of numbers that exist in a certain column of a CSV file.
      * <p>
      * This method throws <code>java.lang.NumberFormatException</code> when the
